@@ -26,6 +26,11 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
+      - name: Test GITHUB_TOKEN
+        run: |
+          echo "Token permissions: ${{ toJson(github.token.permissions) }}"
+          echo "Repository: ${{ github.repository }}"
+
       # 3. 创建 package.json（解决锁文件缺失问题）
       - name: Initialize npm project
         run: npm init -y
