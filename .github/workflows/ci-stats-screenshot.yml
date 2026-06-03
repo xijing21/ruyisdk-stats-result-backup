@@ -1,0 +1,55 @@
+name: Automated Statistics & Screenshots
+
+on:
+  # 每周二和每月28-31日尝试运行（脚本内部会判断是否符合条件）
+  schedule:
+    - cron: '0 2 * * 2'      # 每周二 UTC 2:00（北京时间10:00）
+    - cron: '0 2 28-31 * *'  # 每月28-31日 UTC 2:00
+  workflow_dispatch:          # 手动触发
+
+jobs:
+  collect-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write        # 允许推送代码到仓库
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Run screenshot script
+        run: node web-stats/screenshot.mjs
+        env:
+          VSM_COOKIE: ${{ secrets.VSM_COOKIE }}  # 从 GitHub Secrets 读取
+
+      - name: Get result directory
+        id: result_dir
+        run: echo "dir=$(cat web-stats/result_dir.txt)" >> $GITHUB_OUTPUT
+
+      - name: Run statistics script
+        run: |
+          result_dir="${{ steps.result_dir.outputs.dir }}"
+          mkdir -p "$result_dir"
+          bash web-stats/ruyisdk_stats.sh > "${result_dir}/ruyisdk_stats_${{ github.event.repository.updated_at }}.txt"
+        env:
+          RESULT_DIR: ${{ steps.result_dir.outputs.dir }}
+
+      - name: Commit and push results
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add web-stats/results-*
+          git diff --staged --quiet || git commit -m "📊 自动采集: $(date +'%Y-%m-%d %H:%M')"
+          git push
