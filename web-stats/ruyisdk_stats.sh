@@ -23,10 +23,16 @@ START_TIME="2024-12-30T00:00:00"
 END_TIME=$(date -u +"%Y-%m-%dT%H:%M:%S")
 
 # 输出文件
-OUTPUT_FILE="ruyisdk_stats_$(date +%Y%m%d_%H%M%S).txt"
+if [[ -n "${RESULT_DIR:-}" ]]; then
+  mkdir -p "$RESULT_DIR"
+  OUTPUT_FILE="${RESULT_DIR}/ruyisdk_stats_$(date +%Y%m%d_%H%M%S).txt"
+else
+  OUTPUT_FILE="ruyisdk_stats_$(date +%Y%m%d_%H%M%S).txt"
+fi
 
 # GitHub Token（可选）
 GITHUB_TOKEN="${GITHUB_TOKEN:-}"
+PEPY_API_KEY="${PEPY_API_KEY:-}"
 
 # PePy API Key（可选，用于 PyPI 累计下载量；无 Key 时将降级到 pypistats 近期数据）
 PEPY_API_KEY="${PEPY_API_KEY:-}"
@@ -56,20 +62,12 @@ CURL_RETRY=2
 
 # ===================== 前置检查 =====================
 
-for cmd in curl jq date; do
-    if ! command -v "$cmd" &>/dev/null; then
-        echo "错误: 未找到必需命令 '$cmd'，请先安装。" >&2
-        exit 1
-    fi
-done
-
 if [[ ! -f ~/.netrc ]]; then
-    echo "错误: 未找到 ~/.netrc 文件，请先配置 ES 认证信息。" >&2
-    exit 1
+  echo "警告: 未找到 ~/.netrc 文件，ES 查询将失败。" >&2
+  echo "警告: 在 GitHub Actions 中请确保已配置 ES_NETRC Secret。" >&2
 fi
-
-if [[ $(stat -c %a ~/.netrc 2>/dev/null || stat -f %Lp ~/.netrc 2>/dev/null) != "600" ]]; then
-    echo "警告: ~/.netrc 权限非 600，curl 可能拒绝使用。建议执行: chmod 600 ~/.netrc" >&2
+if [[ -f ~/.netrc ]] && [[ $(stat -c %a ~/.netrc 2>/dev/null || stat -f %Lp ~/.netrc 2>/dev/null) != "600" ]]; then
+  echo "警告: ~/.netrc 权限非 600，curl 可能拒绝使用。" >&2
 fi
 
 # ===================== 函数定义 =====================
@@ -441,11 +439,14 @@ eclipse_marketplace_installs() {
 }
 
 # ===================== 开始统计 =====================
+# 输出同时到终端和文件
+exec > >(tee -a "$OUTPUT_FILE") 2>&1
 
 echo "=========================================="
 echo " RuyiSDK 下载量统计（v3 - 增加第三方市场数据）"
 echo "=========================================="
 echo "统计时间范围: ${START_TIME} ~ ${END_TIME}"
+echo "输出文件: ${OUTPUT_FILE}"
 echo ""
 
 # ---------- [1/4] ES 统计 ----------

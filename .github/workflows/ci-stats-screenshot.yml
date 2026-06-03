@@ -1,27 +1,28 @@
-name: Automated Statistics & Screenshots
+name: Stats & Screenshot
 
 on:
-  # 每周二和每月28-31日尝试运行（脚本内部会判断是否符合条件）
   schedule:
-    - cron: '0 2 * * 2'      # 每周二 UTC 2:00（北京时间10:00）
-    - cron: '0 2 28-31 * *'  # 每月28-31日 UTC 2:00
-  workflow_dispatch:          # 手动触发
+    # 每周二 UTC 01:00 = 北京时间 09:00
+    - cron: '0 1 * * 2'
+    # 每月 28-31 日 UTC 16:00 = 北京时间次日 00:00（即当月最后一天 24:00）
+    # 脚本内部会判断是否真的是最后一天
+    - cron: '0 16 28-31 * *'
+  workflow_dispatch:
 
 jobs:
-  collect-data:
+  collect:
     runs-on: ubuntu-latest
     permissions:
-      contents: write        # 允许推送代码到仓库
+      contents: write
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Install Playwright
         run: |
@@ -32,24 +33,30 @@ jobs:
       - name: Run screenshot script
         run: node web-stats/screenshot.mjs
         env:
-          VSM_COOKIE: ${{ secrets.VSM_COOKIE }}  # 从 GitHub Secrets 读取
+          VSM_COOKIE: ${{ secrets.VSM_COOKIE }}
+
+      - name: Create ~/.netrc for ES auth
+        run: |
+          cat > ~/.netrc <<'NETRC_EOF'
+          ${{ secrets.ES_NETRC }}
+          NETRC_EOF
+          chmod 600 ~/.netrc
+
+      - name: Run statistics script
+        run: bash web-stats/ruyisdk_stats.sh
+        env:
+          RESULT_DIR: ${{ steps.result_dir.outputs.dir }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          PEPY_API_KEY: ${{ secrets.PEPY_API_KEY }}
 
       - name: Get result directory
         id: result_dir
         run: echo "dir=$(cat web-stats/result_dir.txt)" >> $GITHUB_OUTPUT
 
-      - name: Run statistics script
-        run: |
-          result_dir="${{ steps.result_dir.outputs.dir }}"
-          mkdir -p "$result_dir"
-          bash web-stats/ruyisdk_stats.sh > "${result_dir}/ruyisdk_stats_${{ github.event.repository.updated_at }}.txt"
-        env:
-          RESULT_DIR: ${{ steps.result_dir.outputs.dir }}
-
       - name: Commit and push results
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add web-stats/results-*
-          git diff --staged --quiet || git commit -m "📊 自动采集: $(date +'%Y-%m-%d %H:%M')"
+          git add web-stats/results-weekly web-stats/results-monthly
+          git diff --staged --quiet || git commit -m "📊 自动采集: $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
