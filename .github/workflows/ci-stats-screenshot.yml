@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0          
-          persist-credentials: true  
+          token: ${{ secrets.GITHUB_TOKEN }} 
 
       # ==========================================
       # 2. 配置 Git
@@ -39,8 +39,8 @@ jobs:
           node-version: '22'    
 
       - name: Install Playwright
+        working-directory: web-stats 
         run: |
-          cd web-stats
           npm init -y
           npm install playwright
           npx playwright install --with-deps chromium
@@ -50,7 +50,6 @@ jobs:
       # ==========================================
       - name: Create ~/.netrc for ES auth
         run: |
-          mkdir -p ~/.netrc.d
           cat > ~/.netrc <<'NETRC_EOF'
           ${{ secrets.ES_NETRC }}
           NETRC_EOF
@@ -60,9 +59,8 @@ jobs:
       # 5. 运行截图脚本（生成 result_dir.txt）
       # ==========================================
       - name: Run screenshot script
-        run: |
-          cd web-stats
-          node screenshot.mjs
+        working-directory: web-stats
+        run: node screenshot.mjs
         env:
           VSM_COOKIE: ${{ secrets.VSM_COOKIE }}
 
@@ -76,9 +74,8 @@ jobs:
           echo "Result directory: $(cat web-stats/result_dir.txt)"
 
       - name: Run statistics script
-        run: |
-          cd web-stats
-          bash ruyisdk_stats.sh
+        working-directory: web-stats
+        run: bash ruyisdk_stats.sh
         env:
           RESULT_DIR: ${{ steps.result_dir.outputs.dir }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
@@ -91,8 +88,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
         run: |
+          # 确保在仓库根目录
+          cd $GITHUB_WORKSPACE
+          
+          # 检查 git 状态
+          git status
+          git remote -v
+          
+          # 添加结果文件
           git add web-stats/results-weekly web-stats/results-monthly
-          git diff --staged --quiet || {
+          
+          # 如果有变更则提交并推送
+          if ! git diff --staged --quiet; then
             git commit -m "📊 自动采集: $(date -u +'%Y-%m-%d %H:%M UTC')"
-            git push
-          }
+            # 使用完整的推送命令，指定远程和分支
+            git push origin HEAD:${{ github.ref_name }}
+          else
+            echo "No changes to commit"
+          fi
