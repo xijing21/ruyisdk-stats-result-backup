@@ -35,7 +35,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'  # 明确指定 Node.js 24
-          cache: 'npm'        # 现在有 package.json，cache 正常工作
 
       # 5. 安装 Playwright
       - name: Install Playwright
