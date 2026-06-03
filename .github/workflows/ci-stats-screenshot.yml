@@ -96,7 +96,7 @@ jobs:
           git remote -v
           
           # 添加结果文件
-          git add -A web-stats/results-weekly/ web-stats/results-monthly/ web-stats/result_dir.txt
+          git add -A
           
           # 如果有变更则提交并推送
           if ! git diff --staged --quiet; then
