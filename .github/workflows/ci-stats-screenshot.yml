@@ -1,12 +1,9 @@
 name: Stats & Screenshot
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true  # 强制使用 Node.js 24
-
 on:
   schedule:
     - cron: '0 1 * * 2'      # 每周二 UTC 01:00（北京时间 09:00）
-    - cron: '0 16 28-31 * *'  # 每月 28-31 日 UTC 16:00（北京时间次日 00:00）
+    - cron: '0 16 28-31 * *' # 每月 28-31 日 UTC 16:00
   workflow_dispatch:
 
 jobs:
@@ -16,69 +13,86 @@ jobs:
       contents: write
 
     steps:
-      # 1. 检出代码（最新版 actions/checkout@v4）
+      # ==========================================
+      # 1. 检出代码（使用 fetch-depth: 0 确保有完整历史，支持 git push）
+      # ==========================================
       - name: Checkout
         uses: actions/checkout@v4
-            
-      - name: Test GITHUB_TOKEN
-        run: |
-          echo "Token permissions: ${{ toJson(github.token.permissions) }}"
-          echo "Repository: ${{ github.repository }}"
+        with:
+          fetch-depth: 0          
+          persist-credentials: true  
 
-      # 2. 配置 Git（避免权限问题）
+      # ==========================================
+      # 2. 配置 Git
+      # ==========================================
       - name: Configure Git
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 3. 创建 package.json（解决锁文件缺失问题）
-      - name: Initialize npm project
-        run: npm init -y
-
-      # 4. 设置 Node.js 24（最新版 actions/setup-node@v4）
-      - name: Use Node.js 24
+      # ==========================================
+      # 3. 初始化 Node.js 项目 & 安装 Playwright
+      # ==========================================
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'  # 明确指定 Node.js 24
+          node-version: '22'    
 
-      # 5. 安装 Playwright
       - name: Install Playwright
         run: |
+          cd web-stats
+          npm init -y
           npm install playwright
           npx playwright install --with-deps chromium
 
-      # 6. 运行截图脚本
-      - name: Run screenshot script
-        run: node web-stats/screenshot.mjs
-        env:
-          VSM_COOKIE: ${{ secrets.VSM_COOKIE }}
-
-      # 7. 创建 ~/.netrc（ES 认证）
+      # ==========================================
+      # 4. 创建 ~/.netrc（ES 认证）
+      # ==========================================
       - name: Create ~/.netrc for ES auth
         run: |
+          mkdir -p ~/.netrc.d
           cat > ~/.netrc <<'NETRC_EOF'
           ${{ secrets.ES_NETRC }}
           NETRC_EOF
           chmod 600 ~/.netrc
 
-      # 8. 运行统计脚本
+      # ==========================================
+      # 5. 运行截图脚本（生成 result_dir.txt）
+      # ==========================================
+      - name: Run screenshot script
+        run: |
+          cd web-stats
+          node screenshot.mjs
+        env:
+          VSM_COOKIE: ${{ secrets.VSM_COOKIE }}
+
+      # ==========================================
+      # 6. 读取结果目录 & 运行统计脚本
+      # ==========================================
+      - name: Get result directory
+        id: result_dir
+        run: |
+          echo "dir=$(cat web-stats/result_dir.txt)" >> $GITHUB_OUTPUT
+          echo "Result directory: $(cat web-stats/result_dir.txt)"
+
       - name: Run statistics script
-        run: bash web-stats/ruyisdk_stats.sh
+        run: |
+          cd web-stats
+          bash ruyisdk_stats.sh
         env:
           RESULT_DIR: ${{ steps.result_dir.outputs.dir }}
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          PEPY_API_KEY: ${{ secrets.PEPI_API_KEY }}
+          PEPY_API_KEY: ${{ secrets.PEPY_API_KEY }}
 
-      # 9. 获取结果目录
-      - name: Get result directory
-        id: result_dir
-        run: echo "dir=$(cat web-stats/result_dir.txt)" >> $GITHUB_OUTPUT
-
-      # 10. 提交结果
+      # ==========================================
+      # 7. 提交并推送结果
+      # ==========================================
       - name: Commit and push results
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
           git add web-stats/results-weekly web-stats/results-monthly
-          git diff --staged --quiet || git commit -m "📊 自动采集: $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push
+          git diff --staged --quiet || {
+            git commit -m "📊 自动采集: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          }
