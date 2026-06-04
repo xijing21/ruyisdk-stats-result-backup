@@ -101,10 +101,10 @@ fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
 
                 // 3. 常规选择器移除
                 const selectors = [
-                    // 精准移除Eclipse Marketplace 截图中的 Popup（基于实际 DOM 结构）
-                    '[aria-label="Popup"]',
-                    '.popup-dismissible',
-                    '[role="region"][aria-label="Popup"]',
+                    // // 精准移除Eclipse Marketplace 截图中的 Popup（基于实际 DOM 结构）
+                    // '[aria-label="Popup"]',
+                    // '.popup-dismissible',
+                    // '[role="region"][aria-label="Popup"]',
 
                     // 精准移除open-vsx页面的footer（基于实际 DOM 结构）
                     'footer',
@@ -113,20 +113,20 @@ fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
                     '[class*="css-k008qs"]',
 
                     // 其它可能的通用弹窗
-                    // Cookie/GDPR 弹窗
-                    '#cookie-banner', '.cookie-banner', '#gdpr-consent', '.gdpr-consent',
-                    '.cc-window', '.cc-banner', '#onetrust-consent-sdk', '.onetrust-pc-dark-filter',
+                    // // Cookie/GDPR 弹窗
+                    // '#cookie-banner', '.cookie-banner', '#gdpr-consent', '.gdpr-consent',
+                    // '.cc-window', '.cc-banner', '#onetrust-consent-sdk', '.onetrust-pc-dark-filter',
 
-                    // 通用弹窗和模态框
-                    '.modal', '.popup', '[role="dialog"]', '[role="alertdialog"]',
-                    '.overlay', '.backdrop', '.mask',
+                    // // 通用弹窗和模态框
+                    // '.modal', '.popup', '[role="dialog"]', '[role="alertdialog"]',
+                    // '.overlay', '.backdrop', '.mask',
 
-                    // 通知条/横幅（Open VSX 顶部蓝色条等）
-                    '[class*="banner"]', '[class*="notification"]', '[class*="alert"]',
-                    '[class*="toast"]', '[class*="snackbar"]',
+                    // // 通知条/横幅（Open VSX 顶部蓝色条等）
+                    // '[class*="banner"]', '[class*="notification"]', '[class*="alert"]',
+                    // '[class*="toast"]', '[class*="snackbar"]',
 
-                    // 常见广告 iframe
-                    'iframe[src*="ads"]', 'iframe[src*="promo"]',
+                    // // 常见广告 iframe
+                    // 'iframe[src*="ads"]', 'iframe[src*="promo"]',
                 ];
 
                 selectors.forEach(sel => {
