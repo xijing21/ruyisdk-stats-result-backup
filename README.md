@@ -21,7 +21,7 @@ RuyiSDK 是一个活跃的开源项目，其下载量、安装量等统计数据
 - **ES 镜像站** — 组件包、文档、IDE、插件等下载量
 - **GitHub Releases** — 各仓库 Assets 累计下载量
 - **PyPI** — `ruyi` 包累计下载量
-- **VS Code Marketplace** — 插件安装量（需登录 Cookie）
+- **VS Code Marketplace** — 插件安装量
 - **Open VSX Registry** — 扩展下载量
 - **Eclipse Marketplace** — 插件安装量
 
@@ -36,7 +36,7 @@ web-stats/
 │       ├── dashboard_20260603.jpg
 │       ├── openvsx_20260603.jpg
 │       ├── eclipse_marketplace_20260603.jpg
-│       └── ruyisdk_stats_20260603_105233.txt
+│       └── ruyisdk_stats_20260603.txt
 └── results-monthly/        # 每月末采集结果（按月归档）
 ```
 
@@ -51,3 +51,7 @@ web-stats/
 - **Playwright** — 无头浏览器截图
 - **Bash + curl/jq** — API 数据采集与统计
 - **Git** — 结果自动提交归档
+
+### 备注
+
+- ruyisdk_stats_XXXXXX.txt中最后的报告生成时间为 UTC（世界标准时间）时区；一般中国标准时间（CST）是东八区（UTC+8），比 UTC 快 8 个小时。
