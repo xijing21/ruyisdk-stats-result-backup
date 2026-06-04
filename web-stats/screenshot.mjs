@@ -147,7 +147,7 @@ fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
                     }
                 });
 
-                // 第三阶段：按 z-index 兜底清理最高层元素
+                // 第三阶段：按 z-index 兜底清理（增加白名单保护）
                 const allElements = Array.from(document.querySelectorAll('*'));
                 const withZIndex = allElements.map(el => {
                     const z = window.getComputedStyle(el).zIndex;
@@ -157,7 +157,24 @@ fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
                 withZIndex.sort((a, b) => b.z - a.z);
                 withZIndex.slice(0, 5).forEach(item => {
                     const tag = item.el.tagName.toLowerCase();
-                    if (!['body', 'html', 'main', 'article', 'section', 'nav', 'header'].includes(tag)) {
+                    const className = item.el.className || '';
+                    const id = item.el.id || '';
+
+                    // 白名单：保护内容相关的元素
+                    const protectedTags = ['body', 'html', 'main', 'article', 'section', 'nav', 'header'];
+                    const protectedClasses = ['ux-section', 'item-header', 'gallery', 'content', 'main-content'];
+                    const protectedIds = ['section-banner', 'vss_2'];
+
+                    // 检查是否在白名单中
+                    const isProtectedTag = protectedTags.includes(tag);
+                    const isProtectedClass = protectedClasses.some(c => className.includes(c));
+                    const isProtectedId = protectedIds.some(i => id.includes(i));
+
+                    // 检查是否包含关键数据（installs 等）
+                    const textContent = item.el.textContent || '';
+                    const hasData = textContent.includes('installs') || textContent.includes('downloads');
+
+                    if (!isProtectedTag && !isProtectedClass && !isProtectedId && !hasData) {
                         item.el.remove();
                     }
                 });
