@@ -135,49 +135,49 @@ fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
                     } catch (e) { }
                 });
 
-                // 第二阶段：移除 fixed 定位的大面积遮罩层
-                document.querySelectorAll('*').forEach(el => {
-                    const style = window.getComputedStyle(el);
-                    const rect = el.getBoundingClientRect();
-                    if (style.position === 'fixed' &&
-                        rect.width > window.innerWidth * 0.3 &&
-                        rect.height > window.innerHeight * 0.3 &&
-                        !['BODY', 'HTML', 'MAIN', 'ARTICLE', 'SECTION', 'NAV', 'HEADER'].includes(el.tagName)) {
-                        el.remove();
-                    }
-                });
+                // // 第二阶段：移除 fixed 定位的大面积遮罩层
+                // document.querySelectorAll('*').forEach(el => {
+                //     const style = window.getComputedStyle(el);
+                //     const rect = el.getBoundingClientRect();
+                //     if (style.position === 'fixed' &&
+                //         rect.width > window.innerWidth * 0.3 &&
+                //         rect.height > window.innerHeight * 0.3 &&
+                //         !['BODY', 'HTML', 'MAIN', 'ARTICLE', 'SECTION', 'NAV', 'HEADER'].includes(el.tagName)) {
+                //         el.remove();
+                //     }
+                // });
+                //
+                // // 第三阶段：按 z-index 兜底清理（增加白名单保护）
+                // const allElements = Array.from(document.querySelectorAll('*'));
+                // const withZIndex = allElements.map(el => {
+                //     const z = window.getComputedStyle(el).zIndex;
+                //     return { el, z: z === 'auto' ? 0 : parseInt(z) };
+                // }).filter(item => item.z > 200);
 
-                // 第三阶段：按 z-index 兜底清理（增加白名单保护）
-                const allElements = Array.from(document.querySelectorAll('*'));
-                const withZIndex = allElements.map(el => {
-                    const z = window.getComputedStyle(el).zIndex;
-                    return { el, z: z === 'auto' ? 0 : parseInt(z) };
-                }).filter(item => item.z > 200);
+                // withZIndex.sort((a, b) => b.z - a.z);
+                // withZIndex.slice(0, 5).forEach(item => {
+                //     const tag = item.el.tagName.toLowerCase();
+                //     const className = item.el.className || '';
+                //     const id = item.el.id || '';
 
-                withZIndex.sort((a, b) => b.z - a.z);
-                withZIndex.slice(0, 5).forEach(item => {
-                    const tag = item.el.tagName.toLowerCase();
-                    const className = item.el.className || '';
-                    const id = item.el.id || '';
+                //     // 白名单：保护内容相关的元素
+                //     const protectedTags = ['body', 'html', 'main', 'article', 'section', 'nav', 'header'];
+                //     const protectedClasses = ['ux-section', 'item-header', 'gallery', 'content', 'main-content'];
+                //     const protectedIds = ['section-banner', 'vss_2'];
 
-                    // 白名单：保护内容相关的元素
-                    const protectedTags = ['body', 'html', 'main', 'article', 'section', 'nav', 'header'];
-                    const protectedClasses = ['ux-section', 'item-header', 'gallery', 'content', 'main-content'];
-                    const protectedIds = ['section-banner', 'vss_2'];
+                //     // 检查是否在白名单中
+                //     const isProtectedTag = protectedTags.includes(tag);
+                //     const isProtectedClass = protectedClasses.some(c => className.includes(c));
+                //     const isProtectedId = protectedIds.some(i => id.includes(i));
 
-                    // 检查是否在白名单中
-                    const isProtectedTag = protectedTags.includes(tag);
-                    const isProtectedClass = protectedClasses.some(c => className.includes(c));
-                    const isProtectedId = protectedIds.some(i => id.includes(i));
+                //     // 检查是否包含关键数据（installs 等）
+                //     const textContent = item.el.textContent || '';
+                //     const hasData = textContent.includes('installs') || textContent.includes('downloads');
 
-                    // 检查是否包含关键数据（installs 等）
-                    const textContent = item.el.textContent || '';
-                    const hasData = textContent.includes('installs') || textContent.includes('downloads');
-
-                    if (!isProtectedTag && !isProtectedClass && !isProtectedId && !hasData) {
-                        item.el.remove();
-                    }
-                });
+                //     if (!isProtectedTag && !isProtectedClass && !isProtectedId && !hasData) {
+                //         item.el.remove();
+                //     }
+                // });
             });
 
             // 等待 DOM 更新
