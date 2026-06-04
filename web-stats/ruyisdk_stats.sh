@@ -25,9 +25,9 @@ END_TIME=$(date -u +"%Y-%m-%dT%H:%M:%S")
 # 输出文件
 if [[ -n "${RESULT_DIR:-}" ]]; then
   mkdir -p "$RESULT_DIR"
-  OUTPUT_FILE="${RESULT_DIR}/ruyisdk_stats_$(date +%Y%m%d_%H%M%S).txt"
+  OUTPUT_FILE="${RESULT_DIR}/ruyisdk_stats_$(date +%Y%m%d).txt"
 else
-  OUTPUT_FILE="ruyisdk_stats_$(date +%Y%m%d_%H%M%S).txt"
+  OUTPUT_FILE="ruyisdk_stats_$(date +%Y%m%d).txt"
 fi
 
 # GitHub Token（可选）
@@ -222,55 +222,39 @@ github_release_downloads() {
 # 返回：非负整数 或 "QUERY_FAILED"
 # ---------------------------------------------------------------
 pypi_downloads() {
-    local package="$1"
-    local url="https://api.pepy.tech/api/v1/projects/${package}"
-    local http_code
-    local response
-
-    # 发起请求，捕获 HTTP 状态码和响应体
-    response=$(curl -s -w "\n%{http_code}" --max-time "${CURL_TIMEOUT}" --retry "${CURL_RETRY}" \
-        -H "X-API-Key: ${PEPY_API_KEY}" \
-        "$url" 2>/dev/null) || { echo "QUERY_FAILED"; return; }
-
-    if [[ -z "${response:-}" ]]; then
-        echo "QUERY_FAILED"
-        return
-    fi
-
-    # 分离 HTTP 状态码和响应体
-    http_code=$(echo "$response" | tail -n1)
-    local body
-    body=$(echo "$response" | sed '$d')
-
-    echo "  [调试] PePy API HTTP 状态码: ${http_code}" >&2
-    echo "  [调试] PePy API 响应体: ${body}" >&2
-
-    # 检查 HTTP 状态码
-    if [[ "${http_code}" != "200" ]]; then
-        local msg
-        msg=$(echo "$body" | jq -r '.message // .error // empty' 2>/dev/null)
-        echo "警告: PePy API 查询 ${package} 出错 (HTTP ${http_code}): ${msg}" >&2
-        echo "警告: 降级使用 pypistats.org（仅近期数据）" >&2
-        _pypi_downloads_pypistats "$package"
-        return
-    fi
-
-    # 尝试提取下载量：兼容新旧 API 字段名
-    # 新版可能叫 downloads，旧版叫 total_downloads
-    local total
-    total=$(echo "$body" | jq -r '
+  local package="$1"
+  local url="https://api.pepy.tech/api/v1/projects/${package}"
+  local max_retries=3
+  local retry_delay=5
+  
+  for ((i=1; i<=max_retries; i++)); do
+    local response=$(curl -s -w "\n%{http_code}" --max-time 30 \
+      -H "X-API-Key: ${PEPY_API_KEY}" \
+      "$url" 2>/dev/null)
+    
+    local http_code=$(echo "$response" | tail -n1)
+    local body=$(echo "$response" | sed '$d')
+    
+    if [[ "${http_code}" == "200" ]]; then
+      local total=$(echo "$body" | jq -r '
         if .total_downloads != null then .total_downloads
         elif .downloads != null then .downloads
         else "QUERY_FAILED" end
-    ' 2>/dev/null) || { echo "QUERY_FAILED"; return; }
-
-    if [[ -z "${total:-}" || "$total" == "null" || "$total" == "QUERY_FAILED" ]]; then
-        echo "警告: PePy API 返回 200，但无法提取下载量字段。原始数据: ${body}" >&2
-        echo "QUERY_FAILED"
-        return
+      ' 2>/dev/null)
+      
+      if [[ -n "$total" && "$total" != "null" && "$total" != "QUERY_FAILED" ]]; then
+        echo "${total}"
+        return 0
+      fi
     fi
-
-    echo "${total}"
+    
+    echo "⚠️ PePy API 尝试 ${i}/${max_retries} 失败 (HTTP ${http_code})，${retry_delay}秒后重试..." >&2
+    sleep ${retry_delay}
+  done
+  
+  # 所有重试失败，降级到 pypistats
+  echo "❌ PePy API 全部重试失败，降级到 pypistats.org" >&2
+  _pypi_downloads_pypistats "$package"
 }
 
 
