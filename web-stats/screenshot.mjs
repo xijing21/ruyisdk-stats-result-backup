@@ -71,17 +71,35 @@ fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
 
             // 彻底移除所有弹窗/横幅/遮罩
             await page.evaluate(() => {
+                // 1. 先移除 Shadow DOM 弹窗（Eclipse 赞助弹窗）
+                document.querySelectorAll('efsc-featured-story-popup').forEach(el => {
+                    console.log('🗑️ 移除 efsc-featured-story-popup');
+                    el.remove();
+                });
+
+                // 2. 遍历所有元素的 Shadow Root，查找并移除弹窗
+                document.querySelectorAll('*').forEach(el => {
+                    if (el.shadowRoot) {
+                        const popup = el.shadowRoot.querySelector('[aria-label="Popup"], .popup-dismissible');
+                        if (popup) {
+                            console.log(`🗑️ 移除 Shadow DOM 弹窗: ${el.tagName}`);
+                            el.remove();
+                        }
+                    }
+                });
+
+                // 3. 常规选择器移除
                 const selectors = [
                     // 精准移除Eclipse Marketplace 截图中的 Popup（基于实际 DOM 结构）
-                    '[aria-label="Popup"]', 
-                    '.popup-dismissible', 
-                    '[role="region"][aria-label="Popup"]', 
+                    '[aria-label="Popup"]',
+                    '.popup-dismissible',
+                    '[role="region"][aria-label="Popup"]',
 
                     // 精准移除open-vsx页面的footer（基于实际 DOM 结构）
                     'footer',
-                    '[role="contentinfo"]', 
-                    '[class*="css-69i1ev"]', 
-                    '[class*="css-k008qs"]',  
+                    '[role="contentinfo"]',
+                    '[class*="css-69i1ev"]',
+                    '[class*="css-k008qs"]',
 
                     // 其它可能的通用弹窗
                     // Cookie/GDPR 弹窗
