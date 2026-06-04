@@ -466,3 +466,159 @@ Eclipse Marketplace 安装量:                                   N/A（未配置
 ============================================================
 
 ✅ 统计报告已保存至: /home/runner/work/ruyisdk-stats-result-backup/ruyisdk-stats-result-backup/web-stats/results-weekly/20260604/ruyisdk_stats_20260604.txt
+==========================================
+ RuyiSDK 下载量统计（v3 - 增加第三方市场数据）
+==========================================
+统计时间范围: 2024-12-30T00:00:00 ~ 2026-06-04T08:03:32
+输出文件: /home/runner/work/ruyisdk-stats-result-backup/ruyisdk-stats-result-backup/web-stats/results-weekly/20260604/ruyisdk_stats_20260604.txt
+
+[1/4] 正在查询 Elasticsearch ...
+
+[2/4] 正在查询 GitHub Releases ...
+
+[3/4] 正在查询第三方应用市场 ...
+ [调试] PePy API 尝试 1/3 HTTP 状态码: 403
+ 警告: PePy API 查询 ruyi 出错 (HTTP 403): Forbidden
+ 警告: 收到 403 Forbidden，可能是 API Key 无效或 IP 被限制
+ 警告: PePy API 全部失败，降级使用 pypistats.org（仅近期数据）
+  注意: 以下 PyPI 数据来自 pypistats.org 降级方案，仅包含近期数据，非完整累计
+警告: Eclipse Marketplace 解决方案 ID 未配置，跳过查询。
+
+[4/4] 正在汇总数据 ...
+
+正在生成报告 ...
+============================================================
+  RuyiSDK 下载量统计报告
+============================================================
+
+【1. 统计起止时间】
+  起始时间: 2024-12-30T00:00:00 (ES 中最早数据时间: 2024-12-30)
+  截止时间: 2026-06-04T08:03:32
+
+【2. 统计执行命令】
+
+  --- Elasticsearch 查询 ---
+  命令格式:
+  curl -n -s -X GET "https://log.ams.isrc.ac.cn/isrc-public/_count" \
+    -H 'Content-Type: application/json' \
+    -d '<JSON_BODY>'
+
+  JSON_BODY 示例 (pattern 替换为实际通配符):
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "wildcard": { "url.path": { "value": "<pattern>" } } },
+          { "range":   { "@timestamp": { "gte": "<START>", "lt": "<END>" } } }
+        ]
+      }
+    }
+  }
+
+  本次实际参数:
+    START = 2024-12-30T00:00:00
+    END   = 2026-06-04T08:03:32
+
+  查询的 pattern 列表:
+    /ruyisdk/*
+    /ruyisdk/dist/*
+    /ruyisdk/humans/*
+    /ruyisdk/ruyi/*
+    /ruyisdk/ide/0.0.1/*
+    /ruyisdk/ide/0.0.2/*
+    /ruyisdk/ide/0.0.3/*
+    /ruyisdk/ide/plugins/eclipse/*
+    /ruyisdk/ide/plugins/vscode/*
+    /ruyisdk/3rdparty/*
+
+  说明: wildcard 的 * 会递归匹配所有层级子路径（含 / 分隔符）
+
+  --- GitHub Release 查询 ---
+  命令格式:
+  curl -s -H 'Authorization: token <TOKEN>' \
+    -H 'Accept: application/vnd.github+json' \
+    'https://api.github.com/repos/<REPO>/releases?page=<N>&per_page=100'
+
+  查询的仓库:
+    ruyisdk/ruyi
+    ruyisdk/ruyisdk-eclipse-packages
+    ruyisdk/ruyisdk-eclipse-plugins
+    ruyisdk/ruyisdk-vscode-extension
+
+  --- 第三方应用市场查询 ---
+
+  PyPI (PePy API):
+    curl -s [-H 'X-API-Key: <KEY>'] \
+      'https://api.pepy.tech/api/v1/projects/ruyi'
+    降级方案 (pypistats.org，仅近期数据):
+    curl -s 'https://pypistats.org/api/packages/ruyi/overall'
+
+  Open VSX Registry:
+    curl -s 'https://open-vsx.org/api/ruyisdk/ruyisdk-vscode-extension'
+
+  Visual Studio Marketplace:
+    POST https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery
+    查询: RuyiSDK.ruyisdk-vscode-extension
+
+  Eclipse Marketplace:
+    (未配置解决方案 ID，跳过查询)
+
+============================================================
+
+【3. 统计结果】
+
+--- ES 日志统计（镜像站下载量，截至 2026-06-04T08:03:32）---
+
+ruyisdk/ 总下载量:                               143421
+ruyisdk/dist/ 基础组件包下载量:                   53706
+ruyisdk/humans/ 文档/视频等资源下载量:             6201
+ruyisdk/ruyi/ ruyi包管理器工具总下载量:            57924
+ruyisdk/ide/ RuyiSDK IDE 总下载量:                1799
+  - ruyisdk/ide/0.0.1/:  361
+  - ruyisdk/ide/0.0.2/:  484
+  - ruyisdk/ide/0.0.3/:  954
+ruyisdk/ide/plugins/eclipse/ Eclipse插件下载量:    352
+ruyisdk/ide/plugins/vscode/ VSCode插件下载量:      308
+ruyisdk/3rdparty/ 第三方资源下载量:                 20134
+
+  [数据一致性验证]
+  已统计子项之和: 140424
+  ruyisdk/ 总量:  143421
+  未归类差值:     2997
+
+--- GitHub Release 统计（Assets 累计下载量）---
+
+ruyi 工具累计下载量 (ruyisdk/ruyi):                       5851
+IDE 包累计下载量 (ruyisdk/ruyisdk-eclipse-packages):      8
+Eclipse 插件累计下载量 (ruyisdk/ruyisdk-eclipse-plugins): 79
+VSCode 插件累计下载量 (ruyisdk/ruyisdk-vscode-extension): 93
+
+--- 第三方应用市场统计（累计下载/安装量）---
+
+PyPI ruyi 累计下载量:                                13908
+Open VSX ruyisdk.ruyisdk-vscode-extension 累计下载量:   494
+Visual Studio Marketplace RuyiSDK.ruyisdk-vscode-extension 安装量: 87.0
+Eclipse Marketplace 安装量:                                   N/A（未配置 ID，按 0 计入）
+
+--- 网页统计数据（对比参考）---
+
+网页：RuyiSDK 组件包下载量:                       53706
+  = ES镜像(ruyisdk/dist/) 53706
+
+网页：RuyiSDK 文档下载量:                         6201
+  = ES镜像(ruyisdk/humans/) 6201
+
+网页：RuyiSDK 包管理器下载量:                     77683
+  = ES镜像(ruyisdk/ruyi/) 57924 + GitHub(ruyi) 5851 + PyPI 13908
+
+网页：RuyiSDK VS Code 插件下载量:                 982
+  = ES镜像(vscode/) 308 + GitHub(vscode) 93 + OpenVSX 494 + VSCode Marketplace 87.0
+
+网页：RuyiSDK Eclipse 组件下载量:                 2238
+  = ES镜像(ide/) 1799 + GitHub(IDE packages) 8 + ES镜像(eclipse/) 352 + GitHub(eclipse) 79 + Eclipse Marketplace QUERY_FAILED
+
+============================================================
+  报告生成时间: 2026/06/04 08:03:50
+============================================================
+
+✅ 统计报告已保存至: /home/runner/work/ruyisdk-stats-result-backup/ruyisdk-stats-result-backup/web-stats/results-weekly/20260604/ruyisdk_stats_20260604.txt
