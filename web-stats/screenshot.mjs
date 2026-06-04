@@ -59,7 +59,18 @@ fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
     async function takeScreenshot(url, filename, options = {}) {
         try {
             console.log(`📸 开始截图: ${url}`);
-            await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
+
+            // 根据域名选择加载策略
+            const waitUntil = url.includes('marketplace.visualstudio.com')
+                ? 'domcontentloaded'      // 微软页面追踪请求多，用 domcontentloaded
+                : 'networkidle';          // 其他页面正常用 networkidle
+
+            await page.goto(url, { waitUntil, timeout: 60000 });
+
+            // 如果用了 domcontentloaded，额外等待一下让图片和样式加载
+            if (waitUntil === 'domcontentloaded') {
+                await page.waitForTimeout(3000);  // 等 3 秒让页面渲染完成
+            }
 
             if (page.url().includes('login') || page.url().includes('signin')) {
                 console.log(`⚠️ 页面重定向到登录页，跳过: ${url}`);
@@ -175,7 +186,7 @@ fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
     await takeScreenshot('https://ruyisdk.org/dashboard/', `dashboard_${dateStr}.jpg`);
     await takeScreenshot('https://open-vsx.org/extension/RuyiSDK/ruyisdk-vscode-extension', `openvsx_${dateStr}.jpg`);
     await takeScreenshot('https://marketplace.visualstudio.com/items?itemName=RuyiSDK.ruyisdk-vscode-extension', `vsm_${dateStr}.jpg`);
-    await takeScreenshot('https://marketplace.eclipse.org/content/ruyisdk#metrics', `eclipse_marketplace_${dateStr}.jpg`);
+    await takeScreenshot('https://marketplace.eclipse.org/content/ruyisdk#metrics', `eclipse_marketplace_${dateStr}.jpg`, { fullPage: true });
 
     // 2. API 接口数据下载
     try {

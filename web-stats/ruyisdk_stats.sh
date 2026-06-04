@@ -217,8 +217,8 @@ github_release_downloads() {
 
 # ---------------------------------------------------------------
 # pypi_downloads: 通过 PePy API 获取 PyPI 包累计下载量
-#   - 有 PEPY_API_KEY 时带 Key 请求
-#   - 失败时降级到 pypistats.org（仅含近期数据，非完整累计）
+# - 有 PEPY_API_KEY 时带 Key 请求
+# - 失败时降级到 pypistats.org（仅含近期数据，非完整累计）
 # 返回：非负整数 或 "QUERY_FAILED"
 # ---------------------------------------------------------------
 pypi_downloads() {
@@ -228,32 +228,70 @@ pypi_downloads() {
   local retry_delay=5
   
   for ((i=1; i<=max_retries; i++)); do
-    local response=$(curl -s -w "\n%{http_code}" --max-time 30 \
+    local http_code
+    local response
+
+    # 发起请求，捕获 HTTP 状态码和响应体
+    # 关键修复：添加 User-Agent，避免 403
+    response=$(curl -s -w "\n%{http_code}" --max-time "${CURL_TIMEOUT}" --retry "${CURL_RETRY}" \
+      -H "User-Agent: ruyisdk-stats-script/1.0" \
+      -H "Accept: application/json" \
       -H "X-API-Key: ${PEPY_API_KEY}" \
-      "$url" 2>/dev/null)
-    
-    local http_code=$(echo "$response" | tail -n1)
-    local body=$(echo "$response" | sed '$d')
-    
+      "$url" 2>/dev/null) || { echo "QUERY_FAILED"; return; }
+
+    if [[ -z "${response:-}" ]]; then
+      echo "QUERY_FAILED"
+      return
+    fi
+
+    # 分离 HTTP 状态码和响应体
+    http_code=$(echo "$response" | tail -n1)
+    local body
+    body=$(echo "$response" | sed '$d')
+
+    echo " [调试] PePy API 尝试 ${i}/${max_retries} HTTP 状态码: ${http_code}" >&2
+
+    # 检查 HTTP 状态码
     if [[ "${http_code}" == "200" ]]; then
-      local total=$(echo "$body" | jq -r '
+      # 尝试提取下载量：兼容新旧 API 字段名
+      local total
+      total=$(echo "$body" | jq -r '
         if .total_downloads != null then .total_downloads
         elif .downloads != null then .downloads
         else "QUERY_FAILED" end
-      ' 2>/dev/null)
-      
-      if [[ -n "$total" && "$total" != "null" && "$total" != "QUERY_FAILED" ]]; then
+      ' 2>/dev/null) || { echo "QUERY_FAILED"; return; }
+
+      if [[ -n "${total:-}" && "$total" != "null" && "$total" != "QUERY_FAILED" ]]; then
         echo "${total}"
         return 0
       fi
+      
+      echo " 警告: PePy API 返回 200，但无法提取下载量字段" >&2
+      echo " [调试] 响应体: ${body}" >&2
+      echo "QUERY_FAILED"
+      return
+    fi
+
+    # 非 200 状态码处理
+    local msg
+    msg=$(echo "$body" | jq -r '.message // .error // empty' 2>/dev/null)
+    echo " 警告: PePy API 查询 ${package} 出错 (HTTP ${http_code}): ${msg}" >&2
+    
+    # 403 可能是 API Key 问题或 IP 限制，不再重试
+    if [[ "${http_code}" == "403" ]]; then
+      echo " 警告: 收到 403 Forbidden，可能是 API Key 无效或 IP 被限制" >&2
+      break
     fi
     
-    echo "⚠️ PePy API 尝试 ${i}/${max_retries} 失败 (HTTP ${http_code})，${retry_delay}秒后重试..." >&2
-    sleep ${retry_delay}
+    # 其他错误（429/500/502 等），继续重试
+    if [[ $i -lt $max_retries ]]; then
+      echo " 等待 ${retry_delay} 秒后重试..." >&2
+      sleep ${retry_delay}
+    fi
   done
-  
-  # 所有重试失败，降级到 pypistats
-  echo "❌ PePy API 全部重试失败，降级到 pypistats.org" >&2
+
+  # 所有重试失败，降级到 pypistats.org
+  echo " 警告: PePy API 全部失败，降级使用 pypistats.org（仅近期数据）" >&2
   _pypi_downloads_pypistats "$package"
 }
 
