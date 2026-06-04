@@ -71,8 +71,19 @@ fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
 
             // 彻底移除所有弹窗/横幅/遮罩
             await page.evaluate(() => {
-                // 第一阶段：精确选择器移除
                 const selectors = [
+                    // 精准移除Eclipse Marketplace 截图中的 Popup（基于实际 DOM 结构）
+                    '[aria-label="Popup"]', 
+                    '.popup-dismissible', 
+                    '[role="region"][aria-label="Popup"]', 
+
+                    // 精准移除open-vsx页面的footer（基于实际 DOM 结构）
+                    'footer',
+                    '[role="contentinfo"]', 
+                    '[class*="css-69i1ev"]', 
+                    '[class*="css-k008qs"]',  
+
+                    // 其它可能的通用弹窗
                     // Cookie/GDPR 弹窗
                     '#cookie-banner', '.cookie-banner', '#gdpr-consent', '.gdpr-consent',
                     '.cc-window', '.cc-banner', '#onetrust-consent-sdk', '.onetrust-pc-dark-filter',
@@ -85,36 +96,8 @@ fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
                     '[class*="banner"]', '[class*="notification"]', '[class*="alert"]',
                     '[class*="toast"]', '[class*="snackbar"]',
 
-                    // 赞助/推广弹窗（Eclipse 右下角蓝色框等）
-                    '[class*="sponsor"]', '[class*="promo"]', '[class*="marketing"]',
-                    '[class*="newsletter"]', '[class*="subscribe"]', '[class*="floating"]',
-                    '[class*="sticky"]', '[class*="drawer"]', '[class*="sidebar"]',
-
                     // 常见广告 iframe
                     'iframe[src*="ads"]', 'iframe[src*="promo"]',
-
-                    // 特定网站已知弹窗 ID
-                    '#sponsor-popup', '#promo-modal', '#newsletter-signup',
-                    '.eclipse-sponsor', '.openvsx-notification',
-
-                    // 精准移除弹窗（基于实际 DOM 结构）
-                    // CookieConsent 横幅（你截图中的 .cc-window.cc-banner）
-                    '.cc-window', '.cc-banner', '.cc-type-opt-in',
-
-                    // 浮动 Popup（你截图中的 .popup.popup-collapsed）
-                    '.popup', '.popup-collapsed', '.popup-right', '.popup-tertiary',
-
-                    // 通用弹窗
-                    '.modal', '[role="dialog"]', '[role="alertdialog"]',
-                    '.overlay', '.backdrop', '.mask',
-
-                    // 通知条/横幅
-                    '[class*="notification"]', '[class*="banner"]', '[class*="alert"]',
-                    '[class*="toast"]', '[class*="snackbar"]',
-
-                    // 赞助/推广
-                    '[class*="sponsor"]', '[class*="promo"]', '[class*="marketing"]',
-                    '[class*="donate"]', '[class*="newsletter"]', '[class*="subscribe"]',
                 ];
 
                 selectors.forEach(sel => {
