@@ -1,46 +1,46 @@
 {
   "last_updated": "2026-06-28T15:00:23.478246Z",
   "downloads": {
-    "total": 58099
+    "total": 58103
   },
   "pm_downloads": {
-    "total": 81993
+    "total": 82016
   },
   "other_categories_downloads": {
     "3rdparty": {
-      "total": 22406
+      "total": 22442
     },
     "humans": {
-      "total": 21221
+      "total": 21277
     },
     "ide": {
-      "total": 3013
+      "total": 3016
     }
   },
   "downloads_by_categories_v1": {
     "pkg": {
-      "total": 58099
+      "total": 58103
     },
     "pm:github": {
       "total": 5968
     },
     "pm:mirror": {
-      "total": 67320
+      "total": 67343
     },
     "pm:pypi": {
       "total": 8705
     },
     "3rdparty": {
-      "total": 22406
+      "total": 22442
     },
     "humans": {
-      "total": 21221
+      "total": 21277
     },
     "ide:eclipse:mirror": {
-      "total": 1976
+      "total": 1977
     },
     "ide:plugin:eclipse:mirror": {
-      "total": 445
+      "total": 447
     },
     "ide:plugin:eclipse:github": {
       "total": 88
@@ -94,7 +94,7 @@
       "watchers_count": 66,
       "forks_count": 286,
       "stars_count": 234,
-      "prs_count": 2602,
+      "prs_count": 2605,
       "issues_count": 617,
       "contributors_count": 98,
       "detail_by_repo": [
@@ -256,7 +256,7 @@
           "watchers_count": 2,
           "forks_count": 23,
           "stars_count": 8,
-          "prs_count": 460,
+          "prs_count": 462,
           "issues_count": 71,
           "contributors_count": 19
         },
@@ -499,7 +499,7 @@
           "watchers_count": 0,
           "forks_count": 4,
           "stars_count": 1,
-          "prs_count": 20,
+          "prs_count": 21,
           "issues_count": 0,
           "contributors_count": 0
         }
