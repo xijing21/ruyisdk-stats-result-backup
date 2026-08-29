@@ -1,10 +1,10 @@
 {
-  "last_updated": "2026-08-28T00:59:59.214342Z",
+  "last_updated": "2026-08-29T14:00:02.888254Z",
   "downloads": {
     "total": 59308
   },
   "pm_downloads": {
-    "total": 88578
+    "total": 88579
   },
   "other_categories_downloads": {
     "3rdparty": {
@@ -22,7 +22,7 @@
       "total": 59308
     },
     "pm:github": {
-      "total": 6482
+      "total": 6483
     },
     "pm:mirror": {
       "total": 72127
@@ -53,33 +53,33 @@
     }
   },
   "installs": {
-    "total": 30798
+    "total": 30858
   },
   "top_packages": {},
   "top_commands": {
     "ruyi update": {
-      "total": 33909
+      "total": 33984
     },
     "ruyi admin format-manifest": {
-      "total": 20698
+      "total": 20700
     },
     "ruyi list": {
-      "total": 16148
+      "total": 16178
     },
     "ruyi": {
-      "total": 14950
+      "total": 15014
     },
     "ruyi news list": {
-      "total": 6223
+      "total": 6247
     },
     "ruyi news read": {
       "total": 5121
     },
     "ruyi telemetry status": {
-      "total": 3388
+      "total": 3396
     },
     "ruyi telemetry consent": {
-      "total": 3207
+      "total": 3215
     },
     "ruyi list profiles": {
       "total": 2943
@@ -94,7 +94,7 @@
       "watchers_count": 66,
       "forks_count": 286,
       "stars_count": 239,
-      "prs_count": 2779,
+      "prs_count": 2781,
       "issues_count": 650,
       "contributors_count": 100,
       "detail_by_repo": [
@@ -265,7 +265,7 @@
           "watchers_count": 2,
           "forks_count": 17,
           "stars_count": 3,
-          "prs_count": 169,
+          "prs_count": 171,
           "issues_count": 41,
           "contributors_count": 16
         },
