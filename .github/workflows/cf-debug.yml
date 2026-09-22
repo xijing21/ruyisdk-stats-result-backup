@@ -63,7 +63,7 @@ jobs:
                   return json.load(r)
 
           # 1. 先拿到 accountTag
-          res = gql('''query { viewer { accounts { accountTag accountName } } }''')
+          res = gql('''query { viewer { accounts { accountTag } } }''')
           print("=== 账户列表 ===")
           print(json.dumps(res, indent=2, ensure_ascii=False))
           if res.get("errors"):
