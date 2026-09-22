@@ -12,6 +12,20 @@ jobs:
   debug:
     runs-on: ubuntu-latest
     steps:
+      - name: Secret 体检
+        env:
+          CF_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          python3 << 'EOF'
+          import os
+          t = os.environ["CF_TOKEN"]
+          print(f"Secret 长度: {len(t)}")
+          bad = [(i, hex(ord(c))) for i, c in enumerate(t) if not 32 < ord(c) < 127]
+          print("非法字符:", bad if bad else "无")
+          # 用布尔值输出前缀信息，避免 GitHub mask 干扰
+          print("以 cfk 开头:", t.startswith("cfk"))
+          print("包含空格:", " " in t, "| 包含换行:", "\n" in t)
+          EOF
       - name: Check token availability (不泄露值)
         run: |
           if [ -z "${{ secrets.CF_API_TOKEN }}" ]; then
