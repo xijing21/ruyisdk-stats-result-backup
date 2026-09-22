@@ -1,0 +1,13 @@
+{
+  "name": "cf-stats-report",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare dashboard screenshot & print-report PDF exporter",
+  "scripts": {
+    "report": "node cf_report.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

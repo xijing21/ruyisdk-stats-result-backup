@@ -1,0 +1,104 @@
+name: RuyiSDK Cloudflare Web Stats
+
+on:
+  schedule:
+    # 每周二 UTC 01:00 = 北京时间周二 09:00
+    # 窗口 = 上周二 00:00:00 ~ 当天 00:00:00 (GMT+8)
+    - cron: '0 1 * * 2'
+    # 每月 1 日 UTC 01:00 = 北京时间 1 日 09:00
+    # 窗口 = 上月 1 日 00:00:00 ~ 本月 1 日 00:00:00 (GMT+8)
+    - cron: '0 1 1 * *'
+  workflow_dispatch:
+    inputs:
+      period:
+        description: '统计周期'
+        required: true
+        default: weekly
+        type: choice
+        options: [weekly, monthly]
+      date:
+        description: '采集日 YYYY-MM-DD（仅 weekly 有效，留空=今天；用于补采）'
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cf-stats
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright (chromium)
+        working-directory: cf-stats
+        run: |
+          npm install --no-fund --no-audit
+          npx playwright install chromium --with-deps
+
+      - name: Run Cloudflare stats
+        working-directory: cf-stats
+        env:
+          CF_API_TOKEN:  ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          PERIOD:        ${{ github.event.inputs.period || 'auto' }}
+          DATE:          ${{ github.event.inputs.date }}
+        run: |
+          set -e
+          if [ "$PERIOD" = "monthly" ]; then
+            python cf_stats.py --period monthly
+          elif [ "$PERIOD" = "weekly" ]; then
+            if [ -n "$DATE" ]; then
+              python cf_stats.py --period weekly --date "$DATE"
+            else
+              python cf_stats.py --period weekly
+            fi
+          else
+            # 定时触发：周二=weekly，每月1日=monthly
+            DOW=$(date -u +%u)          # 1=Mon ... 7=Sun
+            DOM=$(date -u +%d)
+            if [ "$DOW" = "2" ]; then
+              python cf_stats.py --period weekly
+            elif [ "$DOM" = "01" ]; then
+              python cf_stats.py --period monthly
+            else
+              echo "非计划采集日，跳过"
+            fi
+          fi
+
+      - name: Export screenshots & print-report PDFs
+        working-directory: cf-stats
+        env:
+          CF_DASH_COOKIE: ${{ secrets.CF_DASH_COOKIE }}
+          CF_ACCOUNT_ID:  ${{ secrets.CF_ACCOUNT_ID }}
+          PERIOD:         ${{ github.event.inputs.period || 'auto' }}
+        run: |
+          if [ "$PERIOD" = "monthly" ]; then
+            PERIOD=monthly node cf_report.mjs || echo "::warning::PDF/截图导出失败（Cookie 可能过期）"
+          elif [ "$PERIOD" = "weekly" ]; then
+            PERIOD=weekly node cf_report.mjs || echo "::warning::PDF/截图导出失败（Cookie 可能过期）"
+          else
+            DOW=$(date -u +%u); DOM=$(date -u +%d)
+            if [ "$DOW" = "2" ]; then PERIOD=weekly node cf_report.mjs || true
+            elif [ "$DOM" = "01" ]; then PERIOD=monthly node cf_report.mjs || true
+            fi
+          fi
+
+      - name: Commit results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add cf-stats
+          git diff --cached --quiet || git commit -m "chore(cf-stats): update $(date -u +%Y%m%d) [skip ci]"
+          git push
