@@ -202,6 +202,9 @@ def main():
     args = ap.parse_args()
 
     token = os.environ.get("CF_API_TOKEN")
+    # 去除 BOM 和首尾不可见字符
+    token = token.replace("\ufeff", "").strip()
+
     tag = os.environ.get("CF_ACCOUNT_ID")
     if not token:
         sys.exit("缺少环境变量 CF_API_TOKEN")
