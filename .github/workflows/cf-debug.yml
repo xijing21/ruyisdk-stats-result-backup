@@ -1,0 +1,139 @@
+name: Cloudflare GraphQL Debug
+
+on:
+  workflow_dispatch:   # 手动触发
+    inputs:
+      zone_tag:
+        description: 'Zone Tag（留空则只做 introspection 和 token 检查）'
+        required: false
+        default: ''
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check token availability (不泄露值)
+        run: |
+          if [ -z "${{ secrets.CF_API_TOKEN }}" ]; then
+            echo "::error::Secret CF_API_TOKEN 未设置！"
+            exit 1
+          fi
+          echo "CF_API_TOKEN 已设置，长度: ${#CF_API_TOKEN}"
+          # 检查是否有不可见字符（BOM 等问题）
+          python3 -c "
+          import os
+          t = os.environ['CF_TOKEN']
+          bad = [(i, hex(ord(c))) for i, c in enumerate(t) if not (32 < ord(c) < 127)]
+          if bad:
+              print('::warning::Token 中发现可疑字符:', bad[:5])
+          else:
+              print('Token 字符全部为可打印 ASCII，无 BOM 问题')
+          "
+        env:
+          CF_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      - name: Verify token (调用 verify 端点)
+        run: |
+          curl -s https://api.cloudflare.com/client/v4/user/tokens/verify \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            | python3 -m json.tool
+
+      - name: List accessible zones
+        run: |
+          curl -s "https://api.cloudflare.com/client/v4/zones?per_page=50" \
+            -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+            | python3 -c "
+          import json, sys
+          d = json.load(sys.stdin)
+          if not d.get('success'):
+              print('::error::查询 zones 失败:', d.get('errors')); sys.exit(1)
+          for z in d['result']:
+              print(f\"zone: {z['name']:40s} tag: {z['id']}\")
+          "
+
+      - name: Introspect HttpRequestsAdaptiveGroups 全部字段
+        run: |
+          python3 << 'EOF'
+          import json, urllib.request, os
+
+          token = os.environ["CF_TOKEN"].replace("\ufeff", "").strip()
+
+          def gql(query, variables=None):
+              body = json.dumps({"query": query, "variables": variables or {}}).encode()
+              req = urllib.request.Request(
+                  "https://api.cloudflare.com/client/v4/graphql",
+                  data=body,
+                  headers={"Authorization": f"Bearer {token}",
+                           "Content-Type": "application/json"})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  return json.load(r)
+
+          # 1. 列出 dimensions 全部合法字段
+          q_dim = '''query { __type(name: "HttpRequestsAdaptiveGroupsDimensions") {
+              fields { name description } } }'''
+          res = gql(q_dim)
+          print("=" * 60)
+          print("HttpRequestsAdaptiveGroupsDimensions 合法字段：")
+          print("=" * 60)
+          for f in (res["data"]["__type"] or {}).get("fields", []):
+              print(f"  {f['name']:35s} {f.get('description') or ''}")
+
+          # 2. 列出 sum 聚合的全部合法字段
+          q_sum = '''query { __type(name: "HttpRequestsAdaptiveGroupsSum") {
+              fields { name description } } }'''
+          res = gql(q_sum)
+          print("=" * 60)
+          print("HttpRequestsAdaptiveGroupsSum 合法字段：")
+          print("=" * 60)
+          for f in (res["data"]["__type"] or {}).get("fields", []):
+              print(f"  {f['name']:35s} {f.get('description') or ''}")
+
+          # 3. 列出 filter 可用字段
+          q_filter = '''query { __type(name: "HttpRequestsAdaptiveGroupsFilter_InputObject") {
+              fields { name } } }'''
+          res = gql(q_filter)
+          print("=" * 60)
+          print("HttpRequestsAdaptiveGroupsFilter 可用过滤字段：")
+          print("=" * 60)
+          for f in (res["data"]["__type"] or {}).get("fields", []):
+              print(f"  {f['name']}")
+          EOF
+        env:
+          CF_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      - name: 最小化真实查询测试（可选，填了 zone_tag 才跑）
+        if: ${{ inputs.zone_tag != '' }}
+        run: |
+          python3 << 'EOF'
+          import json, urllib.request, os
+
+          token = os.environ["CF_TOKEN"].replace("\ufeff", "").strip()
+          zone = os.environ["ZONE_TAG"]
+
+          # 用全部已知安全字段做一次最小查询，验证 token 权限和 zone
+          q = '''query($zoneTag: string) {
+            viewer { zones(filter: { zoneTag: $zoneTag }) {
+              httpRequestsAdaptiveGroups(limit: 5,
+                filter: { datetime_geq: "2026-09-15T00:00:00Z",
+                          datetime_lt:  "2026-09-22T00:00:00Z" }) {
+              sum { requests }
+              dimensions { clientCountryName }
+              } } } }'''
+          body = json.dumps({"query": q,
+                             "variables": {"zoneTag": zone}}).encode()
+          req = urllib.request.Request(
+              "https://api.cloudflare.com/client/v4/graphql",
+              data=body,
+              headers={"Authorization": f"Bearer {token}",
+                       "Content-Type": "application/json"})
+          with urllib.request.urlopen(req, timeout=60) as r:
+              d = json.load(r)
+          print(json.dumps(d, indent=2, ensure_ascii=False))
+          if d.get("errors"):
+              print("::error::查询返回错误，见上方 errors 字段")
+          else:
+              print("✅ 最小查询成功，token 权限和字段名均正常")
+          EOF
+        env:
+          CF_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          ZONE_TAG: ${{ inputs.zone_tag }}
