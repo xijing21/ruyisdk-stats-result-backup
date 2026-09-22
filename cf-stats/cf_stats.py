@@ -67,14 +67,14 @@ query($t:String!,$s:DateTime!,$e:DateTime!){viewer{accounts(filter:{accountTag:$
  httpRequestsAdaptiveGroups(limit:10000,
    filter:{datetime_geq:$s,datetime_lt:$e,requestSource:"eyeball"}){
    count sum{visits edgeResponseBytes}
-   dimensions{countryName clientRequestHTTPHost}}}}}"""
+   dimensions{clientCountryName clientRequestHTTPHost}}}}}"""
 
 RUM_Q = """
 query($t:String!,$s:DateTime!,$e:DateTime!){viewer{accounts(filter:{accountTag:$t}){
  rumPageloadEventsAdaptiveGroups(limit:10000,
    filter:{datetime_geq:$s,datetime_lt:$e}){
    count sum{visits}
-   dimensions{siteTag requestHost referrer countryName path deviceType}}}}}"""
+   dimensions{siteTag requestHost referrer clientCountryName path deviceType}}}}}"""
 
 
 def gql(token, query, variables):
@@ -249,7 +249,7 @@ def main():
             "visits": sum(r["sum"]["visits"] for r in acc),
             "edge_MB": round(sum(r["sum"]["edgeResponseBytes"] for r in acc) / 1e6, 2),
         },
-        "by_country": group(acc, lambda r: r["dimensions"].get("countryName") or "(unknown)"),
+        "by_country": group(acc, lambda r: r["dimensions"].get("clientCountryName") or "(unknown)"),
         "by_host": group(acc, lambda r: r["dimensions"].get("clientRequestHTTPHost") or "(unknown)"),
     }
     dump_json(os.path.join(out_dir, "%s_%s.json" % (ACCOUNT_LABEL, suffix)), acc_json)
@@ -278,7 +278,7 @@ def main():
             },
             "by_referrer": group(rows, lambda r: r["dimensions"].get("referrer") or "(direct)"),
             "by_host": group(rows, lambda r: r["dimensions"].get("requestHost") or "(unknown)"),
-            "by_country": group(rows, lambda r: r["dimensions"].get("countryName") or "(unknown)"),
+            "by_country": group(rows, lambda r: r["dimensions"].get("clientCountryName") or "(unknown)"),
             "by_path": group(rows, lambda r: r["dimensions"].get("path") or "(unknown)"),
             "by_deviceType": group(rows, lambda r: r["dimensions"].get("deviceType") or "(unknown)"),
         }
