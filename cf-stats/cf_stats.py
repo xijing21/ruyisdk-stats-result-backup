@@ -32,6 +32,7 @@ import os
 import re
 import sys
 import urllib.request
+import urllib.error
 from datetime import datetime, timedelta, timezone
 
 GRAPHQL = "https://api.cloudflare.com/client/v4/graphql"
@@ -83,12 +84,25 @@ def gql(token, query, variables):
         GRAPHQL, data=body, method="POST",
         headers={"Authorization": "Bearer %s" % token,
                  "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        data = json.loads(r.read().decode("utf-8"))
-    if data.get("errors"):
-        sys.exit("GraphQL 报错: %s" % json.dumps(data["errors"], ensure_ascii=False))
-    return data["data"]["viewer"]
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            data = json.loads(r.read().decode("utf-8"))
+    except urllib.error.HTTPError as ex:
+        # 4xx/5xx 时把响应体打出来 (之前这种情况只会裸抛, 看不到 Cloudflare 的说明)
+        detail = ex.read().decode(errors="replace")
+        sys.exit("GraphQL HTTP %s: %s" % (ex.code, detail[:2000]))
 
+    if data.get("errors"):
+        # 完整错误 + 出错时的查询前 300 字符, 方便定位是哪个查询
+        sys.exit("GraphQL 报错: %s\n[出错查询片段] %s"
+                 % (json.dumps(data["errors"], ensure_ascii=False),
+                    query.strip()[:300]))
+
+    viewer = data.get("data", {}).get("viewer")
+    if not viewer:
+        sys.exit("GraphQL 响应缺少 data.viewer: %s"
+                 % json.dumps(data, ensure_ascii=False)[:2000])
+    return viewer
 
 def resolve_site_tags(token, account_id):
     """RUM 站点列表 -> 域名映射 siteTag；接口失败时用内置兜底 tag"""
@@ -115,7 +129,6 @@ def resolve_site_tags(token, account_id):
                     break
         out.setdefault(host, fb)
     return out
-
 
 # ---------------------------------------------------------------- 窗口计算 ----
 
@@ -238,7 +251,10 @@ def main():
     v = {"t": tag, "s": s, "e": e}
 
     # ---- 1) 账户分析原始数据 ----
-    acc = gql(token, ACC_Q, v)["accounts"][0]["httpRequestsAdaptiveGroups"]
+    # acc = gql(token, ACC_Q, v)["accounts"][0]["httpRequestsAdaptiveGroups"]
+    viewer = gql(token, ACC_Q, v)
+    acc = viewer["accounts"][0]["httpRequestsAdaptiveGroups"]
+
     acc_json = {
         "account": ACCOUNT_LABEL,
         "window_local": stamp,
