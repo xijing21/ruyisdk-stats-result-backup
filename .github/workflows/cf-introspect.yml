@@ -1,0 +1,81 @@
+name: Cloudflare GraphQL Introspect
+
+on:
+  workflow_dispatch:   # 手动触发, 查完可删
+
+jobs:
+  introspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 查询 referrer 相关的合法字段名
+        env:
+          CF_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          python3 << 'EOF'
+          import json, os, urllib.request
+
+          token = os.environ["CF_TOKEN"].replace("\ufeff", "").strip()
+
+          def gql(q):
+              req = urllib.request.Request(
+                  "https://api.cloudflare.com/client/v4/graphql",
+                  data=json.dumps({"query": q}).encode(),
+                  headers={"Authorization": f"Bearer {token}",
+                           "Content-Type": "application/json"})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  return json.load(r)
+
+          # 1. accountTag
+          res = gql("query { viewer { accounts { accountTag } } }")
+          if res.get("errors"):
+              print("::error::账户查询失败:", res["errors"]); exit(1)
+          tag = res["data"]["viewer"]["accounts"][0]["accountTag"]
+          print("accountTag:", tag)
+
+          # 2. 列出 dimensions 全部合法字段, 筛出 referrer 相关
+          res = gql('query { __type(name: "HttpRequestsAdaptiveGroupsDimensions") '
+                    '{ fields { name } } }')
+          names = [f["name"] for f in res["data"]["__type"]["fields"]]
+          print("\n=== referrer 相关字段 ===")
+          ref_fields = [n for n in names if "efer" in n.lower()]
+          for n in ref_fields:
+              print("  ", n)
+
+          # 3. 直接用第一个 referrer 字段试跑真实查询, 确认可用
+          if ref_fields:
+              f = ref_fields[0]
+              q = ('query($accountTag: string) { viewer { '
+                   'accounts(filter: { accountTag: $accountTag }) { '
+                   'httpRequestsAdaptiveGroups(limit: 5, '
+                   'filter: { datetime_geq: "2026-09-15T00:00:00Z", '
+                   'datetime_lt: "2026-09-22T00:00:00Z" }) { '
+                   'sum { requests } dimensions { %s } } } } }' % f)
+              res = gql(q.replace("$accountTag: string",
+                                  "$accountTag: String!")
+                          .replace("$accountTag)", "$accountTag)")
+                          if False else q, )
+          # 注: Cloudflare GraphQL 的变量类型是小写 string, 上面直接复用即可
+          if ref_fields:
+              q = ('query($accountTag: string) { viewer { '
+                   'accounts(filter: { accountTag: $accountTag }) { '
+                   'httpRequestsAdaptiveGroups(limit: 5, '
+                   'filter: { datetime_geq: "2026-09-15T00:00:00Z", '
+                   'datetime_lt: "2026-09-22T00:00:00Z" }) { '
+                   'sum { requests } dimensions { %s } } } } }' % ref_fields[0])
+              res = gql(q)
+              # 变量需要传值
+              req = urllib.request.Request(
+                  "https://api.cloudflare.com/client/v4/graphql",
+                  data=json.dumps({"query": q,
+                                   "variables": {"accountTag": tag}}).encode(),
+                  headers={"Authorization": f"Bearer {token}",
+                           "Content-Type": "application/json"})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  res = json.load(r)
+              print("\n=== 用 %s 试跑真实查询 ===" % ref_fields[0])
+              if res.get("errors"):
+                  print("报错:", res["errors"])
+              else:
+                  print(json.dumps(res["data"], indent=2, ensure_ascii=False))
+                  print("✅ 字段可用, 把 cf_stats.py 里的 referrer 改成:", ref_fields[0])
+          EOF
