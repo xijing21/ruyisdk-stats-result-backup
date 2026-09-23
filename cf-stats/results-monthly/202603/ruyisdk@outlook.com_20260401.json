@@ -1,0 +1,19 @@
+{
+  "account": "ruyisdk@outlook.com",
+  "requested_window_local": "20260301000000-20260401000000",
+  "window_local": null,
+  "window_utc": [
+    null,
+    null
+  ],
+  "window_clamped": true,
+  "window_degraded": true,
+  "filter": "requestSource=\"eyeball\"",
+  "total": {
+    "requests": 0,
+    "visits": 0,
+    "edge_MB": 0
+  },
+  "by_country": {},
+  "by_host": {}
+}
