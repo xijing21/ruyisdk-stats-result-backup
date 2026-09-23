@@ -1,0 +1,295 @@
+{
+  "host": "ruyisdk.org",
+  "siteTag": "61eaa2a6ba3c48e1881cbbac7d7842b7",
+  "window_local": "20260825000000-20260901000000",
+  "window_utc": [
+    "2026-08-24T16:00:00Z",
+    "2026-08-31T16:00:00Z"
+  ],
+  "total": {
+    "visits": 540,
+    "pageloads": 690
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 540,
+      "visits": 540
+    },
+    "ruyisdk-org.pages.dev": {
+      "pageloads": 60,
+      "visits": 0
+    },
+    "ruyisdk.org": {
+      "pageloads": 90,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "ruyisdk.org": {
+      "pageloads": 600,
+      "visits": 510
+    },
+    "ruyisdk-org.pages.dev": {
+      "pageloads": 90,
+      "visits": 30
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 280,
+      "visits": 220
+    },
+    "SG": {
+      "pageloads": 150,
+      "visits": 150
+    },
+    "JP": {
+      "pageloads": 100,
+      "visits": 60
+    },
+    "US": {
+      "pageloads": 70,
+      "visits": 50
+    },
+    "VN": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "BY": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "ZA": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "BR": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "HK": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "TW": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 60,
+      "visits": 60
+    },
+    "/en/downloads/": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "/en/docs/Package-Manager/installation/": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "/biweekly/2024/06/24/ruyisdk-biweekly-24": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/en/about/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/docs/VSCode-Plugins/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/docs/Package-Manager/installation/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/en/docs/intro/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/blog/2024/01/29/ruyi-0.4": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/IDE/cases/milkv-duo-ide/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/Package-Manager/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/biweekly/2024/03/26/ruyisdk-biweekly-18/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/riscv-specs/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/VSCode-Plugins/cases/case1/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/news/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/biweekly/2024/04/23/ruyisdk-biweekly-20": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/contact/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/news/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/dashboard/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/Other/partner-guide/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/Package-Manager/cases/case3/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/biweekly/2025/09/30/ruyisdk-biweekly-53": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/blog/2025/09/30/ruyi-0.41": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/news/events/202605-cas-public-science-day-2026/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/issue/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/blog/2024/07/23/ruyi-0.15/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/biweekly/2025/12/16/ruyisdk-biweekly-58/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/biweekly/2024/02/27/ruyisdk-biweekly-16/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/biweekly/2024/02/27/ruyisdk-biweekly-16/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/biweekly/2025/04/08/ruyisdk-biweekly-42": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/biweekly/2024/11/19/ruyisdk-biweekly-33": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/biweekly/2025/08/26/ruyisdk-biweekly-51": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/VSCode-Plugins/news/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/VSCode-Plugins/packages/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/VSCode-Plugins/cases/case1/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/issue/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/de/blog/2025/12/30/ruyi-0.44/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/biweekly/2025/05/13/ruyisdk-biweekly-44/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/IDE/cases/sipeed-lpi4a-ide-hello-world/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/k230d/intro": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/lander": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/docs/Package-Manager/intergration": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/packages": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/dashboard/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/riscv-specs/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/docs/intro": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/docs/Package-Manager/installation": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/contributors": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/docs/VSCode-Plugins/build": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/docs/intro/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 530,
+      "visits": 390
+    },
+    "mobile": {
+      "pageloads": 160,
+      "visits": 150
+    }
+  }
+}

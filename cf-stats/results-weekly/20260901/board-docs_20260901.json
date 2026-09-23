@@ -1,0 +1,91 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "window_local": "20260825000000-20260901000000",
+  "window_utc": [
+    "2026-08-24T16:00:00Z",
+    "2026-08-31T16:00:00Z"
+  ],
+  "total": {
+    "visits": 90,
+    "pageloads": 150
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 90,
+      "visits": 90
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 60,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 50,
+      "visits": 50
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 100,
+      "visits": 40
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "JP": {
+      "pageloads": 90,
+      "visits": 30
+    },
+    "US": {
+      "pageloads": 30,
+      "visits": 30
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 40,
+      "visits": 40
+    },
+    "/boards/LicheePi4A/": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "/boards/Duo_256m/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/BPI-CANMV-K230D-Zero/os-installation/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/BPI-F3/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Duo_S/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/K230D/os-installation/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/RV-STAR/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/K510/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 150,
+      "visits": 90
+    }
+  }
+}
