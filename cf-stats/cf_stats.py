@@ -232,26 +232,41 @@ def main():
     if not tag:
         sys.exit("缺少环境变量 CF_ACCOUNT_ID")
 
+    # ---- 窗口解析: workflow 通过环境变量传入 (YYYYMMDD, 北京时间) ----
+    start_env = os.environ.get("START_DATE", "").strip()
+    end_env   = os.environ.get("END_DATE", "").strip()
     today = datetime.now(CST)
 
     if args.period == "weekly":
-        day = args.date or today.strftime("%Y-%m-%d")
-        stamp, s, e = week_window(day)
-        sub = day.replace("-", "")                      # 20260929
-        suffix = sub                                    # 文件日期后缀 = 窗口终点日
+        if start_env and end_env:
+            # 正常路径: CI / 手动补采都由 workflow 计算好传入
+            ws = datetime.strptime(start_env, "%Y%m%d").replace(tzinfo=CST)
+            we = datetime.strptime(end_env,   "%Y%m%d").replace(tzinfo=CST)
+        else:
+            # 本地裸跑兜底: 最近一个周二往前 7 天 (与 CI 口径一致)
+            offset = (today.weekday() - 1) % 7          # 周二=1
+            we = (today - timedelta(days=offset)).replace(
+                hour=0, minute=0, second=0, microsecond=0)
+            ws = we - timedelta(days=7)
+        stamp, s, e = _fmt(ws, we)
+        sub = we.strftime("%Y%m%d")                     # 目录 = 窗口结束日 20260922
+        suffix = sub
         base = os.path.join(ROOT, "results-weekly")
-        collect_date = sub
     else:
-        # 每月 1 日执行（cron 保证）；手动调试用 FORCE_MONTHLY=1 放行
-        last_day = calendar.monthrange(today.year, today.month)[1]
-        if today.day != 1 and not os.environ.get("FORCE_MONTHLY"):
-            print("非每月 1 日，跳过月报（如需强制执行请设 FORCE_MONTHLY=1）")
-            return
-        (stamp, s, e), (py, pm), suffix = month_window(today)
-        sub = "%04d%02d" % (py, pm)                     # 202608
+        if start_env and end_env:
+            ws = datetime.strptime(start_env, "%Y%m%d").replace(tzinfo=CST)
+            we = datetime.strptime(end_env,   "%Y%m%d").replace(tzinfo=CST)
+        else:
+            # 本地裸跑兜底: 上月 1 日 ~ 本月 1 日
+            we = datetime(today.year, today.month, 1, tzinfo=CST)
+            py, pm = (today.year - 1, 12) if today.month == 1 else (today.year, today.month - 1)
+            ws = datetime(py, pm, 1, tzinfo=CST)
+        stamp, s, e = _fmt(ws, we)
+        sub = ws.strftime("%Y%m")                       # 目录 = 数据所属月 (上月) 202608
+        suffix = we.strftime("%Y%m%d")                  # 文件后缀 = 窗口结束日 20260901
         base = os.path.join(ROOT, "results-monthly")
-        collect_date = today.strftime("%Y%m%d")
 
+    collect_date = datetime.now(CST).strftime("%Y%m%d")  # 真实采集运行日, 与期数标识分离
     out_dir = os.path.join(base, sub)
     os.makedirs(out_dir, exist_ok=True)
     print("[%s] window=%s  ->  %s" % (args.period, stamp, os.path.relpath(out_dir, ROOT)))
