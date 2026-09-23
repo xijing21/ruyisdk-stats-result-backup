@@ -17,11 +17,11 @@ on:
         default: weekly
         required: true
       start_date:
-        description: '起始日期 YYYYMMDD（北京时间，含当天 00:00）。留空=按周期规则自动计算'
+        description: '起始日期 YYYYMMDD（北京时间）。周报=窗口起点；月报=补采月份的1日。留空=按周期自动'
         required: false
         default: ''
       end_date:
-        description: '结束日期 YYYYMMDD（北京时间，含当天 00:00）。留空=按周期规则自动计算'
+        description: '结束日期 YYYYMMDD（北京时间）。周报=窗口终点；月报=次月1日。留空=按周期自动'
         required: false
         default: ''
 
@@ -51,7 +51,6 @@ jobs:
           END_IN="${{ github.event.inputs.end_date }}"
 
           # ---------- 判定周期 ----------
-          # 手动触发: 用选择的 period; 定时触发: 按北京时间"星期/几号"判定
           if [ -n "$PERIOD_IN" ]; then
             PERIOD="$PERIOD_IN"
           else
@@ -65,7 +64,7 @@ jobs:
           # ---------- monthly: 缺省=上月窗口; 也允许显式传窗口补采历史月份 ----------
           if [ "$PERIOD" = "monthly" ]; then
             if [ -n "$START_IN" ] && [ -n "$END_IN" ]; then
-              # 补采: 按显式日期, 如 20260801~20260901
+              # 补采: 按显式日期, 如 20260801 ~ 20260901
               START="$START_IN"; END="$END_IN"
             elif [ -z "$START_IN" ] && [ -z "$END_IN" ]; then
               # 缺省: 上月 1 日 ~ 本月 1 日 (定时口径)
@@ -74,21 +73,17 @@ jobs:
             else
               echo "::error::START_DATE 与 END_DATE 必须同时填写或同时留空"; exit 1
             fi
-          fi
 
-          # ---------- weekly: 按你定义的三种情况 ----------
+          # ---------- weekly: 显式日期 / 缺省=最近周二往前7天 ----------
           else
             if [ -n "$START_IN" ] && [ -n "$END_IN" ]; then
-              # 都不为空: 按实际日期
               START="$START_IN"; END="$END_IN"
             elif [ -z "$START_IN" ] && [ -z "$END_IN" ]; then
-              # 都为空: 上周二 ~ 本周二 (定时与手动口径一致)
               DOW=$(TZ=Asia/Shanghai date +%u)
               OFFSET=$(( (DOW - 2 + 7) % 7 ))
               END=$(TZ=Asia/Shanghai date -d "-$OFFSET day" +%Y%m%d)
               START=$(TZ=Asia/Shanghai date -d "@$(( $(date -d "${END:0:4}-${END:4:2}-${END:6:2}" +%s) - 7*86400 ))" +%Y%m%d)
             else
-              # 只填一个: 明确拒绝
               echo "::error::START_DATE 与 END_DATE 必须同时填写或同时留空（特殊窗口请两个都填）"; exit 1
             fi
           fi
@@ -109,7 +104,6 @@ jobs:
           echo "start=$START"   >> "$GITHUB_OUTPUT"
           echo "end=$END"       >> "$GITHUB_OUTPUT"
           echo "[window] $PERIOD: $START 00:00 ~ $END 00:00 (GMT+8)"
-
 
       - name: Run Cloudflare stats
         working-directory: cf-stats
