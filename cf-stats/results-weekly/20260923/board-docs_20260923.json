@@ -1,0 +1,95 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "window_local": "20260916000000-20260923000000",
+  "window_utc": [
+    "2026-09-15T16:00:00Z",
+    "2026-09-22T16:00:00Z"
+  ],
+  "total": {
+    "visits": 40,
+    "pageloads": 90
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 40,
+      "visits": 40
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 50,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 60,
+      "visits": 10
+    }
+  },
+  "by_country": {
+    "SG": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "US": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "CN": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "CL": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "HK": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_path": {
+    "/boards/EBC7700/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/RV-STAR/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Jupiter2/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/vendors/xuantie/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/K3-Pico-ITX/llama-server/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/BPI-CANMV-K230D-Zero/": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 80,
+      "visits": 40
+    },
+    "mobile": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  }
+}

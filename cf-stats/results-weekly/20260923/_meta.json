@@ -1,0 +1,23 @@
+{
+  "period": "weekly",
+  "window_local": "20260916000000-20260923000000",
+  "window_utc": [
+    "2026-09-15T16:00:00Z",
+    "2026-09-22T16:00:00Z"
+  ],
+  "date_suffix": "20260923",
+  "sites": {
+    "ruyisdk.org": {
+      "host": "ruyisdk.org",
+      "siteTag": "61eaa2a6ba3c48e1881cbbac7d7842b7"
+    },
+    "support-matrix": {
+      "host": "support-matrix-frontend-2cl.pages.dev",
+      "siteTag": "a9527d2051924fa892bce3d748662c4e"
+    },
+    "board-docs": {
+      "host": "board-docs-frontend.pages.dev",
+      "siteTag": "712cd266ae0946899ee783d6f8701fea"
+    }
+  }
+}
