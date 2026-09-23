@@ -1,0 +1,21 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20260701000000-20260801000000",
+  "window_local": "20260701000000-20260801000000",
+  "window_utc": [
+    "2026-06-30T16:00:00Z",
+    "2026-07-31T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 0,
+    "pageloads": 0
+  },
+  "by_referrer": {},
+  "by_host": {},
+  "by_country": {},
+  "by_path": {},
+  "by_deviceType": {}
+}
