@@ -42,51 +42,69 @@ jobs:
         with:
           python-version: '3.11'
 
-      # ---- 解析统计窗口：用户输入优先，否则按周期规则自动计算（全部北京时间）----
-      # 注: workflow_dispatch 的 default 不支持动态值, 故在此步骤统一计算,
-      #     手动触发时两个日期框都留空即可得到正确的默认窗口。
       - name: Resolve window
         id: win
         run: |
           set -e
-          PERIOD="${{ github.event.inputs.period }}"
-          # 定时触发时 inputs 为空, 按"今天星期几/几号"判定周期
-          if [ -z "$PERIOD" ] || [ "$PERIOD" = "auto" ]; then
-            DOW=$(TZ=Asia/Shanghai date +%u)      # 1=Mon ... 7=Sun
+          PERIOD_IN="${{ github.event.inputs.period }}"
+          START_IN="${{ github.event.inputs.start_date }}"
+          END_IN="${{ github.event.inputs.end_date }}"
+
+          # ---------- 判定周期 ----------
+          # 手动触发: 用选择的 period; 定时触发: 按北京时间"星期/几号"判定
+          if [ -n "$PERIOD_IN" ]; then
+            PERIOD="$PERIOD_IN"
+          else
+            DOW=$(TZ=Asia/Shanghai date +%u)          # 1=Mon ... 7=Sun
             DOM=$(TZ=Asia/Shanghai date +%d)
             if [ "$DOW" = "2" ]; then PERIOD=weekly
             elif [ "$DOM" = "01" ]; then PERIOD=monthly
             else echo "非计划采集日，跳过"; exit 0; fi
           fi
 
-          END_IN="${{ github.event.inputs.end_date }}"
-          START_IN="${{ github.event.inputs.start_date }}"
+          # ---------- monthly: 窗口固定, 不接受任何日期输入 ----------
+          if [ "$PERIOD" = "monthly" ]; then
+            if [ -n "$START_IN" ] || [ -n "$END_IN" ]; then
+              echo "::error::月统计窗口固定为 上月1日~本月1日，不接受起止日期输入"; exit 1
+            fi
+            START=$(TZ=Asia/Shanghai date +%Y%m01)
+            END=$(TZ=Asia/Shanghai date -d "+1 month" +%Y%m01)
+            # 特例: 1日定时运行时"今天"就是本月1日 → 上月1日~本月1日, 正确
 
-          # 结束日期：用户输入 > 今天(GMT+8)
-          if [ -n "$END_IN" ]; then END="$END_IN"
-          else END=$(TZ=Asia/Shanghai date +%Y%m%d); fi
-
-          # 起始日期：用户输入 > 周期规则
-          if [ -n "$START_IN" ]; then START="$START_IN"
-          elif [ "$PERIOD" = "monthly" ]; then
-            # 上月 1 日：取本月 1 日再退一天所在月的 1 日
-            START=$(TZ=Asia/Shanghai date -d "$(date -d "${END:0:4}-${END:4:2}-01") -1 month +1 day" +%Y%m01)
+          # ---------- weekly: 按你定义的三种情况 ----------
           else
-            START=$(TZ=Asia/Shanghai date -d "@$(( $(date -d "${END:0:4}-${END:4:2}-${END:6:2}" +%s) - 7*86400 ))" +%Y%m%d)
+            if [ -n "$START_IN" ] && [ -n "$END_IN" ]; then
+              # 都不为空: 按实际日期
+              START="$START_IN"; END="$END_IN"
+            elif [ -z "$START_IN" ] && [ -z "$END_IN" ]; then
+              # 都为空: 上周二 ~ 本周二 (定时与手动口径一致)
+              DOW=$(TZ=Asia/Shanghai date +%u)
+              OFFSET=$(( (DOW - 2 + 7) % 7 ))
+              END=$(TZ=Asia/Shanghai date -d "-$OFFSET day" +%Y%m%d)
+              START=$(TZ=Asia/Shanghai date -d "@$(( $(date -d "${END:0:4}-${END:4:2}-${END:6:2}" +%s) - 7*86400 ))" +%Y%m%d)
+            else
+              # 只填一个: 明确拒绝
+              echo "::error::START_DATE 与 END_DATE 必须同时填写或同时留空（特殊窗口请两个都填）"; exit 1
+            fi
           fi
 
-          # 基本校验
+          # ---------- 统一校验 ----------
           if ! [[ "$START" =~ ^[0-9]{8}$ && "$END" =~ ^[0-9]{8}$ ]]; then
             echo "::error::日期格式必须为 YYYYMMDD，收到: START=$START END=$END"; exit 1
           fi
           if [ "$START" -ge "$END" ]; then
-            echo "::error::START_DATE($START) 必须早于 END_DATE($END)"; exit 1
+            echo "::error::START($START) 必须早于 END($END)"; exit 1
+          fi
+          if [ $(( ( $(date -d "${END:0:4}-${END:4:2}-${END:6:2}" +%s) \
+                    - $(date -d "${START:0:4}-${START:4:2}-${START:6:2}" +%s) ) / 86400 )) -gt 92 ]; then
+            echo "::error::窗口跨度超过 92 天，请检查日期"; exit 1
           fi
 
-          echo "period=$PERIOD"  >> "$GITHUB_OUTPUT"
-          echo "start=$START"    >> "$GITHUB_OUTPUT"
-          echo "end=$END"        >> "$GITHUB_OUTPUT"
+          echo "period=$PERIOD" >> "$GITHUB_OUTPUT"
+          echo "start=$START"   >> "$GITHUB_OUTPUT"
+          echo "end=$END"       >> "$GITHUB_OUTPUT"
           echo "[window] $PERIOD: $START 00:00 ~ $END 00:00 (GMT+8)"
+
 
       - name: Run Cloudflare stats
         working-directory: cf-stats
