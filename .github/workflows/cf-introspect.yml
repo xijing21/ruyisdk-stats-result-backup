@@ -1,0 +1,164 @@
+name: Cloudflare GraphQL Introspect
+
+on:
+  workflow_dispatch:   # 手动触发, 查完可删
+
+jobs:
+  introspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 查询 referrer 相关的合法字段名
+        env:
+          CF_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          python3 << 'EOF'
+          import json, os, urllib.request
+
+          token = os.environ["CF_TOKEN"].replace("\ufeff", "").strip()
+
+          def api(path, body=None):
+              req = urllib.request.Request(
+                  "https://api.cloudflare.com/client/v4" + path,
+                  data=json.dumps(body).encode() if body else None,
+                  headers={"Authorization": f"Bearer {token}",
+                           "Content-Type": "application/json"})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  return json.load(r)
+
+          def gql(q, variables=None):
+              payload = {"query": q}
+              if variables: payload["variables"] = variables
+              req = urllib.request.Request(
+                  "https://api.cloudflare.com/client/v4/graphql",
+                  data=json.dumps(payload).encode(),
+                  headers={"Authorization": f"Bearer {token}",
+                           "Content-Type": "application/json"})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  return json.load(r)
+
+          # 1. 改用 REST 拿 accountTag (debug #5 已验证这条路是通的)
+          res = api("/accounts?per_page=50")
+          if not res.get("success") or not res["result"]:
+              print("::error::REST accounts 失败:", res.get("errors")); exit(1)
+          tag = res["result"][0]["id"]
+          print("accountTag (from REST):", tag)
+
+          # 2. introspection: 候选类型名挨个试, 直到 __type 非 null
+          candidates = [
+              "HttpRequestsAdaptiveGroupDimensions",      # 最可能 (Group 单数)
+              "HttpRequestsAdaptiveGroupsDimensions",     # 之前猜的
+              "AccountHttpRequestsAdaptiveGroupDimensions",
+              "AccountHttpRequestsAdaptiveGroupsDimensions",
+          ]
+          names = None
+          for t in candidates:
+              res = gql('query { __type(name: "%s") { fields { name } } }' % t)
+              if res.get("errors"):
+                  print("  %s -> 查询报错: %s" % (t, res["errors"][0]["message"]))
+                  continue
+              if res["data"] and res["data"].get("__type"):
+                  names = [f["name"] for f in res["data"]["__type"]["fields"]]
+                  print("✅ 命中类型名: %s (共 %d 个字段)" % (t, len(names)))
+                  break
+              else:
+                  print("  %s -> 类型不存在" % t)
+
+          if names is None:
+              print("::error::所有候选类型名都不存在, 尝试列出全部含 Dimension 的类型:")
+              res = gql('query { __schema { types { name } } }')
+              for tp in res["data"]["__schema"]["types"]:
+                  if "imension" in tp["name"] and "Adaptive" in tp["name"]:
+                      print("   ", tp["name"])
+              exit(1)
+
+          ref_fields = [n for n in names if "efer" in n.lower()]
+          print("\n=== referrer 相关合法字段 ===")
+          for n in ref_fields: print("  ", n)
+
+          # 3. 显式带 accountTag filter 试跑真实查询 (账户级 token 必须这样做)
+          for f in ref_fields:
+              q = ('query($accountTag: string) { viewer { '
+                   'accounts(filter: { accountTag: $accountTag }) { '
+                   'httpRequestsAdaptiveGroups(limit: 5, '
+                   'filter: { datetime_geq: "2026-09-15T00:00:00Z", '
+                   'datetime_lt: "2026-09-22T00:00:00Z" }) { '
+                   'sum { requests } dimensions { ' + f + ' } } } } }')
+              res = gql(q, {"accountTag": tag})
+              if res.get("errors"):
+                  print(f"\n--- {f}: 报错 ---")
+                  for e in res["errors"]: print("   ", e["message"])
+              else:
+                  print(f"\n--- {f}: 成功, 样例数据 ---")
+                  print(json.dumps(res["data"], indent=2, ensure_ascii=False))
+
+          # ================================================================
+          # 4. 探测 RUM 数据集 rumPageloadEventsAdaptiveGroups 的
+          #    Dimensions 类型 —— cf_stats.py 的 RUM_Q 里 clientRefererHost
+          #    报 unknown field, 需要 RUM 数据集自己的字段清单
+          # ================================================================
+          rum_candidates = [
+              "AccountRumPageloadEventsAdaptiveGroupsDimensions",   # 带账户前缀 (参照 HTTP 组的命名规律, 最可能)
+              "RumPageloadEventsAdaptiveGroupsDimensions",
+              "AccountRumPageloadEventsAdaptiveGroupDimensions",
+              "RumPageloadEventsAdaptiveGroupDimensions",
+              "RumAdaptiveGroupsDimensions",
+          ]
+          rum_names = None
+          for t in rum_candidates:
+              res = gql('query { __type(name: "%s") { fields { name } } }' % t)
+              if res.get("errors"):
+                  print("  %s -> 查询报错: %s" % (t, res["errors"][0]["message"]))
+                  continue
+              if res["data"] and res["data"].get("__type"):
+                  rum_names = [f["name"] for f in res["data"]["__type"]["fields"]]
+                  print("\n✅ 命中 RUM 类型名: %s (共 %d 个字段)" % (t, len(rum_names)))
+                  break
+              else:
+                  print("  %s -> 类型不存在" % t)
+
+          if rum_names:
+              print("\n=== RUM referrer 相关字段 ===")
+              rum_ref = [n for n in rum_names if "efer" in n.lower()]
+              if rum_ref:
+                  for n in rum_ref: print("  ", n)
+              else:
+                  print("  (无 efer 字样字段, 请在下面全量清单里人工找)")
+
+              print("\n=== RUM 全部字段 (核对 siteTag/requestHost/path/deviceType 是否存在) ===")
+              for n in rum_names:
+                  mark = "  <-- RUM_Q 在用" if n in (
+                      "siteTag", "requestHost", "clientRefererHost",
+                      "clientCountryName", "path", "deviceType") else ""
+                  print("  ", n, mark)
+
+              # 5. 用 RUM 合法 referrer 字段试跑真实 RUM 查询
+              if rum_ref:
+                  for f in rum_ref:
+                      q = ('query($accountTag: string) { viewer { '
+                           'accounts(filter: { accountTag: $accountTag }) { '
+                           'rumPageloadEventsAdaptiveGroups(limit: 5, '
+                           'filter: { datetime_geq: "2026-09-15T00:00:00Z", '
+                           'datetime_lt: "2026-09-22T00:00:00Z" }) { '
+                           'count sum { visits } '
+                           'dimensions { siteTag ' + f + ' } } } } }')
+                      res = gql(q, {"accountTag": tag})
+                      if res.get("errors"):
+                          print(f"\n--- RUM {f}: 报错 ---")
+                          for e in res["errors"]: print("   ", e["message"])
+                      else:
+                          print(f"\n--- RUM {f}: 成功, 样例数据 ---")
+                          print(json.dumps(res["data"], indent=2, ensure_ascii=False))
+                  print("\n结论: 从 RUM referrer 字段中挑一个填入 cf_stats.py 的 RUM_Q,")
+                  print("      同步修改 main 里 by_referrer 的 dimensions.get(\"...\") 取值键。")
+          else:
+              print("::error::RUM 候选类型名全部未命中, 列出 schema 里全部含 Rum/Pageload 的类型:")
+              res = gql('query { __schema { types { name } } }')
+              for tp in res["data"]["__schema"]["types"]:
+                  nm = tp["name"]
+                  if ("Rum" in nm or "Pageload" in nm) and (
+                          "imension" in nm or "Group" in nm):
+                      print("   ", nm)
+              print("从上面挑形如 *Dimensions 的类型名, 加进 rum_candidates 再跑一次。")
+
+          print("\n完成。")
+          EOF
