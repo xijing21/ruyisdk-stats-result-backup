@@ -8,6 +8,7 @@
     "2026-08-24T16:00:00Z"
   ],
   "window_clamped": false,
+  "window_degraded": false,
   "total": {
     "visits": 740,
     "pageloads": 1010
@@ -159,11 +160,11 @@
       "pageloads": 10,
       "visits": 10
     },
-    "/zh-CN/boards/STAR64/": {
+    "/reports/VisionFive2-Alpine-README/": {
       "pageloads": 10,
       "visits": 10
     },
-    "/reports/VisionFive2-Alpine-README/": {
+    "/zh-CN/boards/STAR64/": {
       "pageloads": 10,
       "visits": 10
     },
@@ -319,7 +320,7 @@
       "pageloads": 10,
       "visits": 10
     },
-    "/reports/CH582F-FreeRTOS-README/": {
+    "/zh-CN/reports/LicheePi4A-openKylin-README/": {
       "pageloads": 10,
       "visits": 10
     },
@@ -327,15 +328,15 @@
       "pageloads": 10,
       "visits": 10
     },
-    "/zh-CN/reports/LicheePi4A-openKylin-README/": {
-      "pageloads": 10,
-      "visits": 10
-    },
-    "/reports/Duo_S-OpenWrt-README/": {
+    "/reports/CH582F-FreeRTOS-README/": {
       "pageloads": 10,
       "visits": 10
     },
     "/reports/Muse_Pi_Pro-Bianbu-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Duo_S-OpenWrt-README/": {
       "pageloads": 10,
       "visits": 10
     },

@@ -1,50 +1,51 @@
 {
   "account": "ruyisdk@outlook.com",
   "requested_window_local": "20260818000000-20260825000000",
-  "window_local": "20260822095303-20260825000000",
+  "window_local": "20260822102537-20260825000000",
   "window_utc": [
-    "2026-08-22T09:53:03Z",
+    "2026-08-22T10:25:37Z",
     "2026-08-24T16:00:00Z"
   ],
   "window_clamped": true,
+  "window_degraded": false,
   "filter": "requestSource=\"eyeball\"",
   "total": {
-    "requests": 13360,
-    "visits": 3982,
-    "edge_MB": 404.6
+    "requests": 13317,
+    "visits": 3959,
+    "edge_MB": 403.99
   },
   "by_country": {
     "US": {
-      "pageloads": 2861,
-      "visits": 1355
+      "pageloads": 2848,
+      "visits": 1350
     },
     "CA": {
       "pageloads": 831,
       "visits": 490
     },
     "SG": {
-      "pageloads": 1432,
-      "visits": 451
+      "pageloads": 1421,
+      "visits": 446
     },
     "DE": {
       "pageloads": 550,
       "visits": 372
     },
     "CN": {
-      "pageloads": 3062,
-      "visits": 352
+      "pageloads": 3052,
+      "visits": 348
     },
     "SE": {
       "pageloads": 305,
       "visits": 301
     },
-    "FR": {
-      "pageloads": 253,
-      "visits": 148
-    },
     "BR": {
-      "pageloads": 364,
-      "visits": 147
+      "pageloads": 363,
+      "visits": 146
+    },
+    "FR": {
+      "pageloads": 248,
+      "visits": 143
     },
     "GB": {
       "pageloads": 95,
@@ -130,10 +131,6 @@
       "pageloads": 7,
       "visits": 4
     },
-    "BD": {
-      "pageloads": 8,
-      "visits": 3
-    },
     "ZA": {
       "pageloads": 6,
       "visits": 3
@@ -146,12 +143,12 @@
       "pageloads": 2,
       "visits": 2
     },
-    "MY": {
-      "pageloads": 3,
+    "BD": {
+      "pageloads": 7,
       "visits": 2
     },
-    "VE": {
-      "pageloads": 43,
+    "MY": {
+      "pageloads": 3,
       "visits": 2
     },
     "LT": {
@@ -182,16 +179,16 @@
       "pageloads": 1,
       "visits": 1
     },
+    "VE": {
+      "pageloads": 42,
+      "visits": 1
+    },
     "BO": {
       "pageloads": 1,
       "visits": 1
     },
     "AU": {
       "pageloads": 1,
-      "visits": 1
-    },
-    "CL": {
-      "pageloads": 2,
       "visits": 1
     },
     "BH": {
@@ -246,12 +243,12 @@
       "pageloads": 3,
       "visits": 0
     },
-    "TG": {
-      "pageloads": 2,
-      "visits": 0
-    },
     "JO": {
       "pageloads": 1,
+      "visits": 0
+    },
+    "TG": {
+      "pageloads": 2,
       "visits": 0
     },
     "DZ": {
@@ -264,6 +261,10 @@
     },
     "GH": {
       "pageloads": 2,
+      "visits": 0
+    },
+    "CL": {
+      "pageloads": 1,
       "visits": 0
     },
     "PK": {
@@ -329,24 +330,24 @@
   },
   "by_host": {
     "matrix.ruyisdk.org": {
-      "pageloads": 8574,
-      "visits": 2433
+      "pageloads": 8541,
+      "visits": 2418
     },
     "board-docs-frontend.pages.dev": {
-      "pageloads": 874,
+      "pageloads": 873,
       "visits": 566
     },
     "boards.ruyisdk.org": {
-      "pageloads": 541,
-      "visits": 475
+      "pageloads": 540,
+      "visits": 474
     },
     "ruyisdk-org.pages.dev": {
-      "pageloads": 3152,
-      "visits": 455
+      "pageloads": 3146,
+      "visits": 450
     },
     "support-matrix-frontend-2cl.pages.dev": {
-      "pageloads": 60,
-      "visits": 53
+      "pageloads": 58,
+      "visits": 51
     },
     "www.ruyisdk.workers.dev": {
       "pageloads": 4,
