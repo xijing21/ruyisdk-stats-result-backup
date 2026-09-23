@@ -62,14 +62,19 @@ jobs:
             else echo "非计划采集日，跳过"; exit 0; fi
           fi
 
-          # ---------- monthly: 窗口固定, 不接受任何日期输入 ----------
+          # ---------- monthly: 缺省=上月窗口; 也允许显式传窗口补采历史月份 ----------
           if [ "$PERIOD" = "monthly" ]; then
-            if [ -n "$START_IN" ] || [ -n "$END_IN" ]; then
-              echo "::error::月统计窗口固定为 上月1日~本月1日，不接受起止日期输入"; exit 1
+            if [ -n "$START_IN" ] && [ -n "$END_IN" ]; then
+              # 补采: 按显式日期, 如 20260801~20260901
+              START="$START_IN"; END="$END_IN"
+            elif [ -z "$START_IN" ] && [ -z "$END_IN" ]; then
+              # 缺省: 上月 1 日 ~ 本月 1 日 (定时口径)
+              START=$(TZ=Asia/Shanghai date +%Y%m01)
+              END=$(TZ=Asia/Shanghai date -d "+1 month" +%Y%m01)
+            else
+              echo "::error::START_DATE 与 END_DATE 必须同时填写或同时留空"; exit 1
             fi
-            START=$(TZ=Asia/Shanghai date +%Y%m01)
-            END=$(TZ=Asia/Shanghai date -d "+1 month" +%Y%m01)
-            # 特例: 1日定时运行时"今天"就是本月1日 → 上月1日~本月1日, 正确
+          fi
 
           # ---------- weekly: 按你定义的三种情况 ----------
           else
