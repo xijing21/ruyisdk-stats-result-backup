@@ -193,9 +193,17 @@ def upsert_csv(path, row):
     rows.append(row)
 
     totals = ["TOTAL"] + [""] * (len(CSV_HEADER) - 1)
+    def _to_int(v):
+        s = str(v).strip().replace(",", "")     # 容忍 "1,110" 和首尾空格
+        try:
+            return int(s)
+        except ValueError:
+            sys.stderr.write("警告: CSV 第 %d 列出现无法解析的值 %r, 已按 0 计入求和\n"
+                             % (c, v))
+            return 0
+
     for c in SUM_COLS:
-        totals[c] = str(sum(int(r[c]) for r in rows
-                            if len(r) > c and r[c].isdigit()))
+        totals[c] = str(sum(_to_int(r[c]) for r in rows if len(r) > c))
 
     with open(path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
