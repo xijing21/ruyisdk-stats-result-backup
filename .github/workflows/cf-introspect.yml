@@ -43,12 +43,34 @@ jobs:
           tag = res["result"][0]["id"]
           print("accountTag (from REST):", tag)
 
-          # 2. introspection 列出 dimensions 合法字段 (schema 查询不依赖账户授权)
-          res = gql('query { __type(name: "HttpRequestsAdaptiveGroupsDimensions") '
-                    '{ fields { name } } }')
-          if res.get("errors"):
-              print("::error::introspection 失败:", res["errors"]); exit(1)
-          names = [f["name"] for f in res["data"]["__type"]["fields"]]
+          # 2. introspection: 候选类型名挨个试, 直到 __type 非 null
+          candidates = [
+              "HttpRequestsAdaptiveGroupDimensions",      # 最可能 (Group 单数)
+              "HttpRequestsAdaptiveGroupsDimensions",     # 之前猜的
+              "AccountHttpRequestsAdaptiveGroupDimensions",
+              "AccountHttpRequestsAdaptiveGroupsDimensions",
+          ]
+          names = None
+          for t in candidates:
+              res = gql('query { __type(name: "%s") { fields { name } } }' % t)
+              if res.get("errors"):
+                  print("  %s -> 查询报错: %s" % (t, res["errors"][0]["message"]))
+                  continue
+              if res["data"] and res["data"].get("__type"):
+                  names = [f["name"] for f in res["data"]["__type"]["fields"]]
+                  print("✅ 命中类型名: %s (共 %d 个字段)" % (t, len(names)))
+                  break
+              else:
+                  print("  %s -> 类型不存在" % t)
+
+          if names is None:
+              print("::error::所有候选类型名都不存在, 尝试列出全部含 Dimension 的类型:")
+              res = gql('query { __schema { types { name } } }')
+              for tp in res["data"]["__schema"]["types"]:
+                  if "imension" in tp["name"] and "Adaptive" in tp["name"]:
+                      print("   ", tp["name"])
+              exit(1)
+
           ref_fields = [n for n in names if "efer" in n.lower()]
           print("\n=== referrer 相关合法字段 ===")
           for n in ref_fields: print("  ", n)
