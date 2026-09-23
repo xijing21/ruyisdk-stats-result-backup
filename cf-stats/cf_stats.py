@@ -75,7 +75,7 @@ query($t:String!,$s:DateTime!,$e:DateTime!){viewer{accounts(filter:{accountTag:$
  rumPageloadEventsAdaptiveGroups(limit:10000,
    filter:{datetime_geq:$s,datetime_lt:$e}){
    count sum{visits}
-   dimensions{siteTag requestHost clientRefererHost clientCountryName path deviceType}}}}}"""
+   dimensions{siteTag requestHost refererHost countryName requestPath deviceType}}}}}"""
 
 
 def gql(token, query, variables):
@@ -292,10 +292,10 @@ def main():
                 "visits": sum(r["sum"]["visits"] for r in rows),
                 "pageloads": sum(r["count"] for r in rows),
             },
-            "by_referrer": group(rows, lambda r: r["dimensions"].get("clientRefererHost") or "(direct)"),
+            "by_referrer": group(rows, lambda r: r["dimensions"].get("refererHost") or "(direct)"),
             "by_host": group(rows, lambda r: r["dimensions"].get("requestHost") or "(unknown)"),
-            "by_country": group(rows, lambda r: r["dimensions"].get("clientCountryName") or "(unknown)"),
-            "by_path": group(rows, lambda r: r["dimensions"].get("path") or "(unknown)"),
+            "by_country": group(rows, lambda r: r["dimensions"].get("countryName") or "(unknown)"),
+            "by_path": group(rows, lambda r: r["dimensions"].get("requestPath") or "(unknown)"),
             "by_deviceType": group(rows, lambda r: r["dimensions"].get("deviceType") or "(unknown)"),
         }
         dump_json(os.path.join(out_dir, "%s_%s.json" % (short, suffix)), site_json)
