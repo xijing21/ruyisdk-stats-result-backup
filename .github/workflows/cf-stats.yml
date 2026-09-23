@@ -12,13 +12,18 @@ on:
     inputs:
       period:
         description: '统计周期'
-        required: true
-        default: weekly
         type: choice
         options: [weekly, monthly]
-      date:
-        description: '采集日 YYYY-MM-DD（仅 weekly 有效，留空=今天；用于补采）'
+        default: weekly
+        required: true
+      start_date:
+        description: '起始日期 YYYYMMDD（北京时间，含当天 00:00）。留空=按周期规则自动计算'
         required: false
+        default: ''
+      end_date:
+        description: '结束日期 YYYYMMDD（北京时间，含当天 00:00）。留空=按周期规则自动计算'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -37,68 +42,69 @@ jobs:
         with:
           python-version: '3.11'
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Playwright (chromium)
-        working-directory: cf-stats
+      # ---- 解析统计窗口：用户输入优先，否则按周期规则自动计算（全部北京时间）----
+      # 注: workflow_dispatch 的 default 不支持动态值, 故在此步骤统一计算,
+      #     手动触发时两个日期框都留空即可得到正确的默认窗口。
+      - name: Resolve window
+        id: win
         run: |
-          npm install --no-fund --no-audit
-          npx playwright install chromium --with-deps
+          set -e
+          PERIOD="${{ github.event.inputs.period }}"
+          # 定时触发时 inputs 为空, 按"今天星期几/几号"判定周期
+          if [ -z "$PERIOD" ] || [ "$PERIOD" = "auto" ]; then
+            DOW=$(TZ=Asia/Shanghai date +%u)      # 1=Mon ... 7=Sun
+            DOM=$(TZ=Asia/Shanghai date +%d)
+            if [ "$DOW" = "2" ]; then PERIOD=weekly
+            elif [ "$DOM" = "01" ]; then PERIOD=monthly
+            else echo "非计划采集日，跳过"; exit 0; fi
+          fi
+
+          END_IN="${{ github.event.inputs.end_date }}"
+          START_IN="${{ github.event.inputs.start_date }}"
+
+          # 结束日期：用户输入 > 今天(GMT+8)
+          if [ -n "$END_IN" ]; then END="$END_IN"
+          else END=$(TZ=Asia/Shanghai date +%Y%m%d); fi
+
+          # 起始日期：用户输入 > 周期规则
+          if [ -n "$START_IN" ]; then START="$START_IN"
+          elif [ "$PERIOD" = "monthly" ]; then
+            # 上月 1 日：取本月 1 日再退一天所在月的 1 日
+            START=$(TZ=Asia/Shanghai date -d "$(date -d "${END:0:4}-${END:4:2}-01") -1 month +1 day" +%Y%m01)
+          else
+            START=$(TZ=Asia/Shanghai date -d "@$(( $(date -d "${END:0:4}-${END:4:2}-${END:6:2}" +%s) - 7*86400 ))" +%Y%m%d)
+          fi
+
+          # 基本校验
+          if ! [[ "$START" =~ ^[0-9]{8}$ && "$END" =~ ^[0-9]{8}$ ]]; then
+            echo "::error::日期格式必须为 YYYYMMDD，收到: START=$START END=$END"; exit 1
+          fi
+          if [ "$START" -ge "$END" ]; then
+            echo "::error::START_DATE($START) 必须早于 END_DATE($END)"; exit 1
+          fi
+
+          echo "period=$PERIOD"  >> "$GITHUB_OUTPUT"
+          echo "start=$START"    >> "$GITHUB_OUTPUT"
+          echo "end=$END"        >> "$GITHUB_OUTPUT"
+          echo "[window] $PERIOD: $START 00:00 ~ $END 00:00 (GMT+8)"
 
       - name: Run Cloudflare stats
         working-directory: cf-stats
         env:
           CF_API_TOKEN:  ${{ secrets.CF_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          PERIOD:        ${{ github.event.inputs.period || 'auto' }}
-          DATE:          ${{ github.event.inputs.date }}
+          PERIOD:        ${{ steps.win.outputs.period }}
+          START_DATE:    ${{ steps.win.outputs.start }}
+          END_DATE:      ${{ steps.win.outputs.end }}
         run: |
           set -e
-          if [ "$PERIOD" = "monthly" ]; then
-            python cf_stats.py --period monthly
-          elif [ "$PERIOD" = "weekly" ]; then
-            if [ -n "$DATE" ]; then
-              python cf_stats.py --period weekly --date "$DATE"
-            else
-              python cf_stats.py --period weekly
-            fi
-          else
-            # 定时触发：周二=weekly，每月1日=monthly
-            DOW=$(date -u +%u)          # 1=Mon ... 7=Sun
-            DOM=$(date -u +%d)
-            if [ "$DOW" = "2" ]; then
-              python cf_stats.py --period weekly
-            elif [ "$DOM" = "01" ]; then
-              python cf_stats.py --period monthly
-            else
-              echo "非计划采集日，跳过"
-            fi
-          fi
-
-      - name: Export screenshots & print-report PDFs
-        working-directory: cf-stats
-        env:
-          CF_DASH_COOKIE: ${{ secrets.CF_DASH_COOKIE }}
-          CF_ACCOUNT_ID:  ${{ secrets.CF_ACCOUNT_ID }}
-          PERIOD:         ${{ github.event.inputs.period || 'auto' }}
-        run: |
-          if [ "$PERIOD" = "monthly" ]; then
-            PERIOD=monthly node cf_report.mjs || echo "::warning::PDF/截图导出失败（Cookie 可能过期）"
-          elif [ "$PERIOD" = "weekly" ]; then
-            PERIOD=weekly node cf_report.mjs || echo "::warning::PDF/截图导出失败（Cookie 可能过期）"
-          else
-            DOW=$(date -u +%u); DOM=$(date -u +%d)
-            if [ "$DOW" = "2" ]; then PERIOD=weekly node cf_report.mjs || true
-            elif [ "$DOM" = "01" ]; then PERIOD=monthly node cf_report.mjs || true
-            fi
-          fi
+          echo "[run] period=$PERIOD window=$START_DATE~$END_DATE"
+          python cf_stats.py --period "$PERIOD"
 
       - name: Commit results
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add cf-stats
-          git diff --cached --quiet || git commit -m "chore(cf-stats): update $(date -u +%Y%m%d) [skip ci]"
+          git diff --cached --quiet || git commit -m "chore(cf-stats): update $(TZ=Asia/Shanghai date +%Y%m%d) [skip ci]"
           git push
