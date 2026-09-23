@@ -1,0 +1,153 @@
+{
+  "host": "ruyisdk.org",
+  "siteTag": "61eaa2a6ba3c48e1881cbbac7d7842b7",
+  "requested_window_local": "20260818000000-20260825000000",
+  "window_local": "20260818000000-20260825000000",
+  "window_utc": [
+    "2026-08-17T16:00:00Z",
+    "2026-08-24T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "total": {
+    "visits": 190,
+    "pageloads": 310
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 150,
+      "visits": 150
+    },
+    "www.google.com": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "localhost": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "ruyisdk-org.pages.dev": {
+      "pageloads": 110,
+      "visits": 0
+    },
+    "ruyisdk.org": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "ruyisdk-org.pages.dev": {
+      "pageloads": 230,
+      "visits": 120
+    },
+    "ruyisdk.org": {
+      "pageloads": 80,
+      "visits": 70
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 150,
+      "visits": 70
+    },
+    "US": {
+      "pageloads": 60,
+      "visits": 50
+    },
+    "SG": {
+      "pageloads": 50,
+      "visits": 20
+    },
+    "IN": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "NL": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "DE": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "SE": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 120,
+      "visits": 110
+    },
+    "/en/about/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/intro/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/en/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/Other/partner-guide/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/category/%C3%A6%C2%8F%C2%92%C3%A4%C2%BB%C2%B6%C3%A4%C2%BD%C2%BF%C3%A7%C2%94%C2%A8%C3%A6%C2%A1%C2%88%C3%A4%C2%BE%C2%8B": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/k230d/intro/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/news/events/202605-cas-public-science-day-2026/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/riscv-specs/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/downloads": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/dashboard/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/docs/Package-Manager/installation": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/docs/VSCode-Plugins/news": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/en/news": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/docs/Package-Manager/cases/case3/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/contributors": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 300,
+      "visits": 180
+    },
+    "mobile": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  }
+}

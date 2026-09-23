@@ -1,0 +1,381 @@
+{
+  "host": "support-matrix-frontend-2cl.pages.dev",
+  "siteTag": "a9527d2051924fa892bce3d748662c4e",
+  "requested_window_local": "20260818000000-20260825000000",
+  "window_local": "20260818000000-20260825000000",
+  "window_utc": [
+    "2026-08-17T16:00:00Z",
+    "2026-08-24T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "total": {
+    "visits": 740,
+    "pageloads": 1010
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 710,
+      "visits": 710
+    },
+    "www.google.com": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "matrix.ruyisdk.org": {
+      "pageloads": 270,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "matrix.ruyisdk.org": {
+      "pageloads": 1000,
+      "visits": 730
+    },
+    "support-matrix-frontend-2cl.pages.dev": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 440,
+      "visits": 280
+    },
+    "SG": {
+      "pageloads": 280,
+      "visits": 280
+    },
+    "US": {
+      "pageloads": 80,
+      "visits": 60
+    },
+    "JP": {
+      "pageloads": 60,
+      "visits": 30
+    },
+    "NL": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "PR": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "BR": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "NZ": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "HK": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "UA": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "IR": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "IQ": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "VN": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "CA": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "VE": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 120,
+      "visits": 120
+    },
+    "/reports/Duo-RT-Thread-README_RTSmart/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/zh-CN/reports/Duo256m-BuildRoot-README_v2/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/DDR200T/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/Oz64/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/LicheeRV_Dock-NixOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive-openEuler-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/CH32V103-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CH32V307/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CH32V103/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheeRV_Dock-Debian-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/DongshanPI-STU-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/PIC64GX/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/DC-ROMA_Laptop2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/mangopi_mq_pro-NixOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/boards/STAR64/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/VisionFive2-Alpine-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive-OpenWrt-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/boards/LicheeRV_Dock/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/YouMuPI/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Duo256m-Ubuntu-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo/": {
+      "pageloads": 40,
+      "visits": 10
+    },
+    "/reports/Ox64-NuttX-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheePi4A-Fedora-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Titan/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/OrangePi-RV2-irradium-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Icicle-Yocto-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/mangopi_mq-TinaLinux-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/LicheeCluster4A-Armbian-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/OrangePi-RV2-Ubuntu-README_LTS/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/VisionFive-BuildRoot-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/CH32V305-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheePi3A-Bianbu-Lite/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheePi4A-Deepin-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/LicheePi3A-openKylin-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Pioneer-openKylin-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/BPI-F3-Bianbu-desktop/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/LicheeConsole4A/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/LicheeRV_Dock/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Premier_P550-Debian-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Mars-Debian-README_vendor/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Tang_Mega_138K/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Bit-Brick_K1-openKylin-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Muse_Pi_Pro-openEuler-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/LicheePi3A/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/YouMuPI-Melis-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Meles-Deepin-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/board/Pioneer/openCloudOS-README_linuxboot/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/mangopi_mq_pro-OpenWrt-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Longan_Nano-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/M0P_Dock-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/ESP32C2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Duo256m-Yocto-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/CH582F-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/RV_STAR-LiteOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheePi4A-openKylin-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Duo_S-OpenWrt-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Muse_Pi_Pro-Bianbu-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/CH32V203-RT-Thread-README/": {
+      "pageloads": 130,
+      "visits": 0
+    },
+    "/reports/LicheeRV_Nano-Debian-README/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/reports/YouMuPI-Melis-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/CH582F-RT-Thread-README/": {
+      "pageloads": 40,
+      "visits": 0
+    },
+    "/reports/STAR64-DietPi-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/CM32M433R-RT-Thread-README/": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 780,
+      "visits": 590
+    },
+    "mobile": {
+      "pageloads": 220,
+      "visits": 150
+    },
+    "tablet": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  }
+}

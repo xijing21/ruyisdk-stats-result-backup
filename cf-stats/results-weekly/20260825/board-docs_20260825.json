@@ -1,0 +1,57 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20260818000000-20260825000000",
+  "window_local": "20260818000000-20260825000000",
+  "window_utc": [
+    "2026-08-17T16:00:00Z",
+    "2026-08-24T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "total": {
+    "visits": 10,
+    "pageloads": 20
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_country": {
+    "JP": {
+      "pageloads": 20,
+      "visits": 10
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K510/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 20,
+      "visits": 10
+    }
+  }
+}
