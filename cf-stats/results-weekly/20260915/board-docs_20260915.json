@@ -1,0 +1,87 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "window_local": "20260908000000-20260915000000",
+  "window_utc": [
+    "2026-09-07T16:00:00Z",
+    "2026-09-14T16:00:00Z"
+  ],
+  "total": {
+    "visits": 50,
+    "pageloads": 130
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 50,
+      "visits": 50
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 60,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 110,
+      "visits": 50
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_country": {
+    "JP": {
+      "pageloads": 70,
+      "visits": 20
+    },
+    "CN": {
+      "pageloads": 40,
+      "visits": 20
+    },
+    "US": {
+      "pageloads": 20,
+      "visits": 10
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 70,
+      "visits": 40
+    },
+    "/boards/ESP32-P4/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/riscv/ch01/lab/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/K3-Pico-ITX/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/riscv/ch01/lesson/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/LicheePi3A/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 120,
+      "visits": 50
+    },
+    "mobile": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  }
+}
