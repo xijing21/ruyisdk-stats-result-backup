@@ -1,0 +1,91 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "window_local": "20260901000000-20260908000000",
+  "window_utc": [
+    "2026-08-31T16:00:00Z",
+    "2026-09-07T16:00:00Z"
+  ],
+  "total": {
+    "visits": 170,
+    "pageloads": 210
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 160,
+      "visits": 160
+    },
+    "www.google.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 40,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 190,
+      "visits": 150
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 20,
+      "visits": 20
+    }
+  },
+  "by_country": {
+    "HK": {
+      "pageloads": 160,
+      "visits": 120
+    },
+    "CN": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "EE": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "TW": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "JP": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  },
+  "by_path": {
+    "/boards/Pioneer/": {
+      "pageloads": 80,
+      "visits": 40
+    },
+    "/boards/RV-STAR/": {
+      "pageloads": 40,
+      "visits": 40
+    },
+    "/boards/Jupiter2/": {
+      "pageloads": 40,
+      "visits": 40
+    },
+    "/": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "/en/boards/Duo_256m/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/ESP32-P4/": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 210,
+      "visits": 170
+    }
+  }
+}
