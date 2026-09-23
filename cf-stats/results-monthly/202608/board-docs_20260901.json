@@ -1,0 +1,113 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20260801000000-20260901000000",
+  "window_local": "20260801000000-20260901000000",
+  "window_utc": [
+    "2026-07-31T16:00:00Z",
+    "2026-08-31T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "total": {
+    "visits": 130,
+    "pageloads": 230
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 130,
+      "visits": 130
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 80,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 100,
+      "visits": 80
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 130,
+      "visits": 50
+    }
+  },
+  "by_country": {
+    "US": {
+      "pageloads": 40,
+      "visits": 40
+    },
+    "JP": {
+      "pageloads": 140,
+      "visits": 40
+    },
+    "CN": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "HK": {
+      "pageloads": 20,
+      "visits": 20
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 80,
+      "visits": 80
+    },
+    "/boards/LicheePi4A/": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "/boards/BPI-CANMV-K230D-Zero/os-installation/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_256m/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/K510/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/K510/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/ESP32-P4/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Duo_S/ADC/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/BPI-F3/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/K230D/os-installation/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/RV-STAR/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 230,
+      "visits": 130
+    }
+  }
+}

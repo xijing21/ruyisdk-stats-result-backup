@@ -1,0 +1,26 @@
+{
+  "period": "monthly",
+  "requested_window_local": "20260801000000-20260901000000",
+  "window_local": "20260822095504-20260901000000",
+  "window_utc": [
+    "2026-08-22T09:55:04Z",
+    "2026-08-31T16:00:00Z"
+  ],
+  "account_window_clamped": true,
+  "rum_window_clamped": false,
+  "date_suffix": "20260901",
+  "sites": {
+    "ruyisdk.org": {
+      "host": "ruyisdk.org",
+      "siteTag": "61eaa2a6ba3c48e1881cbbac7d7842b7"
+    },
+    "support-matrix": {
+      "host": "support-matrix-frontend-2cl.pages.dev",
+      "siteTag": "a9527d2051924fa892bce3d748662c4e"
+    },
+    "board-docs": {
+      "host": "board-docs-frontend.pages.dev",
+      "siteTag": "712cd266ae0946899ee783d6f8701fea"
+    }
+  }
+}
