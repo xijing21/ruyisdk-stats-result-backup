@@ -16,66 +16,57 @@ jobs:
 
           token = os.environ["CF_TOKEN"].replace("\ufeff", "").strip()
 
-          def gql(q):
+          def api(path, body=None):
               req = urllib.request.Request(
-                  "https://api.cloudflare.com/client/v4/graphql",
-                  data=json.dumps({"query": q}).encode(),
+                  "https://api.cloudflare.com/client/v4" + path,
+                  data=json.dumps(body).encode() if body else None,
                   headers={"Authorization": f"Bearer {token}",
                            "Content-Type": "application/json"})
               with urllib.request.urlopen(req, timeout=60) as r:
                   return json.load(r)
 
-          # 1. accountTag
-          res = gql("query { viewer { accounts { accountTag } } }")
-          if res.get("errors"):
-              print("::error::账户查询失败:", res["errors"]); exit(1)
-          tag = res["data"]["viewer"]["accounts"][0]["accountTag"]
-          print("accountTag:", tag)
-
-          # 2. 列出 dimensions 全部合法字段, 筛出 referrer 相关
-          res = gql('query { __type(name: "HttpRequestsAdaptiveGroupsDimensions") '
-                    '{ fields { name } } }')
-          names = [f["name"] for f in res["data"]["__type"]["fields"]]
-          print("\n=== referrer 相关字段 ===")
-          ref_fields = [n for n in names if "efer" in n.lower()]
-          for n in ref_fields:
-              print("  ", n)
-
-          # 3. 直接用第一个 referrer 字段试跑真实查询, 确认可用
-          if ref_fields:
-              f = ref_fields[0]
-              q = ('query($accountTag: string) { viewer { '
-                   'accounts(filter: { accountTag: $accountTag }) { '
-                   'httpRequestsAdaptiveGroups(limit: 5, '
-                   'filter: { datetime_geq: "2026-09-15T00:00:00Z", '
-                   'datetime_lt: "2026-09-22T00:00:00Z" }) { '
-                   'sum { requests } dimensions { %s } } } } }' % f)
-              res = gql(q.replace("$accountTag: string",
-                                  "$accountTag: String!")
-                          .replace("$accountTag)", "$accountTag)")
-                          if False else q, )
-          # 注: Cloudflare GraphQL 的变量类型是小写 string, 上面直接复用即可
-          if ref_fields:
-              q = ('query($accountTag: string) { viewer { '
-                   'accounts(filter: { accountTag: $accountTag }) { '
-                   'httpRequestsAdaptiveGroups(limit: 5, '
-                   'filter: { datetime_geq: "2026-09-15T00:00:00Z", '
-                   'datetime_lt: "2026-09-22T00:00:00Z" }) { '
-                   'sum { requests } dimensions { %s } } } } }' % ref_fields[0])
-              res = gql(q)
-              # 变量需要传值
+          def gql(q, variables=None):
+              payload = {"query": q}
+              if variables: payload["variables"] = variables
               req = urllib.request.Request(
                   "https://api.cloudflare.com/client/v4/graphql",
-                  data=json.dumps({"query": q,
-                                   "variables": {"accountTag": tag}}).encode(),
+                  data=json.dumps(payload).encode(),
                   headers={"Authorization": f"Bearer {token}",
                            "Content-Type": "application/json"})
               with urllib.request.urlopen(req, timeout=60) as r:
-                  res = json.load(r)
-              print("\n=== 用 %s 试跑真实查询 ===" % ref_fields[0])
+                  return json.load(r)
+
+          # 1. 改用 REST 拿 accountTag (debug #5 已验证这条路是通的)
+          res = api("/accounts?per_page=50")
+          if not res.get("success") or not res["result"]:
+              print("::error::REST accounts 失败:", res.get("errors")); exit(1)
+          tag = res["result"][0]["id"]
+          print("accountTag (from REST):", tag)
+
+          # 2. introspection 列出 dimensions 合法字段 (schema 查询不依赖账户授权)
+          res = gql('query { __type(name: "HttpRequestsAdaptiveGroupsDimensions") '
+                    '{ fields { name } } }')
+          if res.get("errors"):
+              print("::error::introspection 失败:", res["errors"]); exit(1)
+          names = [f["name"] for f in res["data"]["__type"]["fields"]]
+          ref_fields = [n for n in names if "efer" in n.lower()]
+          print("\n=== referrer 相关合法字段 ===")
+          for n in ref_fields: print("  ", n)
+
+          # 3. 显式带 accountTag filter 试跑真实查询 (账户级 token 必须这样做)
+          for f in ref_fields:
+              q = ('query($accountTag: string) { viewer { '
+                   'accounts(filter: { accountTag: $accountTag }) { '
+                   'httpRequestsAdaptiveGroups(limit: 5, '
+                   'filter: { datetime_geq: "2026-09-15T00:00:00Z", '
+                   'datetime_lt: "2026-09-22T00:00:00Z" }) { '
+                   'sum { requests } dimensions { ' + f + ' } } } } }')
+              res = gql(q, {"accountTag": tag})
               if res.get("errors"):
-                  print("报错:", res["errors"])
+                  print(f"\n--- {f}: 报错 ---")
+                  for e in res["errors"]: print("   ", e["message"])
               else:
+                  print(f"\n--- {f}: 成功, 样例数据 ---")
                   print(json.dumps(res["data"], indent=2, ensure_ascii=False))
-                  print("✅ 字段可用, 把 cf_stats.py 里的 referrer 改成:", ref_fields[0])
+          print("\n完成: 从上面挑一个语义符合需求的字段名填入 cf_stats.py")
           EOF
