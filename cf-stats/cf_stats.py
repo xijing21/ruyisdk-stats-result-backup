@@ -219,7 +219,6 @@ def upsert_csv(path, row):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--period", choices=["weekly", "monthly"], required=True)
-    ap.add_argument("--date", help="采集日 YYYY-MM-DD（仅 weekly；默认今天）")
     args = ap.parse_args()
 
     token = os.environ.get("CF_API_TOKEN")
