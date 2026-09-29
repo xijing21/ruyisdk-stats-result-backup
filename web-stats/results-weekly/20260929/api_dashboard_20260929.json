@@ -1,59 +1,59 @@
 {
-  "last_updated": "2026-09-29T04:00:31.191733Z",
+  "last_updated": "2026-09-29T19:00:11.605956Z",
   "downloads": {
-    "total": 74941
+    "total": 75331
   },
   "pm_downloads": {
-    "total": 120885
+    "total": 121008
   },
   "other_categories_downloads": {
     "3rdparty": {
-      "total": 29712
+      "total": 29789
     },
     "humans": {
-      "total": 77659
+      "total": 77691
     },
     "ide": {
-      "total": 4029
+      "total": 4033
     }
   },
   "downloads_by_categories_v1": {
     "pkg": {
-      "total": 74941
+      "total": 75331
     },
     "pm:github": {
       "total": 6606
     },
     "pm:mirror": {
-      "total": 103398
+      "total": 103521
     },
     "pm:pypi": {
       "total": 10881
     },
     "3rdparty": {
-      "total": 29712
+      "total": 29789
     },
     "humans": {
-      "total": 77659
+      "total": 77691
     },
     "ide:eclipse:mirror": {
       "total": 2388
     },
     "ide:plugin:eclipse:mirror": {
-      "total": 640
+      "total": 641
     },
     "ide:plugin:eclipse:github": {
       "total": 156
     },
     "ide:plugin:vscode:mirror": {
-      "total": 719
+      "total": 722
     },
     "ide:plugin:vscode:github": {
       "total": 126
     }
   },
   "installs": {
-    "total": 40064
+    "total": 40065
   },
   "top_packages": {},
   "top_commands": {
