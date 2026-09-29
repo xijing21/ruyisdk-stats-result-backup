@@ -1,0 +1,122 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20260922000000-20260929000000",
+  "window_local": "20260922000000-20260929000000",
+  "window_utc": [
+    "2026-09-21T16:00:00Z",
+    "2026-09-28T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 90,
+    "pageloads": 110
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 80,
+      "visits": 80
+    },
+    "cn.bing.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 60,
+      "visits": 50
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 50,
+      "visits": 40
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 50,
+      "visits": 40
+    },
+    "KZ": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "JP": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "US": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "BD": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "KE": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/VisionFive2Lite/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/RV-STAR/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/VisionFive2Lite/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/ESP32-P4/LVGL_Demo_v8/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/BPI-CANMV-K230D-Zero/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch01/lesson/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch03/lesson/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 110,
+      "visits": 90
+    }
+  }
+}
