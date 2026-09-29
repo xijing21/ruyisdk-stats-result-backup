@@ -2,12 +2,12 @@ name: RuyiSDK Cloudflare Web Stats
 
 on:
   schedule:
-    # 每周二 UTC 01:00 = 北京时间周二 09:00
+    # 每周二 UTC 01:00 = 北京时间周二 09:37
     # 窗口 = 上周二 00:00:00 ~ 当天 00:00:00 (GMT+8)
-    - cron: '0 1 * * 2'
-    # 每月 1 日 UTC 01:00 = 北京时间 1 日 09:00
+    - cron: '37 1 * * 2'
+    # 每月 1 日 UTC 01:00 = 北京时间 1 日 09:37
     # 窗口 = 上月 1 日 00:00:00 ~ 本月 1 日 00:00:00 (GMT+8)
-    - cron: '0 1 1 * *'
+    - cron: '37 1 1 * *'
   workflow_dispatch:
     inputs:
       period:
