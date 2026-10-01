@@ -1,0 +1,126 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20261001000000-20261101000000",
+  "window_local": "20261001000000-20261001074326",
+  "window_utc": [
+    "2026-09-30T16:00:00Z",
+    "2026-10-01T07:43:26Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 12,
+    "pageloads": 12
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 12,
+      "visits": 12
+    }
+  },
+  "by_host": {
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 8,
+      "visits": 8
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 4,
+      "visits": 4
+    }
+  },
+  "by_country": {
+    "SG": {
+      "pageloads": 3,
+      "visits": 3
+    },
+    "IT": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "BD": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "ES": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "AZ": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "CA": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "NP": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "MX": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "AR": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "US": {
+      "pageloads": 1,
+      "visits": 1
+    }
+  },
+  "by_path": {
+    "/boards/Jupiter2/": {
+      "pageloads": 2,
+      "visits": 2
+    },
+    "/en/boards/VisionFive2Lite/HelloWorld/": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "/en/vendors/eswin/": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "/boards/Pioneer/HelloWorld/": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "/en/boards/VisionFive2Lite/Coremark/": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "/en/vendors/spacemit/": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "/boards/Meles/HelloWorld/": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "/en/vendors/starfive/": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "/en/vendors/sophgo/": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "/boards/Duo_S/HelloWorld/": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "/boards/K3-Pico-ITX/HelloWorld/": {
+      "pageloads": 1,
+      "visits": 1
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 12,
+      "visits": 12
+    }
+  }
+}
