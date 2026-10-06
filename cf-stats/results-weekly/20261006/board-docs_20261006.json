@@ -1,0 +1,150 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20260929000000-20261006000000",
+  "window_local": "20260929000000-20261006000000",
+  "window_utc": [
+    "2026-09-28T16:00:00Z",
+    "2026-10-05T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 170,
+    "pageloads": 190
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 170,
+      "visits": 170
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 150,
+      "visits": 130
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 40,
+      "visits": 40
+    }
+  },
+  "by_country": {
+    "SG": {
+      "pageloads": 50,
+      "visits": 50
+    },
+    "CN": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "JP": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "EC": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "AR": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "US": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "BD": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "GB": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "UA": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "FI": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch05/lesson/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/en/boards/LicheePi3A/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Meles/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/EBC7700/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/RV-STAR/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_256m/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Pioneer/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K3-Pico-ITX/llama-server/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/LicheePi4A/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/vendors/gigadevice/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch02/lesson/": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 170,
+      "visits": 150
+    },
+    "mobile": {
+      "pageloads": 20,
+      "visits": 20
+    }
+  }
+}
