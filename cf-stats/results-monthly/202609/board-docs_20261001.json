@@ -1,0 +1,218 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20260901000000-20261001000000",
+  "window_local": "20260901000000-20261001000000",
+  "window_utc": [
+    "2026-08-31T16:00:00Z",
+    "2026-09-30T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 420,
+    "pageloads": 610
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 400,
+      "visits": 400
+    },
+    "www.google.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "cn.bing.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 110,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 80,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 460,
+      "visits": 350
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 150,
+      "visits": 70
+    }
+  },
+  "by_country": {
+    "HK": {
+      "pageloads": 180,
+      "visits": 120
+    },
+    "CN": {
+      "pageloads": 140,
+      "visits": 100
+    },
+    "JP": {
+      "pageloads": 130,
+      "visits": 70
+    },
+    "SG": {
+      "pageloads": 60,
+      "visits": 40
+    },
+    "US": {
+      "pageloads": 40,
+      "visits": 30
+    },
+    "KE": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "EE": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "CL": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "KZ": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "TW": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "BD": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 140,
+      "visits": 110
+    },
+    "/boards/RV-STAR/": {
+      "pageloads": 50,
+      "visits": 50
+    },
+    "/boards/Pioneer/": {
+      "pageloads": 80,
+      "visits": 40
+    },
+    "/boards/Jupiter2/": {
+      "pageloads": 40,
+      "visits": 40
+    },
+    "/en/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch05/lesson/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/K510/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/BPI-CANMV-K230D-Zero/": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "/en/boards/Duo_256m/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/ESP32-P4/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/ESP32-P4/LVGL_Demo_v8/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/ESP32-P4/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Jupiter2/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Meles/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/EBC7700/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/Blink/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/VisionFive2Lite/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/VisionFive2Lite/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/riscv/ch01/lab/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/K3-Pico-ITX/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/riscv/ch01/lesson/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/K3-Pico-ITX/llama-server/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch01/lesson/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch03/lesson/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/vendors/xuantie/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/LicheePi3A/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 590,
+      "visits": 420
+    },
+    "mobile": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  }
+}
