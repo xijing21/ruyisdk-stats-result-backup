@@ -1,0 +1,190 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20260908000000-20261001000000",
+  "window_local": "20260908000000-20261001000000",
+  "window_utc": [
+    "2026-09-07T16:00:00Z",
+    "2026-09-30T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 250,
+    "pageloads": 400
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 240,
+      "visits": 240
+    },
+    "cn.bing.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 70,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 80,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 270,
+      "visits": 200
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 130,
+      "visits": 50
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 120,
+      "visits": 80
+    },
+    "JP": {
+      "pageloads": 120,
+      "visits": 60
+    },
+    "SG": {
+      "pageloads": 60,
+      "visits": 40
+    },
+    "US": {
+      "pageloads": 40,
+      "visits": 30
+    },
+    "KE": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "CL": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "KZ": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "BD": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "HK": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 110,
+      "visits": 80
+    },
+    "/en/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch05/lesson/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/K510/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/BPI-CANMV-K230D-Zero/": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "/boards/ESP32-P4/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/ESP32-P4/LVGL_Demo_v8/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/RV-STAR/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Jupiter2/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Meles/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/EBC7700/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/Blink/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/VisionFive2Lite/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/VisionFive2Lite/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/riscv/ch01/lab/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/K3-Pico-ITX/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/riscv/ch01/lesson/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/K3-Pico-ITX/llama-server/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch01/lesson/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch03/lesson/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/vendors/xuantie/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/LicheePi3A/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 380,
+      "visits": 250
+    },
+    "mobile": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  }
+}

@@ -1,0 +1,917 @@
+{
+  "account": "ruyisdk@outlook.com",
+  "requested_window_local": "20260908000000-20261001000000",
+  "window_local": "20260908000000-20261001000000",
+  "window_utc": [
+    "2026-09-07T16:00:00Z",
+    "2026-09-30T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "filter": "requestSource=\"eyeball\"",
+  "total": {
+    "requests": 159585,
+    "visits": 52774,
+    "edge_MB": 3196.43
+  },
+  "by_country": {
+    "US": {
+      "pageloads": 34854,
+      "visits": 21157
+    },
+    "NL": {
+      "pageloads": 9897,
+      "visits": 8319
+    },
+    "DE": {
+      "pageloads": 7014,
+      "visits": 6367
+    },
+    "SG": {
+      "pageloads": 15249,
+      "visits": 4671
+    },
+    "CN": {
+      "pageloads": 11021,
+      "visits": 2428
+    },
+    "BE": {
+      "pageloads": 1933,
+      "visits": 1773
+    },
+    "FR": {
+      "pageloads": 2021,
+      "visits": 1123
+    },
+    "IT": {
+      "pageloads": 1168,
+      "visits": 1058
+    },
+    "CH": {
+      "pageloads": 754,
+      "visits": 726
+    },
+    "TW": {
+      "pageloads": 726,
+      "visits": 608
+    },
+    "PL": {
+      "pageloads": 523,
+      "visits": 393
+    },
+    "BR": {
+      "pageloads": 1138,
+      "visits": 324
+    },
+    "AU": {
+      "pageloads": 357,
+      "visits": 294
+    },
+    "RU": {
+      "pageloads": 487,
+      "visits": 258
+    },
+    "VN": {
+      "pageloads": 377,
+      "visits": 255
+    },
+    "IN": {
+      "pageloads": 438,
+      "visits": 251
+    },
+    "JP": {
+      "pageloads": 2895,
+      "visits": 243
+    },
+    "BD": {
+      "pageloads": 324,
+      "visits": 211
+    },
+    "HK": {
+      "pageloads": 62226,
+      "visits": 191
+    },
+    "GB": {
+      "pageloads": 343,
+      "visits": 183
+    },
+    "CA": {
+      "pageloads": 321,
+      "visits": 165
+    },
+    "FI": {
+      "pageloads": 191,
+      "visits": 129
+    },
+    "ID": {
+      "pageloads": 316,
+      "visits": 118
+    },
+    "MX": {
+      "pageloads": 269,
+      "visits": 107
+    },
+    "CL": {
+      "pageloads": 1058,
+      "visits": 104
+    },
+    "TR": {
+      "pageloads": 125,
+      "visits": 102
+    },
+    "IE": {
+      "pageloads": 216,
+      "visits": 76
+    },
+    "RO": {
+      "pageloads": 145,
+      "visits": 74
+    },
+    "PH": {
+      "pageloads": 85,
+      "visits": 73
+    },
+    "ES": {
+      "pageloads": 142,
+      "visits": 70
+    },
+    "KR": {
+      "pageloads": 136,
+      "visits": 65
+    },
+    "UA": {
+      "pageloads": 92,
+      "visits": 53
+    },
+    "SE": {
+      "pageloads": 143,
+      "visits": 46
+    },
+    "VE": {
+      "pageloads": 175,
+      "visits": 43
+    },
+    "CO": {
+      "pageloads": 327,
+      "visits": 36
+    },
+    "AR": {
+      "pageloads": 198,
+      "visits": 35
+    },
+    "IQ": {
+      "pageloads": 87,
+      "visits": 32
+    },
+    "NZ": {
+      "pageloads": 31,
+      "visits": 31
+    },
+    "KZ": {
+      "pageloads": 93,
+      "visits": 28
+    },
+    "IL": {
+      "pageloads": 30,
+      "visits": 25
+    },
+    "PK": {
+      "pageloads": 87,
+      "visits": 24
+    },
+    "ZA": {
+      "pageloads": 69,
+      "visits": 23
+    },
+    "MA": {
+      "pageloads": 44,
+      "visits": 23
+    },
+    "AE": {
+      "pageloads": 43,
+      "visits": 23
+    },
+    "AT": {
+      "pageloads": 134,
+      "visits": 23
+    },
+    "PT": {
+      "pageloads": 73,
+      "visits": 22
+    },
+    "LT": {
+      "pageloads": 66,
+      "visits": 21
+    },
+    "EC": {
+      "pageloads": 182,
+      "visits": 21
+    },
+    "MY": {
+      "pageloads": 29,
+      "visits": 19
+    },
+    "SI": {
+      "pageloads": 26,
+      "visits": 19
+    },
+    "SA": {
+      "pageloads": 42,
+      "visits": 19
+    },
+    "AZ": {
+      "pageloads": 18,
+      "visits": 16
+    },
+    "GR": {
+      "pageloads": 15,
+      "visits": 15
+    },
+    "TH": {
+      "pageloads": 31,
+      "visits": 14
+    },
+    "UZ": {
+      "pageloads": 37,
+      "visits": 14
+    },
+    "NP": {
+      "pageloads": 22,
+      "visits": 13
+    },
+    "BO": {
+      "pageloads": 54,
+      "visits": 13
+    },
+    "CR": {
+      "pageloads": 35,
+      "visits": 11
+    },
+    "DK": {
+      "pageloads": 11,
+      "visits": 11
+    },
+    "OM": {
+      "pageloads": 34,
+      "visits": 10
+    },
+    "KE": {
+      "pageloads": 32,
+      "visits": 10
+    },
+    "CZ": {
+      "pageloads": 61,
+      "visits": 10
+    },
+    "LB": {
+      "pageloads": 16,
+      "visits": 8
+    },
+    "JO": {
+      "pageloads": 27,
+      "visits": 7
+    },
+    "TN": {
+      "pageloads": 22,
+      "visits": 7
+    },
+    "ET": {
+      "pageloads": 36,
+      "visits": 6
+    },
+    "PE": {
+      "pageloads": 13,
+      "visits": 6
+    },
+    "MN": {
+      "pageloads": 6,
+      "visits": 6
+    },
+    "NG": {
+      "pageloads": 20,
+      "visits": 5
+    },
+    "EE": {
+      "pageloads": 6,
+      "visits": 5
+    },
+    "IR": {
+      "pageloads": 57,
+      "visits": 5
+    },
+    "NO": {
+      "pageloads": 7,
+      "visits": 5
+    },
+    "UY": {
+      "pageloads": 13,
+      "visits": 5
+    },
+    "GE": {
+      "pageloads": 7,
+      "visits": 4
+    },
+    "AL": {
+      "pageloads": 9,
+      "visits": 4
+    },
+    "KG": {
+      "pageloads": 4,
+      "visits": 4
+    },
+    "KW": {
+      "pageloads": 6,
+      "visits": 4
+    },
+    "LV": {
+      "pageloads": 23,
+      "visits": 4
+    },
+    "BG": {
+      "pageloads": 21,
+      "visits": 4
+    },
+    "PS": {
+      "pageloads": 6,
+      "visits": 4
+    },
+    "AM": {
+      "pageloads": 4,
+      "visits": 4
+    },
+    "LY": {
+      "pageloads": 6,
+      "visits": 4
+    },
+    "JM": {
+      "pageloads": 20,
+      "visits": 4
+    },
+    "MM": {
+      "pageloads": 4,
+      "visits": 4
+    },
+    "HR": {
+      "pageloads": 12,
+      "visits": 3
+    },
+    "HU": {
+      "pageloads": 3,
+      "visits": 3
+    },
+    "GY": {
+      "pageloads": 3,
+      "visits": 3
+    },
+    "BF": {
+      "pageloads": 7,
+      "visits": 2
+    },
+    "NI": {
+      "pageloads": 6,
+      "visits": 2
+    },
+    "RS": {
+      "pageloads": 4,
+      "visits": 2
+    },
+    "DZ": {
+      "pageloads": 15,
+      "visits": 2
+    },
+    "CI": {
+      "pageloads": 8,
+      "visits": 2
+    },
+    "DO": {
+      "pageloads": 6,
+      "visits": 2
+    },
+    "SN": {
+      "pageloads": 5,
+      "visits": 2
+    },
+    "XK": {
+      "pageloads": 2,
+      "visits": 2
+    },
+    "AF": {
+      "pageloads": 2,
+      "visits": 2
+    },
+    "LC": {
+      "pageloads": 2,
+      "visits": 2
+    },
+    "MV": {
+      "pageloads": 2,
+      "visits": 2
+    },
+    "CY": {
+      "pageloads": 4,
+      "visits": 2
+    },
+    "TT": {
+      "pageloads": 2,
+      "visits": 2
+    },
+    "GH": {
+      "pageloads": 2,
+      "visits": 2
+    },
+    "PY": {
+      "pageloads": 6,
+      "visits": 1
+    },
+    "EG": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "NA": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "SK": {
+      "pageloads": 3,
+      "visits": 1
+    },
+    "QA": {
+      "pageloads": 4,
+      "visits": 1
+    },
+    "LK": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "BH": {
+      "pageloads": 5,
+      "visits": 1
+    },
+    "KH": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "SY": {
+      "pageloads": 5,
+      "visits": 1
+    },
+    "BA": {
+      "pageloads": 9,
+      "visits": 0
+    },
+    "PA": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "TZ": {
+      "pageloads": 24,
+      "visits": 0
+    },
+    "ZW": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "CM": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "SV": {
+      "pageloads": 2,
+      "visits": 0
+    },
+    "ZM": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "UG": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "CG": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "TG": {
+      "pageloads": 3,
+      "visits": 0
+    },
+    "BW": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "SR": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "PR": {
+      "pageloads": 2,
+      "visits": 0
+    },
+    "ML": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "MG": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "T1": {
+      "pageloads": 4,
+      "visits": 0
+    },
+    "HN": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "MK": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "AO": {
+      "pageloads": 3,
+      "visits": 0
+    },
+    "LU": {
+      "pageloads": 2,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "matrix.ruyisdk.org": {
+      "pageloads": 87223,
+      "visits": 30967
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 16655,
+      "visits": 11381
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 34045,
+      "visits": 8806
+    },
+    "support-matrix-frontend-2cl.pages.dev": {
+      "pageloads": 2589,
+      "visits": 1355
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev": {
+      "pageloads": 184,
+      "visits": 44
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev": {
+      "pageloads": 169,
+      "visits": 37
+    },
+    "7d98a31a.board-docs-frontend.pages.dev": {
+      "pageloads": 157,
+      "visits": 26
+    },
+    "board-docs-frontend.pages.dev:443": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "30eede13.board-docs-frontend.pages.dev": {
+      "pageloads": 20,
+      "visits": 12
+    },
+    "c4de0f0e.board-docs-frontend.pages.dev": {
+      "pageloads": 117,
+      "visits": 12
+    },
+    "feat-english-locale.board-docs-frontend.pages.dev": {
+      "pageloads": 17687,
+      "visits": 12
+    },
+    "matrix.ruyisdk.org:443": {
+      "pageloads": 9,
+      "visits": 9
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:2053": {
+      "pageloads": 32,
+      "visits": 8
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:2087": {
+      "pageloads": 21,
+      "visits": 7
+    },
+    "104a8d59.board-docs-frontend.pages.dev": {
+      "pageloads": 143,
+      "visits": 6
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:2087": {
+      "pageloads": 23,
+      "visits": 6
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:2096": {
+      "pageloads": 18,
+      "visits": 6
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:8443": {
+      "pageloads": 17,
+      "visits": 5
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:2053": {
+      "pageloads": 16,
+      "visits": 4
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:8443": {
+      "pageloads": 16,
+      "visits": 4
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:2083": {
+      "pageloads": 28,
+      "visits": 4
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:2096": {
+      "pageloads": 16,
+      "visits": 4
+    },
+    "c4de0f0e.board-docs-frontend.pages.dev:2083": {
+      "pageloads": 5,
+      "visits": 3
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:2096": {
+      "pageloads": 10,
+      "visits": 3
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:443": {
+      "pageloads": 4,
+      "visits": 3
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:2087": {
+      "pageloads": 27,
+      "visits": 3
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:2083": {
+      "pageloads": 19,
+      "visits": 3
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:8443": {
+      "pageloads": 16,
+      "visits": 2
+    },
+    "board-docs-frontend.pages.dev:8443": {
+      "pageloads": 2,
+      "visits": 2
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:443": {
+      "pageloads": 3,
+      "visits": 2
+    },
+    "30eede13.board-docs-frontend.pages.dev:443": {
+      "pageloads": 4,
+      "visits": 2
+    },
+    "support-matrix-frontend-2cl.pages.dev:2053": {
+      "pageloads": 2,
+      "visits": 2
+    },
+    "30eede13.board-docs-frontend.pages.dev:2053": {
+      "pageloads": 4,
+      "visits": 2
+    },
+    "c4de0f0e.board-docs-frontend.pages.dev:443": {
+      "pageloads": 4,
+      "visits": 2
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:2053": {
+      "pageloads": 17,
+      "visits": 2
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:2083": {
+      "pageloads": 16,
+      "visits": 2
+    },
+    "support-matrix-frontend-2cl.pages.dev:443": {
+      "pageloads": 2,
+      "visits": 2
+    },
+    "boards.ruyisdk.org:8443": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "matrix.ruyisdk.org:2053": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "boards.ruyisdk.org:2053": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "matrix.ruyisdk.org:8443": {
+      "pageloads": 1,
+      "visits": 1
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:2082": {
+      "pageloads": 5,
+      "visits": 0
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:2052": {
+      "pageloads": 6,
+      "visits": 0
+    },
+    "c4de0f0e.board-docs-frontend.pages.dev:8080": {
+      "pageloads": 4,
+      "visits": 0
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:80": {
+      "pageloads": 4,
+      "visits": 0
+    },
+    "boards.ruyisdk.org:2082": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:8880": {
+      "pageloads": 6,
+      "visits": 0
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:2082": {
+      "pageloads": 6,
+      "visits": 0
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:2052": {
+      "pageloads": 5,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev:2095": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "www.ruyisdk.workers.dev": {
+      "pageloads": 5,
+      "visits": 0
+    },
+    "30eede13.board-docs-frontend.pages.dev:80": {
+      "pageloads": 4,
+      "visits": 0
+    },
+    "support-matrix-frontend-2cl.pages.dev:2052": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "boards.ruyisdk.org:2095": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "support-matrix-frontend-2cl.pages.dev:8880": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "boards.ruyisdk.org:8880": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:80": {
+      "pageloads": 4,
+      "visits": 0
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:2095": {
+      "pageloads": 7,
+      "visits": 0
+    },
+    "www.board-docs-frontend.pages.dev": {
+      "pageloads": 14,
+      "visits": 0
+    },
+    "matrix.ruyisdk.org:2082": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:2086": {
+      "pageloads": 6,
+      "visits": 0
+    },
+    "boards.ruyisdk.org:2086": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev:2052": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "c4de0f0e.board-docs-frontend.pages.dev:80": {
+      "pageloads": 4,
+      "visits": 0
+    },
+    "support-matrix-frontend-2cl.pages.dev:2086": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev:2086": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev:8080": {
+      "pageloads": 3,
+      "visits": 0
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:8880": {
+      "pageloads": 7,
+      "visits": 0
+    },
+    "boards.ruyisdk.org:2052": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "www.support-matrix-frontend-2cl.pages.dev": {
+      "pageloads": 6,
+      "visits": 0
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:8080": {
+      "pageloads": 11,
+      "visits": 0
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:8080": {
+      "pageloads": 5,
+      "visits": 0
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:2082": {
+      "pageloads": 7,
+      "visits": 0
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:8880": {
+      "pageloads": 6,
+      "visits": 0
+    },
+    "support-matrix-frontend-2cl.pages.dev:2095": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:8080": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:2086": {
+      "pageloads": 4,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev:8880": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "boards.ruyisdk.org:8080": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev:2082": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "f5e98ae6.support-matrix-frontend-2cl.pages.dev:2095": {
+      "pageloads": 6,
+      "visits": 0
+    },
+    "matrix.ruyisdk.org:8880": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "30eede13.board-docs-frontend.pages.dev:8080": {
+      "pageloads": 4,
+      "visits": 0
+    },
+    "matrix.ruyisdk.org:2052": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "matrix.ruyisdk.org:8080": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:2095": {
+      "pageloads": 6,
+      "visits": 0
+    },
+    "7d98a31a.board-docs-frontend.pages.dev:2086": {
+      "pageloads": 6,
+      "visits": 0
+    },
+    "support-matrix-frontend-2cl.pages.dev:2082": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "matrix.ruyisdk.org:2086": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "a.board-docs-frontend.pages.dev": {
+      "pageloads": 50,
+      "visits": 0
+    },
+    "support-matrix-frontend-2cl.pages.dev:8080": {
+      "pageloads": 1,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev:80": {
+      "pageloads": 2,
+      "visits": 0
+    },
+    "55decf30.support-matrix-frontend-2cl.pages.dev:2052": {
+      "pageloads": 5,
+      "visits": 0
+    },
+    "matrix.ruyisdk.org:2095": {
+      "pageloads": 1,
+      "visits": 0
+    }
+  }
+}
