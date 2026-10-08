@@ -68,8 +68,8 @@ jobs:
               START="$START_IN"; END="$END_IN"
             elif [ -z "$START_IN" ] && [ -z "$END_IN" ]; then
               # 缺省: 上月 1 日 ~ 本月 1 日 (定时口径)
-              START=$(TZ=Asia/Shanghai date +%Y%m01)
-              END=$(TZ=Asia/Shanghai date -d "+1 month" +%Y%m01)
+              START=$(TZ=Asia/Shanghai date -d "-1 month" +%Y%m01)
+              END=$(TZ=Asia/Shanghai date +%Y%m01)
             else
               echo "::error::START_DATE 与 END_DATE 必须同时填写或同时留空"; exit 1
             fi
