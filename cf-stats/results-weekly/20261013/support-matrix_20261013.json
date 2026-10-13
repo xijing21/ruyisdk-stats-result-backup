@@ -1,0 +1,982 @@
+{
+  "host": "support-matrix-frontend-2cl.pages.dev",
+  "siteTag": "a9527d2051924fa892bce3d748662c4e",
+  "requested_window_local": "20261006000000-20261013000000",
+  "window_local": "20261006000000-20261013000000",
+  "window_utc": [
+    "2026-10-05T16:00:00Z",
+    "2026-10-12T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 1260,
+    "pageloads": 3540
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 1190,
+      "visits": 1190
+    },
+    "www.google.com": {
+      "pageloads": 50,
+      "visits": 50
+    },
+    "114.114.114.114": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "matrix.ruyisdk.org": {
+      "pageloads": 2280,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "matrix.ruyisdk.org": {
+      "pageloads": 3540,
+      "visits": 1260
+    }
+  },
+  "by_country": {
+    "SG": {
+      "pageloads": 2120,
+      "visits": 710
+    },
+    "CN": {
+      "pageloads": 450,
+      "visits": 340
+    },
+    "US": {
+      "pageloads": 350,
+      "visits": 70
+    },
+    "BR": {
+      "pageloads": 90,
+      "visits": 30
+    },
+    "FR": {
+      "pageloads": 50,
+      "visits": 20
+    },
+    "RU": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "HK": {
+      "pageloads": 30,
+      "visits": 20
+    },
+    "VN": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "LT": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "UA": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "IE": {
+      "pageloads": 40,
+      "visits": 10
+    },
+    "KR": {
+      "pageloads": 50,
+      "visits": 0
+    },
+    "CO": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "ZA": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "CZ": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "DK": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "PY": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "JP": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "UZ": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "NL": {
+      "pageloads": 60,
+      "visits": 0
+    },
+    "LB": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "DE": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "HU": {
+      "pageloads": 40,
+      "visits": 0
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 160,
+      "visits": 90
+    },
+    "/zh-CN/": {
+      "pageloads": 50,
+      "visits": 40
+    },
+    "/zh-CN/reports/LicheePi3A-irradium-README/": {
+      "pageloads": 40,
+      "visits": 30
+    },
+    "/zh-CN/reports/VisionFive-OpenBSD-README/": {
+      "pageloads": 40,
+      "visits": 30
+    },
+    "/zh-CN/reports/LicheePi4A-RevyOS-README/": {
+      "pageloads": 30,
+      "visits": 20
+    },
+    "/zh-CN/reports/Unmatched-openKylin-README/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/zh-CN/reports/Duo256m-BuildRoot-README/": {
+      "pageloads": 50,
+      "visits": 20
+    },
+    "/zh-CN/reports/Tang_Mega_138K-Zephyr-README/": {
+      "pageloads": 110,
+      "visits": 20
+    },
+    "/board/Pioneer/openEuler-README_lts/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/reports/VisionFive2-Armbian-README/": {
+      "pageloads": 30,
+      "visits": 20
+    },
+    "/zh-CN/boards/Meles/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/zh-CN/boards/VisionFive2/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/reports/Icicle-Ubuntu-README/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/StarPro64/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/zh-CN/reports/LicheeCluster4A-RevyOS-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/reports/Tang_Mega_138K-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/board/Pioneer/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Unmatched-openEuler-README_testing/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/OrangePi-RV2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/BPI-F3-Armbian-README_noble/": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "/reports/LicheeRV_Dock-openSUSE-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/OrangePi-RV2-OpenWrt-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/TTGO_T_Display-uCOSII-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/reports/Duo256m-Alpine-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive2-irradium-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive2-NuttX-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/reports/Pioneer-RevyOS-README/": {
+      "pageloads": 190,
+      "visits": 10
+    },
+    "/zh-CN/reports/Mars-NixOS-README/": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "/reports/Duo_S-xv6-README/": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "/zh-CN/reports/Mars-Debian-README_vendor/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/DongshanPI-STU-TinaLinux-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/board/Duo/OpenWrt-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/CoM260_Kit-OpenHarmony-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/reports/Duo-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Mars-Ubuntu-README_LTS/": {
+      "pageloads": 40,
+      "visits": 10
+    },
+    "/reports/NeZha-openSUSE-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheeConsole4A-RevyOS-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/board/LicheePi4A_8_32/ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Duo-Zephyr-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive2-Fedora-README/": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "/reports/LicheeRV_Nano-Ubuntu-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheePi4A-OpenWrt-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Mars-Alpine-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/NeZha-D1s-Ubuntu-README_LTS/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Duo_S-BuildRoot-README_v2/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/reports/mangopi_mq_pro-NixOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Pioneer-RevyOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/CH32V303-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/boards/LicheeRV_Dock/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/boards/NeZha/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/HengShanPi-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/VisionFive2-Deepin-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Pioneer-openEuler-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive2-Gentoo-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive2-openKylin-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Pioneer-openEuler-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/CH32V307-RT-Thread-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/boards/LicheeCluster4A/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/reports/Mars-NuttX-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/reports/VisionFive2-OpenWrt-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive2-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/CH573F-FreeRTOS-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive2-openEuler-README/": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "/reports/DongshanPI-STU-Deepin-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheeCluster4A-Armbian-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/100ASK-Melis-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/mangopi_mq-xv6-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Duo_S-RT-Thread-README_RTSmart/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/BPI-F3-Bianbu-minimal/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/table/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/RV_STAR-uCOSII-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Duo256m-xv6-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/VisionFive-Deepin-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive2-OpenWrt-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/reports/DongshanPI-STU-Gentoo-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/board/LicheePi4A_8_32/Slackware-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Duo_S-Zephyr-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/reports/CH32V305-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/CH32V208-LiteOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Huashan_Pi-BuildRoot-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/CH32V307-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/VisionFive2-RT-Thread-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/reports/Duo_S-Zephyr-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Pinecone-NuttX-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/V853/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/reports/Duo_S-Ubuntu-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Longan_Nano-FreeRTOS-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/zh-CN/reports/DongshanPI-STU-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/OrangePi-RV2-irradium-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheeRV_Dock-irradium-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/EBC7702-Ubuntu-README_LTS/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/DC-ROMA_PAD2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/M0P_Dock-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheeCluster4A-openEuler-README/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/boards/MUSE_Book/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Muse_Pi_Pro-Bianbu-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Bit-Brick_K1-Armbian-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/NeZha-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/Duo-RT-Thread-README_RTSmart/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/board/LicheePi4A_8_32/openEuler-README/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/zh-CN/reports/LicheePi4A-Tizen-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/LicheePi4A-Armbian-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/PIC64GX-Ubuntu-README/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive2-Armbian-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Bit-Brick_K1-BredOS-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/zh-CN/reports/DongshanPI-STU-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Mars-Guix-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive2-Alpine-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/CoM260_Kit-BuildRoot-README/": {
+      "pageloads": 70,
+      "visits": 0
+    },
+    "/reports/OrangePi-RV2-BredOS-README/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/reports/LicheePi4A-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/mangopi_mq_pro-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive-Fedora-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/BPI-F3-OpenWrt-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/zh-CN/reports/R128-EVT-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/K230-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Mars-Debian-README_vendor/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/reports/Megrez-Deepin-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Meles-Deepin-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/STAR64-NuttX-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Tang_Mega_138K-RT-Thread-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/reports/mangopi_mq-RT-Thread-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/reports/STAR64-irradium-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Duo256m-openEuler-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Mars-Alpine-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/LicheeRV_Nano-FreeRTOS-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/reports/Unmatched-OpenBSD-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/zh-CN/reports/mangopi_mq-RT-Thread-README/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/zh-CN/reports/Duo_S-NixOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Duo-Yocto-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/M0sense-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive-BuildRoot-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Unmatched-Debian-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/BPI-F3-Fedora-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive2-Zephyr-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Bit-Brick_K1-openKylin-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive2-Guix-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/K230-Fedora-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/LicheePi3A-Fedora-README/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/zh-CN/reports/Bit-Brick_K1-Fedora-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Mars-openKylin-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/BPI-F3-Deepin-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Duo-openEuler-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/CH32V203-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/CH592X-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/LicheePi4A-NixOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Mars-BuildRoot-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/reports/LicheePi4A-openKylin-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/zh-CN/reports/CoM260_Kit-openEuler-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/NeZha-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/LicheeRV_Dock-Ubuntu-README_LTS/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Mars-DietPi-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Duo-Alpine-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/LicheePi3A-openKylin-README/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/reports/LicheePi4A-openEuler-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/reports/mangopi_mq_pro-OpenWrt-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/reports/ESP32C6-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Unmatched-OpenBSD-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Mars-openSUSE-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/K230-RT-Thread-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/zh-CN/reports/LicheePi3A-Fedora-README_desktop/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Duo256m-RT-Thread-README_RTSmart/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Unmatched-FreeBSD-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/LicheeCluster4A-RevyOS-README_lpi4a/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Longan_Nano-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/NeZha-openEuler-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/zh-CN/reports/Mars-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/STAR64-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/CoM260_Kit-Bianbu-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Duo-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Unmatched-Armbian-README/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/zh-CN/reports/RV_STAR-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/CH32V307-RT-Thread-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/zh-CN/reports/Mars-irradium-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/LicheePi4A-irradium-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Pioneer-openEuler-README_lts/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/LicheeRV_Nano-Fedora-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/TinyVision-Melis-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive2-eweOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Mars-openSUSE-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/LicheePi4A-RevyOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Oz64-NuttX-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/TTGO_T_Display-RT-Thread-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/CoM260_Kit-OpenHarmony-README/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive-Alpine-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Duo-Alpine-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive2-DietPi-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive2-openSUSE-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/LicheeCluster4A-RevyOS-README_Sipeed/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Duo-Fedora-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Unmatched-openEuler-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/Icicle-Ubuntu-README_LTS/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Duo_S-BuildRoot-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Mars-eweOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/LicheePi3A-Bianbu-Lite/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Bit-Brick_K1-Bianbu-desktop/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/LicheeRV_Nano-FreeRTOS-README/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/reports/VisionFive-openSUSE-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/reports/EBC7700-Ubuntu-README/": {
+      "pageloads": 40,
+      "visits": 0
+    },
+    "/reports/Duo_S-ArchLinux-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Duo_S-ArchLinux-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/zh-CN/reports/Meles-openEuler-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive-openKylin-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/Duo_S-OpenWrt-README/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/zh-CN/reports/M1s-BuildRoot-README/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/reports/Duo256m-Alpine-README/": {
+      "pageloads": 40,
+      "visits": 0
+    },
+    "/zh-CN/reports/VisionFive2-NetBSD-README/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/zh-CN/reports/ESP32P4-FreeRTOS-README/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 2960,
+      "visits": 920
+    },
+    "mobile": {
+      "pageloads": 580,
+      "visits": 340
+    }
+  }
+}

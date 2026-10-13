@@ -1,0 +1,106 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20261006000000-20261013000000",
+  "window_local": "20261006000000-20261013000000",
+  "window_utc": [
+    "2026-10-05T16:00:00Z",
+    "2026-10-12T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 80,
+    "pageloads": 100
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 70,
+      "visits": 70
+    },
+    "ruyisdk.cn": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 90,
+      "visits": 70
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 40,
+      "visits": 40
+    },
+    "JP": {
+      "pageloads": 30,
+      "visits": 20
+    },
+    "CR": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "SG": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "FI": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch08/lesson/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/en/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch06/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch03/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Duo_256m/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch07/lesson/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch02/lesson/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 80,
+      "visits": 60
+    },
+    "mobile": {
+      "pageloads": 20,
+      "visits": 20
+    }
+  }
+}

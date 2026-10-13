@@ -1,0 +1,342 @@
+{
+  "host": "ruyisdk.org",
+  "siteTag": "61eaa2a6ba3c48e1881cbbac7d7842b7",
+  "requested_window_local": "20261006000000-20261013000000",
+  "window_local": "20261006000000-20261013000000",
+  "window_utc": [
+    "2026-10-05T16:00:00Z",
+    "2026-10-12T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 860,
+    "pageloads": 1080
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 760,
+      "visits": 760
+    },
+    "www.google.com": {
+      "pageloads": 40,
+      "visits": 40
+    },
+    "github.com": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "m.baidu.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "m.sogou.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "ruyisdk.cn": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "www.bing.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "ruyisdk.org": {
+      "pageloads": 220,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "ruyisdk.org": {
+      "pageloads": 1080,
+      "visits": 860
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 520,
+      "visits": 450
+    },
+    "SG": {
+      "pageloads": 210,
+      "visits": 210
+    },
+    "US": {
+      "pageloads": 120,
+      "visits": 70
+    },
+    "HK": {
+      "pageloads": 80,
+      "visits": 40
+    },
+    "ID": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "VN": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "TW": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "KZ": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "DE": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "AR": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "PK": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "JP": {
+      "pageloads": 50,
+      "visits": 0
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 220,
+      "visits": 180
+    },
+    "/en/docs/Package-Manager/cases/case4/": {
+      "pageloads": 50,
+      "visits": 50
+    },
+    "/en/news/": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "/en/": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "/docs/Package-Manager/packages/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/en/docs/IDE/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/en/docs/Package-Manager/cases/case7/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/news/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/docs/intro/": {
+      "pageloads": 40,
+      "visits": 20
+    },
+    "/docs/IDE/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/blog/2025/05/27/ruyi-0.34/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/downloads/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/packages/": {
+      "pageloads": 60,
+      "visits": 20
+    },
+    "/en/download/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/en/docs/legal/privacyPolicy/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/en/docs/category/k230d/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/reports": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/Package-Manager/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/docs/Package-Manager/cases/case5/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/VSCode-Plugins/installation/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/blog/2025/11/26/ruyi-0.43/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/Package-Manager/cases/case3/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/blog/2024/01/15/new-board-images/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/VSCode-Plugins/venv/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/VSCode-Plugins/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/blog/2024/07/23/ruyi-0.15/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/IDE/cases/milkv-duo-ide/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/biweekly/2025/12/02/ruyisdk-biweekly-57": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/de/blog/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/Package-Manager/cases/case2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/biweekly/2024/11/19/ruyisdk-biweekly-33/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/VSCode-Plugins/cases/case3/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/blog/2025/08/12/ruyi-0.39": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/blog/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/riscv-specs/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/downloads/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/Package-Manager/misc/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/category/ruyi-%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/issue/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/intro/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/issue/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/Package-Manager/intergration/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/category/ruyisdk-ide/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/dashboard/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/Package-Manager/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/biweekly/2024/02/27/ruyisdk-biweekly-16": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/Package-Manager/cases/case2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/docs/VSCode-Plugins/cases/case2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/docs/intro": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/docs/VSCode-Plugins/build": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/packages": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/docs/Other/platform-support": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/en/packages/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/docs/Other/GNU-type": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/docs/VSCode-Plugins/packages": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 730,
+      "visits": 550
+    },
+    "mobile": {
+      "pageloads": 350,
+      "visits": 310
+    }
+  }
+}
