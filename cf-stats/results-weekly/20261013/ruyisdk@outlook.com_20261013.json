@@ -439,12 +439,12 @@
       "pageloads": 10,
       "visits": 0
     },
-    "PR": {
-      "pageloads": 1,
-      "visits": 0
-    },
     "BG": {
       "pageloads": 2,
+      "visits": 0
+    },
+    "PR": {
+      "pageloads": 1,
       "visits": 0
     },
     "HN": {
