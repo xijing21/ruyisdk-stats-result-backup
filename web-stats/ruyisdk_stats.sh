@@ -30,6 +30,19 @@ else
   OUTPUT_FILE="ruyisdk_stats_$(date +%Y%m%d).txt"
 fi
 
+# weekly.csv 输出路径
+# 若 RESULT_DIR 指向 results-weekly/<日期>/，weekly.csv 需在其上层 web-stats/ 目录，
+# 请按实际目录结构调整（例如改为 "${RESULT_DIR}/../weekly.csv"）
+if [[ -n "${RESULT_DIR:-}" ]]; then
+  CSV_FILE="${RESULT_DIR}/weekly.csv"
+else
+  CSV_FILE="weekly.csv"
+fi
+
+# dashboard JSON 数据源（可选）
+# 若本次运行已产出 api_dashboard_*.json，可在此指定或让函数自动查找
+DASHBOARD_JSON="${DASHBOARD_JSON:-}"
+
 # GitHub Token（可选）
 GITHUB_TOKEN="${GITHUB_TOKEN:-}"
 PEPY_API_KEY="${PEPY_API_KEY:-}"
@@ -86,6 +99,163 @@ sanitize_num() {
     else
         echo "0"
     fi
+}
+
+# ---------------------------------------------------------------
+# weekly.csv 表头 (28 列)
+# ---------------------------------------------------------------
+CSV_HEADER="stat_time,installs,installs_delta,pkg,pkg_delta,pm_mirror,pm_github,pm_pypi,pm_total,pm_total_delta,ide_eclipse_mirror,ide_plugin_eclipse_mirror,ide_plugin_eclipse_github,eclipse_marketplace,eclipse_total,eclipse_total_delta,ide_plugin_vscode_mirror,ide_plugin_vscode_github,vscode_marketplace,openvsx,vscode_total,vscode_total_delta,thirdparty,thirdparty_delta,humans,humans_delta,total_downloads,total_downloads_delta"
+
+# ---------------------------------------------------------------
+# csv_calc_delta: 计算增长量
+# $1=当前值 $2=上一行值; 上一行无效(首行/空/非数字)时输出空串
+# ---------------------------------------------------------------
+csv_calc_delta() {
+    case "$2" in
+        ''|*[!0-9]*) echo "" ;;
+        *) echo $(( $1 - $2 )) ;;
+    esac
+}
+
+# ---------------------------------------------------------------
+# append_weekly_csv: 追加一行统计数据到 weekly.csv
+# 用法: append_weekly_csv [json文件路径]
+# 数据优先取自 dashboard JSON (downloads_by_categories_v1 / installs)，
+# 无 JSON 时降级使用脚本内变量 (installs 记 0)
+# ---------------------------------------------------------------
+append_weekly_csv() {
+    local json_file="${1:-}"
+    local use_json=0
+
+    if [[ -n "${json_file}" && -f "${json_file}" ]]; then
+        use_json=1
+    else
+        echo "[CSV] 提示: 未找到 dashboard JSON，降级使用脚本变量 (installs 将记 0)"
+    fi
+
+    # 1. 表头: 仅文件不存在时写入
+    if [[ ! -f "${CSV_FILE}" ]]; then
+        printf '%s\n' "${CSV_HEADER}" > "${CSV_FILE}"
+        echo "[CSV] 已创建 ${CSV_FILE} 并写入表头"
+    fi
+
+    # 2. 读取各数据项 (均经 sanitize_num 防护)
+    local installs pkg pm_mirror pm_github pm_pypi \
+          ide_eclipse_mirror ide_plugin_eclipse_mirror ide_plugin_eclipse_github \
+          ide_plugin_vscode_mirror ide_plugin_vscode_github thirdparty humans
+
+    if [[ ${use_json} -eq 1 ]]; then
+        installs=$(jq -r '.installs.total // 0' "${json_file}" 2>/dev/null)
+        pkg=$(jq -r '.downloads_by_categories_v1["pkg"].total // 0' "${json_file}" 2>/dev/null)
+        pm_mirror=$(jq -r '.downloads_by_categories_v1["pm:mirror"].total // 0' "${json_file}" 2>/dev/null)
+        pm_github=$(jq -r '.downloads_by_categories_v1["pm:github"].total // 0' "${json_file}" 2>/dev/null)
+        pm_pypi=$(jq -r '.downloads_by_categories_v1["pm:pypi"].total // 0' "${json_file}" 2>/dev/null)
+        ide_eclipse_mirror=$(jq -r '.downloads_by_categories_v1["ide:eclipse:mirror"].total // 0' "${json_file}" 2>/dev/null)
+        ide_plugin_eclipse_mirror=$(jq -r '.downloads_by_categories_v1["ide:plugin:eclipse:mirror"].total // 0' "${json_file}" 2>/dev/null)
+        ide_plugin_eclipse_github=$(jq -r '.downloads_by_categories_v1["ide:plugin:eclipse:github"].total // 0' "${json_file}" 2>/dev/null)
+        ide_plugin_vscode_mirror=$(jq -r '.downloads_by_categories_v1["ide:plugin:vscode:mirror"].total // 0' "${json_file}" 2>/dev/null)
+        ide_plugin_vscode_github=$(jq -r '.downloads_by_categories_v1["ide:plugin:vscode:github"].total // 0' "${json_file}" 2>/dev/null)
+        thirdparty=$(jq -r '.downloads_by_categories_v1["3rdparty"].total // 0' "${json_file}" 2>/dev/null)
+        humans=$(jq -r '.downloads_by_categories_v1["humans"].total // 0' "${json_file}" 2>/dev/null)
+    else
+        installs=0
+        pkg="${s_ruyisdk_dist}"
+        pm_mirror="${s_ruyisdk_ruyi}"
+        pm_github="${g_ruyi}"
+        pm_pypi="${pypi_ruyi}"
+        ide_eclipse_mirror="${s_ruyisdk_ide}"
+        ide_plugin_eclipse_mirror="${g_ide}"
+        ide_plugin_eclipse_github="${g_eclipse}"
+        ide_plugin_vscode_mirror="${s_ruyisdk_vscode}"
+        ide_plugin_vscode_github="${g_vscode}"
+        thirdparty="${s_ruyisdk_3rdparty}"
+        humans="${s_ruyisdk_humans}"
+    fi
+
+    installs=$(sanitize_num "$installs")
+    pkg=$(sanitize_num "$pkg")
+    pm_mirror=$(sanitize_num "$pm_mirror")
+    pm_github=$(sanitize_num "$pm_github")
+    pm_pypi=$(sanitize_num "$pm_pypi")
+    ide_eclipse_mirror=$(sanitize_num "$ide_eclipse_mirror")
+    ide_plugin_eclipse_mirror=$(sanitize_num "$ide_plugin_eclipse_mirror")
+    ide_plugin_eclipse_github=$(sanitize_num "$ide_plugin_eclipse_github")
+    ide_plugin_vscode_mirror=$(sanitize_num "$ide_plugin_vscode_mirror")
+    ide_plugin_vscode_github=$(sanitize_num "$ide_plugin_vscode_github")
+    thirdparty=$(sanitize_num "$thirdparty")
+    humans=$(sanitize_num "$humans")
+
+    # 3. 非接口来源: VSCode Marketplace / OpenVSX 来自脚本变量
+    #    eclipse_marketplace 获取不到: 留空, 总数按 0 计
+    local eclipse_marketplace=""
+    local m_vscode_clean vsx_vscode_clean
+    m_vscode_clean=$(sanitize_num "${m_vscode}")
+    vsx_vscode_clean=$(sanitize_num "${vsx_vscode}")
+
+    # 4. 计算列
+    local pm_total=$(( pm_mirror + pm_github + pm_pypi ))
+    local eclipse_total=$(( ide_eclipse_mirror + ide_plugin_eclipse_mirror + ide_plugin_eclipse_github ))
+    local vscode_total=$(( ide_plugin_vscode_mirror + ide_plugin_vscode_github + m_vscode_clean + vsx_vscode_clean ))
+    local total_downloads=$(( pkg + pm_total + eclipse_total + vscode_total + thirdparty + humans ))
+
+    # 5. 统计时间 (脚本运行时刻)
+    local stat_time
+    stat_time=$(date '+%Y/%m/%d %H:%M')
+
+    # 6. 同一时间去重: 最后一行 stat_time 相同则跳过
+    local last_time
+    last_time=$(tail -n 1 "${CSV_FILE}" | cut -d',' -f1)
+    if [[ "${last_time}" == "${stat_time}" ]]; then
+        echo "[CSV] 已存在 ${stat_time} 的记录, 跳过本次追加"
+        return 0
+    fi
+
+    # 7. 增长量: 与上一数据行比较; 首行留空
+    local last_line
+    last_line=$(tail -n 1 "${CSV_FILE}")
+
+    local p_installs="" p_pkg="" p_pm_total="" p_eclipse_total="" \
+          p_vscode_total="" p_thirdparty="" p_humans="" p_total=""
+
+    if [[ -n "${last_line}" && "${last_line}" != "${CSV_HEADER}" ]]; then
+        local -a prev=()
+        IFS=',' read -ra prev <<< "${last_line}"
+        p_installs="${prev[1]:-}"        # installs
+        p_pkg="${prev[3]:-}"             # pkg
+        p_pm_total="${prev[8]:-}"        # pm_total
+        p_eclipse_total="${prev[14]:-}"  # eclipse_total
+        p_vscode_total="${prev[20]:-}"   # vscode_total
+        p_thirdparty="${prev[22]:-}"     # thirdparty
+        p_humans="${prev[24]:-}"         # humans
+        p_total="${prev[26]:-}"          # total_downloads
+    fi
+
+    local installs_delta pkg_delta pm_total_delta eclipse_total_delta \
+          vscode_total_delta thirdparty_delta humans_delta total_delta
+    installs_delta=$(csv_calc_delta "${installs}"         "${p_installs}")
+    pkg_delta=$(csv_calc_delta "${pkg}"                   "${p_pkg}")
+    pm_total_delta=$(csv_calc_delta "${pm_total}"         "${p_pm_total}")
+    eclipse_total_delta=$(csv_calc_delta "${eclipse_total}"   "${p_eclipse_total}")
+    vscode_total_delta=$(csv_calc_delta "${vscode_total}"     "${p_vscode_total}")
+    thirdparty_delta=$(csv_calc_delta "${thirdparty}"         "${p_thirdparty}")
+    humans_delta=$(csv_calc_delta "${humans}"                 "${p_humans}")
+    total_delta=$(csv_calc_delta "${total_downloads}"         "${p_total}")
+
+    # 8. 追加一行 (28 列)
+    printf '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n' \
+        "${stat_time}" \
+        "${installs}" "${installs_delta}" \
+        "${pkg}" "${pkg_delta}" \
+        "${pm_mirror}" "${pm_github}" "${pm_pypi}" "${pm_total}" "${pm_total_delta}" \
+        "${ide_eclipse_mirror}" "${ide_plugin_eclipse_mirror}" "${ide_plugin_eclipse_github}" \
+        "${eclipse_marketplace}" "${eclipse_total}" "${eclipse_total_delta}" \
+        "${ide_plugin_vscode_mirror}" "${ide_plugin_vscode_github}" \
+        "${m_vscode_clean}" "${vsx_vscode_clean}" "${vscode_total}" "${vscode_total_delta}" \
+        "${thirdparty}" "${thirdparty_delta}" \
+        "${humans}" "${humans_delta}" \
+        "${total_downloads}" "${total_delta}" >> "${CSV_FILE}"
+
+    echo "[CSV] 已追加记录: ${stat_time} -> ${CSV_FILE}"
 }
 
 
@@ -696,3 +866,13 @@ ESJSON
 
 echo ""
 echo "✅ 统计报告已保存至: ${OUTPUT_FILE}"
+
+# ===================== 追加 weekly.csv =====================
+# 数据源: 优先 DASHBOARD_JSON 指定的文件;
+#         否则自动在 RESULT_DIR 下查找 api_dashboard_*.json (取最新一个)
+if [[ -z "${DASHBOARD_JSON}" && -n "${RESULT_DIR:-}" ]]; then
+    DASHBOARD_JSON=$(ls -t "${RESULT_DIR}"/api_dashboard_*.json 2>/dev/null | head -n 1)
+fi
+
+append_weekly_csv "${DASHBOARD_JSON}"
+
