@@ -31,13 +31,21 @@ else
 fi
 
 # weekly.csv 输出路径
-# 若 RESULT_DIR 指向 results-weekly/<日期>/，weekly.csv 需在其上层 web-stats/ 目录，
-# 请按实际目录结构调整（例如改为 "${RESULT_DIR}/../weekly.csv"）
-if [[ -n "${RESULT_DIR:-}" ]]; then
-  CSV_FILE="${RESULT_DIR}/weekly.csv"
+# CSV 是跨周期累积的跟踪表，应放在 results-weekly 的上层（即 web-stats/ 根目录）
+# 默认: 从 RESULT_DIR 向上推导两级 (results-weekly/<日期> -> results-weekly -> web-stats)
+# 可通过环境变量 CSV_DIR 显式指定输出目录
+if [[ -n "${CSV_DIR:-}" ]]; then
+  CSV_DIR="${CSV_DIR}"
+elif [[ -n "${RESULT_DIR:-}" ]]; then
+  # RESULT_DIR 形如 .../web-stats/results-weekly/20261020 时，
+  # ../.. 即 web-stats/。若未来目录层级变化，可直接设置 CSV_DIR 覆盖。
+  CSV_DIR="$(cd "${RESULT_DIR}/../.." && pwd)"
 else
-  CSV_FILE="weekly.csv"
+  CSV_DIR="."
 fi
+mkdir -p "${CSV_DIR}"
+CSV_FILE="${CSV_DIR}/weekly.csv"
+
 
 # dashboard JSON 数据源（可选）
 # 若本次运行已产出 api_dashboard_*.json，可在此指定或让函数自动查找
