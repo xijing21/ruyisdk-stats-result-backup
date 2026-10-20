@@ -1,0 +1,2 @@
+stat_time,installs,installs_delta,pkg,pkg_delta,pm_mirror,pm_github,pm_pypi,pm_total,pm_total_delta,ide_eclipse_mirror,ide_plugin_eclipse_mirror,ide_plugin_eclipse_github,eclipse_marketplace,eclipse_total,eclipse_total_delta,ide_plugin_vscode_mirror,ide_plugin_vscode_github,vscode_marketplace,openvsx,vscode_total,vscode_total_delta,thirdparty,thirdparty_delta,humans,humans_delta,total_downloads,total_downloads_delta
+2026/10/20 10:14,40214,,78178,,110940,6606,11111,128657,,2465,685,156,,3306,,839,126,130,1864,2959,,30860,,104171,,348131,
