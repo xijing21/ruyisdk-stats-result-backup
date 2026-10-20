@@ -1,0 +1,122 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20261013000000-20261020000000",
+  "window_local": "20261013000000-20261020000000",
+  "window_utc": [
+    "2026-10-12T16:00:00Z",
+    "2026-10-19T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 130,
+    "pageloads": 200
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 130,
+      "visits": 130
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 70,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 200,
+      "visits": 130
+    }
+  },
+  "by_country": {
+    "JP": {
+      "pageloads": 120,
+      "visits": 60
+    },
+    "SG": {
+      "pageloads": 50,
+      "visits": 50
+    },
+    "US": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "CN": {
+      "pageloads": 20,
+      "visits": 10
+    }
+  },
+  "by_path": {
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch09/lesson/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch09/lab/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/licheepi3a": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch10/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/Blink/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/ESP32-P4/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch01/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch10/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/VisionFive2Lite/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/EBC7700/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch13/lab/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch13/lesson/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/BPI-F3/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 190,
+      "visits": 130
+    },
+    "mobile": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  }
+}
