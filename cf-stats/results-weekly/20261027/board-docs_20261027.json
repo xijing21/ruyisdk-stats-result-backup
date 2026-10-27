@@ -1,0 +1,174 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20261020000000-20261027000000",
+  "window_local": "20261020000000-20261027000000",
+  "window_utc": [
+    "2026-10-19T16:00:00Z",
+    "2026-10-26T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 230,
+    "pageloads": 360
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 220,
+      "visits": 220
+    },
+    "cn.bing.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 110,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 330,
+      "visits": 220
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 30,
+      "visits": 10
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 100,
+      "visits": 100
+    },
+    "SG": {
+      "pageloads": 180,
+      "visits": 70
+    },
+    "JP": {
+      "pageloads": 50,
+      "visits": 30
+    },
+    "US": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "GB": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 80,
+      "visits": 50
+    },
+    "/en/boards/K3-Pico-ITX/courses/ros2/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/EBC7700/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch03/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/vendors/starfive/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Duo_S/Pico-8SEG-LED/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K3-Pico-ITX/": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "/en/boards/LicheePi3A/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Pioneer/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Premier_P550/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/EBC7700/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch09/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/vendors/canaan/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/ESP32-P4/LVGL_Demo_v9/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/ESP32-P4/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Premier_P550/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/BPI-F3/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch04/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/BPI-CANMV-K230D-Zero/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Duo_256m/Coremark/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Pioneer/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/LicheePi4A/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/boards/Premier_P550/Coremark/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/BPI-CANMV-K230D-Zero/os-installation/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 280,
+      "visits": 150
+    },
+    "mobile": {
+      "pageloads": 80,
+      "visits": 80
+    }
+  }
+}
