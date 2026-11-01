@@ -1,0 +1,390 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20261001000000-20261101000000",
+  "window_local": "20261001000000-20261101000000",
+  "window_utc": [
+    "2026-09-30T16:00:00Z",
+    "2026-10-31T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 750,
+    "pageloads": 1030
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 730,
+      "visits": 730
+    },
+    "ruyisdk.cn": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "cn.bing.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 260,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 20,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 930,
+      "visits": 670
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 100,
+      "visits": 80
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 270,
+      "visits": 260
+    },
+    "SG": {
+      "pageloads": 320,
+      "visits": 200
+    },
+    "JP": {
+      "pageloads": 260,
+      "visits": 140
+    },
+    "US": {
+      "pageloads": 70,
+      "visits": 70
+    },
+    "GB": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "AR": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "CR": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "UA": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "IT": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "EC": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "BD": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "FI": {
+      "pageloads": 30,
+      "visits": 0
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 140,
+      "visits": 100
+    },
+    "/en/boards/K3-Pico-ITX/courses/ros2/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/en/boards/Meles/Coremark/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/en/boards/Premier_P550/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch09/lab/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch08/lesson/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch09/lesson/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch15/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/BPI-F3/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch10/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/RV-STAR/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Duo_S/Blink/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_256m/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/EBC7700/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Pioneer/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Pioneer/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_256m/2048/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/ESP32-P4/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/K3-Pico-ITX/courses/ros2/x86/ch01/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/DF9GMS/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch07/lesson/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/en/boards/Duo_256m/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch10/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/licheepi3a": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/EBC7700/": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "/en/vendors/starfive/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/LicheePi3A/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch03/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/vendors/canaan/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K3-Pico-ITX/": {
+      "pageloads": 30,
+      "visits": 10
+    },
+    "/en/boards/LicheePi4A/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/vendors/gigadevice/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch11/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch01/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Premier_P550/": {
+      "pageloads": 20,
+      "visits": 10
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/x86/ch04/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/VisionFive2Lite/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/EBC7700/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/vendors/xuantie/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Duo_S/Pico-8SEG-LED/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/EBC7700/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/BPI-F3/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch04/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/LicheePi3A/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch03/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch09/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/Blink/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch06/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Pioneer/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K3-Pico-ITX/llama-server/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch09/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/ESP32-P4/LVGL_Demo_v9/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/ESP32-P4/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/VisionFive2Lite/GPIO_PUD/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/BPI-CANMV-K230D-Zero/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch13/lesson/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/Premier_P550/SKL/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/LicheePi4A/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/boards/BPI-CANMV-K230D-Zero/os-installation/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch13/lab/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Duo_256m/Coremark/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/BPI-F3/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch02/lesson/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/boards/Premier_P550/Coremark/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Duo/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Pioneer/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 850,
+      "visits": 580
+    },
+    "mobile": {
+      "pageloads": 180,
+      "visits": 170
+    }
+  }
+}
