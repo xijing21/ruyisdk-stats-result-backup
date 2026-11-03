@@ -1,0 +1,190 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20261027000000-20261103000000",
+  "window_local": "20261027000000-20261103000000",
+  "window_utc": [
+    "2026-10-26T16:00:00Z",
+    "2026-11-02T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 240,
+    "pageloads": 300
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 230,
+      "visits": 230
+    },
+    "www.google.com": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 40,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 260,
+      "visits": 220
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 40,
+      "visits": 20
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 110,
+      "visits": 110
+    },
+    "US": {
+      "pageloads": 40,
+      "visits": 40
+    },
+    "SG": {
+      "pageloads": 50,
+      "visits": 40
+    },
+    "JP": {
+      "pageloads": 80,
+      "visits": 30
+    },
+    "IT": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "BR": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 30,
+      "visits": 30
+    },
+    "/en/boards/Meles/Coremark/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch15/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/BPI-F3/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch07/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch09/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/vendors/xuantie/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Duo_S/Blink/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch07/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Premier_P550/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/EBC7700/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Pioneer/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_256m/2048/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/LicheePi4A/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/K3-Pico-ITX/courses/ros2/x86/ch01/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch11/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/DF9GMS/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/VisionFive2Lite/GPIO_PUD/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/x86/ch04/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Duo_256m/YOLOv11/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/LicheePi4A/YOLOV5n/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/vendors/eswin/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Duo/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/BPI-CANMV-K230D-Zero/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Meles/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Premier_P550/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Premier_P550/SKL/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 220,
+      "visits": 160
+    },
+    "mobile": {
+      "pageloads": 80,
+      "visits": 80
+    }
+  }
+}
