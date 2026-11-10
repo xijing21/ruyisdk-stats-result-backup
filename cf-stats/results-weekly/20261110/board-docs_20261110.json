@@ -1,0 +1,178 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20261103000000-20261110000000",
+  "window_local": "20261103000000-20261110000000",
+  "window_utc": [
+    "2026-11-02T16:00:00Z",
+    "2026-11-09T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 250,
+    "pageloads": 310
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 250,
+      "visits": 250
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 50,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 250,
+      "visits": 200
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 60,
+      "visits": 50
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 90,
+      "visits": 90
+    },
+    "US": {
+      "pageloads": 80,
+      "visits": 80
+    },
+    "SG": {
+      "pageloads": 100,
+      "visits": 50
+    },
+    "JP": {
+      "pageloads": 30,
+      "visits": 20
+    },
+    "HK": {
+      "pageloads": 10,
+      "visits": 10
+    }
+  },
+  "by_path": {
+    "/": {
+      "pageloads": 50,
+      "visits": 50
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch12/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch03/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Premier_P550/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K230D": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch08/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/K510/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_256m/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Premier_P550/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Premier_P550/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/BPI-F3/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/K510/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch08/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/Pico-ePaper-2.13/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch04/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch01/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Duo_256m/face-detection/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo/Coremark/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Duo/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/BPI-CANMV-K230D-Zero/os-installation/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/Duo_256m/": {
+      "pageloads": 20,
+      "visits": 0
+    },
+    "/boards/Duo_256m/Coremark/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 240,
+      "visits": 180
+    },
+    "mobile": {
+      "pageloads": 70,
+      "visits": 70
+    }
+  }
+}
