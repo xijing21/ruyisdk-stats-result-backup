@@ -15,10 +15,15 @@ const dateStr = `${year}${String(month).padStart(2, '0')}${String(day).padStart(
 const monthStr = `${year}${String(month).padStart(2, '0')}`;
 
 // ========== 日期判断 ==========
+function isFirstDayOfMonth(d) {
+  return d.getUTCDate() === 1;
+}
+
 function isLastDayOfMonth(d) {
     const lastDay = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0));
     return d.getUTCDate() === lastDay.getUTCDate();
 }
+
 
 function isTuesday(d) {
     return d.getUTCDay() === 2;
@@ -30,7 +35,7 @@ const dirs = [];
 if (isTuesday(now)) {
     dirs.push(path.join(__dirname, 'results-weekly', dateStr));
 }
-if (isLastDayOfMonth(now)) {
+if (isFirstDayOfMonth(now)) {
     dirs.push(path.join(__dirname, 'results-monthly', monthStr));
 }
 // 手动触发或非约定日期时，仍保存到 results-weekly
@@ -41,7 +46,8 @@ if (dirs.length === 0) {
 dirs.forEach(d => fs.mkdirSync(d, { recursive: true }));
 
 // 写入主目录供统计脚本使用
-fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
+//fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs[0]);
+fs.writeFileSync(path.join(__dirname, 'result_dir.txt'), dirs.join('\n') + '\n');
 
 // ========== 截图与采集 ==========
 (async () => {
