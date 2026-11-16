@@ -72,7 +72,7 @@ def check(name, rows, issues):
                 d1 = datetime.strptime(prev["stat_time"], "%Y/%m/%d %H:%M")
                 d2 = datetime.strptime(st, "%Y/%m/%d %H:%M")
                 if "weekly" in name and (d2 - d1).days > 16:
-                    issues.append(f"[警告] {name}: 周度间隔异常 {prev['stat_time']} -> {st}（{（d2-d1).days}天）")
+                    issues.append(f"[警告] {name}: 周度间隔异常 {prev['stat_time']} -> {st}（{(d2 - d1).days}天）")
             except ValueError:
                 issues.append(f"[提示] {name} {st}: stat_time 格式与历史行不一致")
         prev = r
