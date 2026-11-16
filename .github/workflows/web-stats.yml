@@ -1,0 +1,205 @@
+name: RuyiSDK Stats Collect & Archive
+
+on:
+  schedule:
+    - cron: '22 0 * * 2'      # 每周二 UTC 00:22 = 北京 08:22 → 周度
+    - cron: '22 0 1 * *'      # 每月 1 日 UTC 00:22 = 北京 08:22 → 月度（归结上月）
+  workflow_dispatch:
+    inputs:
+      period:
+        description: 'dashboard 统计周期: auto=按本次归档目录判定'
+        type: choice
+        options: [auto, weekly, monthly, both]
+        default: auto
+      cf_start_date:
+        description: '[仅cf-stats补采] 起始 YYYYMMDD(北京时间)。填写后本workflow只执行cf-stats补采，跳过截图/json采集'
+        required: false
+        default: ''
+      cf_end_date:
+        description: '[仅cf-stats补采] 结束 YYYYMMDD，与起始日期必须同时填写'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: web-stats
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate cf backfill inputs
+        id: cf_backfill
+        run: |
+          S="${{ github.event.inputs.cf_start_date }}"
+          E="${{ github.event.inputs.cf_end_date }}"
+          if { [ -n "$S" ] && [ -z "$E" ] || [ -z "$S" ] && [ -n "$E" ]; }; then
+            echo "::error::cf_start_date 与 cf_end_date 必须同时填写"; exit 1
+          fi
+          if [ -n "$S" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "start=$S" >> "$GITHUB_OUTPUT"
+            echo "end=$E" >> "$GITHUB_OUTPUT"
+            echo "本次为 cf-stats 专用补采: $S ~ $E（不执行截图/json/csv）"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # ---- 以下截图/json/csv 步骤在 cf-stats 专用补采时全部跳过 ----
+
+      - name: Install Playwright
+        if: steps.cf_backfill.outputs.enabled == 'false'
+        working-directory: web-stats
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Create ~/.netrc for ES auth
+        if: steps.cf_backfill.outputs.enabled == 'false'
+        run: |
+          cat > ~/.netrc <<'NETRC_EOF'
+          ${{ secrets.ES_NETRC }}
+          NETRC_EOF
+          chmod 600 ~/.netrc
+
+      - name: Run screenshot script
+        if: steps.cf_backfill.outputs.enabled == 'false'
+        working-directory: web-stats
+        run: node screenshot.mjs
+        env:
+          VSM_COOKIE: ${{ secrets.VSM_COOKIE }}
+
+      - name: Get result directories
+        if: steps.cf_backfill.outputs.enabled == 'false'
+        id: dirs
+        run: |
+          set -e
+          DIRS=$(tr '\n' ' ' < web-stats/result_dir.txt | xargs)
+          echo "dirs=$DIRS" >> "$GITHUB_OUTPUT"
+          echo "归档目录: $DIRS"
+
+      - name: Determine periods
+        if: steps.cf_backfill.outputs.enabled == 'false'
+        id: periods
+        run: |
+          set -e
+          PERIODS=""
+          if echo "${{ steps.dirs.outputs.dirs }}" | grep -q "results-weekly";  then PERIODS="weekly";  fi
+          if echo "${{ steps.dirs.outputs.dirs }}" | grep -q "results-monthly"; then PERIODS="${PERIODS:+$PERIODS }monthly"; fi
+          case "${{ github.event.inputs.period }}" in
+            weekly)  PERIODS="weekly";;
+            monthly) PERIODS="monthly";;
+            both)    PERIODS="weekly monthly";;
+          esac
+          [ -z "$PERIODS" ] && PERIODS="none"
+          echo "periods=$PERIODS" >> "$GITHUB_OUTPUT"
+
+      - name: Run statistics script
+        if: steps.cf_backfill.outputs.enabled == 'false' && steps.periods.outputs.periods != 'none'
+        run: |
+          set -e
+          for d in ${{ steps.dirs.outputs.dirs }}; do
+            echo "[stats] $d"
+            RESULT_DIR="$d" bash web-stats/ruyisdk_stats.sh
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          PEPY_API_KEY: ${{ secrets.PEPY_API_KEY }}
+
+      - name: Update dashboard CSVs
+        if: steps.cf_backfill.outputs.enabled == 'false' && steps.periods.outputs.periods != 'none'
+        run: |
+          set -e
+          for P in ${{ steps.periods.outputs.periods }}; do
+            echo "[csv] $P"
+            python web-stats/update_dashboard_csv.py --period "$P"
+          done
+
+      # ---- cf-stats：补采模式用输入窗口，常规模式按周期自动算窗口 ----
+
+      - name: Run Cloudflare stats
+        env:
+          CF_API_TOKEN:  ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          BF:      ${{ steps.cf_backfill.outputs.enabled }}
+          BF_S:    ${{ steps.cf_backfill.outputs.start }}
+          BF_E:    ${{ steps.cf_backfill.outputs.end }}
+          START_IN: ${{ '' }}   # 已由补采参数取代，保留空
+        run: |
+          set -e
+          if [ "$BF" = "true" ]; then
+            echo "[cf-stats] 补采 $BF_S ~ $BF_E"
+            python cf_stats.py --start "$BF_S" --end "$BF_E"
+            exit 0
+          fi
+          # 常规模式：按本次周期计算窗口（周度=上个周二至今；月度=本月1日起）
+          for PERIOD in ${{ steps.periods.outputs.periods }}; do
+            if [ "$PERIOD" = "monthly" ]; then
+              START=$(TZ=Asia/Shanghai date +%Y%m01)
+              END=$(TZ=Asia/Shanghai date -d "+1 month" +%Y%m01)
+            else
+              DOW=$(TZ=Asia/Shanghai date +%u); OFFSET=$(( (DOW - 2 + 7) % 7 ))
+              END=$(TZ=Asia/Shanghai date -d "-$OFFSET day" +%Y%m%d)
+              START=$(TZ=Asia/Shanghai date -d "@$(( $(date -d "${END:0:4}-${END:4:2}-${END:6:2}" +%s) - 7*86400 ))" +%Y%m%d)
+            fi
+            echo "[cf-stats] $PERIOD $START ~ $END"
+            python cf_stats.py --start "$START" --end "$END"
+          done
+
+      # ---- AI 巡检 → 飞书；补采模式也发送（提示本次仅cf-stats） ----
+
+      - name: AI summary & Feishu notify
+        if: always()
+        env:
+          FEISHU_WEBHOOK_URL:    ${{ secrets.FEISHU_WEBHOOK_URL }}
+          FEISHU_WEBHOOK_SECRET: ${{ secrets.FEISHU_WEBHOOK_SECRET }}
+          LLM_API_KEY:  ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL:    ${{ secrets.LLM_MODEL }}
+          CF_ONLY: ${{ steps.cf_backfill.outputs.enabled }}
+        run: |
+          if [ "$CF_ONLY" = "true" ]; then
+            echo "本次为 cf-stats 专用补采，dashboard csv 未更新，仅发送cf-stats结果提示" >&2
+            # 如 ai_summary.py 支持 --cf-only 参数可在此传入；否则跳过csv总结
+            python web-stats/ai_summary.py --send --cf-only || python web-stats/ai_summary.py --send
+          else
+            python web/stats/ai_summary.py --send 2>/dev/null || python web-stats/ai_summary.py --send
+          fi
+
+      - name: Commit and push results
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --staged --quiet; then
+            MODE="自动采集(${{ steps.periods.outputs.periods }})"
+            [ "${{ steps.cf_backfill.outputs.enabled }}" = "true" ] && \
+              MODE="cf-stats补采(${{ steps.cf_backfill.outputs.start }}~${{ steps.cf_backfill.outputs.end }})"
+            git commit -m "📊 ${MODE}: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push origin HEAD:${{ github.ref_name }}
+          else
+            echo "No changes to commit"
+          fi
