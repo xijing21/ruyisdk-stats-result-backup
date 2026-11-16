@@ -67,8 +67,18 @@ def to_int(v):
     except ValueError: return None
 
 def read_rows(path):
-    with open(path, "r", encoding="utf-8-sig", newline="") as f:
-        return list(csv.DictReader(f))
+    raw = Path(path).read_bytes()
+    text = None
+    for enc in ("utf-8-sig", "gb18030"):
+        try:
+            text = raw.decode(enc)
+            break
+        except UnicodeDecodeError:
+            continue
+    if text is None:
+        sys.exit(f"[ERROR] {path} 编码无法识别（既不是UTF-8也不是GBK）")
+    import io
+    return list(csv.DictReader(io.StringIO(text)))
 
 def write_rows(path, rows):
     with open(path, "w", encoding="utf-8-sig", newline="") as f:
