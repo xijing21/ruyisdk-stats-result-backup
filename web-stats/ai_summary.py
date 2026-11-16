@@ -32,8 +32,17 @@ def to_int(v):
 def load(name):
     p = BASE / name
     if not p.exists(): return []
-    with open(p, "r", encoding="utf-8-sig", newline="") as f:
-        return list(csv.DictReader(f))
+    raw = p.read_bytes()
+    text = None
+    for enc in ("utf-8-sig", "gb18030"):
+        try:
+            text = raw.decode(enc); break
+        except UnicodeDecodeError:
+            continue
+    if text is None:
+        sys.exit(f"[ERROR] {name} 编码无法识别")
+    import io
+    return list(csv.DictReader(io.StringIO(text)))
 
 import csv  # noqa: E402
 
