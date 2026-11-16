@@ -875,12 +875,3 @@ ESJSON
 echo ""
 echo "✅ 统计报告已保存至: ${OUTPUT_FILE}"
 
-# ===================== 追加 weekly.csv =====================
-# 数据源: 优先 DASHBOARD_JSON 指定的文件;
-#         否则自动在 RESULT_DIR 下查找 api_dashboard_*.json (取最新一个)
-if [[ -z "${DASHBOARD_JSON}" && -n "${RESULT_DIR:-}" ]]; then
-    DASHBOARD_JSON=$(ls -t "${RESULT_DIR}"/api_dashboard_*.json 2>/dev/null | head -n 1)
-fi
-
-append_weekly_csv "${DASHBOARD_JSON}"
-
