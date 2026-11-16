@@ -12,7 +12,7 @@ on:
         options: [auto, weekly, monthly, both]
         default: auto
       cf_start_date:
-        description: '[仅cf-stats补采] 起始 YYYYMMDD(北京时间)。填写后本workflow只执行cf-stats补采，跳过截图/json采集'
+        description: '[仅cf-stats补采] 起始 YYYYMMDD(北京时间)。填写后本workflow只做校验并转发到专用cf-stats workflow'
         required: false
         default: ''
       cf_end_date:
@@ -55,13 +55,38 @@ jobs:
             echo "::error::cf_start_date 与 cf_end_date 必须同时填写"; exit 1
           fi
           if [ -n "$S" ]; then
+            if ! [[ "$S" =~ ^[0-9]{8}$ && "$E" =~ ^[0-9]{8}$ ]]; then
+              echo "::error::日期格式必须为 YYYYMMDD，收到: S=$S E=$E"; exit 1
+            fi
+            if [ "$S" -ge "$E" ]; then
+              echo "::error::start($S) 必须早于 end($E)"; exit 1
+            fi
             echo "enabled=true" >> "$GITHUB_OUTPUT"
             echo "start=$S" >> "$GITHUB_OUTPUT"
             echo "end=$E" >> "$GITHUB_OUTPUT"
-            echo "本次为 cf-stats 专用补采: $S ~ $E（不执行截图/json/csv）"
+            echo "本次为 cf-stats 专用补采: $S ~ $E（转发到专用 workflow，本 run 跳过截图/json/csv）"
           else
             echo "enabled=false" >> "$GITHUB_OUTPUT"
           fi
+
+      # ---- cf-stats 补采：转发到独立 workflow "RuyiSDK Cloudflare Web Stats" ----
+      # 该 workflow 自带窗口解析/校验/归档/commit，本 workflow 不再直接调用 cf_stats.py
+
+      - name: Trigger cf-stats backfill
+        if: steps.cf_backfill.outputs.enabled == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}   # 需具备 contents + workflow 权限
+          BF_S: ${{ steps.cf_backfill.outputs.start }}
+          BF_E: ${{ steps.cf_backfill.outputs.end }}
+        run: |
+          set -e
+          if [ "${BF_S:4:2}" = "01" ] && [ "${BF_S:6:2}" = "01" ]; then P=monthly; else P=weekly; fi
+          echo "[forward] 转发 cf-stats 补采: period=$P window=$BF_S~$BF_E"
+          gh workflow run "RuyiSDK Cloudflare Web Stats" \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref "$GITHUB_REF_NAME" \
+            -f period="$P" -f start_date="$BF_S" -f end_date="$BF_E"
+          echo "已触发，请在 Actions 页查看 'RuyiSDK Cloudflare Web Stats' 的新 run"
 
       # ---- 以下截图/json/csv 步骤在 cf-stats 专用补采时全部跳过 ----
 
@@ -134,72 +159,36 @@ jobs:
             python web-stats/update_dashboard_csv.py --period "$P"
           done
 
-      # ---- cf-stats：补采模式用输入窗口，常规模式按周期自动算窗口 ----
-
-      - name: Run Cloudflare stats
-        working-directory: cf-stats
-        env:
-          CF_API_TOKEN:  ${{ secrets.CF_API_TOKEN }}
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          BF:      ${{ steps.cf_backfill.outputs.enabled }}
-          BF_S:    ${{ steps.cf_backfill.outputs.start }}
-          BF_E:    ${{ steps.cf_backfill.outputs.end }}
-          START_IN: ${{ '' }}   # 已由补采参数取代，保留空
-        run: |
-          set -e
-          if [ "$BF" = "true" ]; then
-            echo "[cf-stats] 补采 $BF_S ~ $BF_E"
-            python cf_stats.py --start "$BF_S" --end "$BF_E"
-            exit 0
-          fi
-          # 常规模式：按本次周期计算窗口（周度=上个周二至今；月度=本月1日起）
-          for PERIOD in ${{ steps.periods.outputs.periods }}; do
-            if [ "$PERIOD" = "monthly" ]; then
-              START=$(TZ=Asia/Shanghai date +%Y%m01)
-              END=$(TZ=Asia/Shanghai date -d "+1 month" +%Y%m01)
-            else
-              DOW=$(TZ=Asia/Shanghai date +%u); OFFSET=$(( (DOW - 2 + 7) % 7 ))
-              END=$(TZ=Asia/Shanghai date -d "-$OFFSET day" +%Y%m%d)
-              START=$(TZ=Asia/Shanghai date -d "@$(( $(date -d "${END:0:4}-${END:4:2}-${END:6:2}" +%s) - 7*86400 ))" +%Y%m%d)
-            fi
-            echo "[cf-stats] $PERIOD $START ~ $END"
-            python cf_stats.py --start "$START" --end "$END"
-          done
-
-      # ---- AI 巡检 → 飞书；补采模式也发送（提示本次仅cf-stats） ----
+      # ---- AI 巡检 → 飞书（仅常规采集；cf 专用补采时跳过） ----
 
       - name: AI summary & Feishu notify
-        if: always()
+        if: steps.cf_backfill.outputs.enabled == 'false'
         env:
           FEISHU_WEBHOOK_URL:    ${{ secrets.FEISHU_WEBHOOK_URL }}
           FEISHU_WEBHOOK_SECRET: ${{ secrets.FEISHU_WEBHOOK_SECRET }}
           LLM_API_KEY:  ${{ secrets.LLM_API_KEY }}
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_MODEL:    ${{ secrets.LLM_MODEL }}
-          CF_ONLY: ${{ steps.cf_backfill.outputs.enabled }}
         run: |
-          if [ "$CF_ONLY" = "true" ]; then
-            echo "本次为 cf-stats 专用补采，dashboard csv 未更新，仅发送cf-stats结果提示" >&2
-            # 如 ai_summary.py 支持 --cf-only 参数可在此传入；否则跳过csv总结
-            python web-stats/ai_summary.py --send --cf-only || python web-stats/ai_summary.py --send
-          else
-            python web/stats/ai_summary.py --send 2>/dev/null || python web-stats/ai_summary.py --send
-          fi
+          set -e
+          python web-stats/ai_summary.py --send
 
       - name: Commit and push results
         if: always()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BF:   ${{ steps.cf_backfill.outputs.enabled }}
         run: |
           cd "$GITHUB_WORKSPACE"
+          if [ "$BF" = "true" ]; then
+            echo "cf-stats 专用补采：归档由 'RuyiSDK Cloudflare Web Stats' 自行 commit，本 run 跳过"
+            exit 0
+          fi
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --staged --quiet; then
-            MODE="自动采集(${{ steps.periods.outputs.periods }})"
-            [ "${{ steps.cf_backfill.outputs.enabled }}" = "true" ] && \
-              MODE="cf-stats补采(${{ steps.cf_backfill.outputs.start }}~${{ steps.cf_backfill.outputs.end }})"
-            git commit -m "📊 ${MODE}: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git commit -m "📊 自动采集(${{ steps.periods.outputs.periods }}): $(date -u +'%Y-%m-%d %H:%M UTC')"
             git push origin HEAD:${{ github.ref_name }}
           else
             echo "No changes to commit"
