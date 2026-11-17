@@ -22,6 +22,20 @@ DEFAULTS = [
     os.path.join(HERE, "results-monthly/cf_monthly.csv"),
 ]
 
+def load_rows(path):
+    """读取 csv, 自动尝试常见编码; 返回 (fieldnames, rows)"""
+    raw = open(path, "rb").read()
+    text = None
+    for enc in ("utf-8-sig", "gb18030", "latin-1"):
+        try:
+            text = raw.decode(enc); break
+        except UnicodeDecodeError:
+            continue
+    if text is None:
+        sys.exit(f"[ERROR] {path} 编码无法识别")
+    reader = csv.DictReader(io.StringIO(text))
+    return list(reader.fieldnames or []), list(reader)
+
 def to_num(s):
     s = (s or "").strip()
     if not s:
@@ -40,10 +54,8 @@ def write_summary(text):
 def recalc(path, dry):
     if not os.path.exists(path):
         print(f"::error::文件不存在: {path}"); sys.exit(1)
-    with open(path, newline="", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        fields = list(reader.fieldnames or [])
-        rows = list(reader)
+    fields, rows = load_rows(path)
+
     if not fields:
         print(f"::error::空文件或无表头: {path}"); sys.exit(1)
 
