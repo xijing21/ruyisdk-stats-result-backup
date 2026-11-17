@@ -1,0 +1,70 @@
+name: Dashboard Data Check and Repair (派生数据重算)
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: '修复对象'
+        type: choice
+        options: [all, cf_weekly, cf_monthly, dashboard_weekly, dashboard_monthly]
+        default: all
+      mode:
+        description: 'dry-run=仅预览差异不落库; apply=重算并提交'
+        type: choice
+        options: [dry-run, apply]
+        default: dry-run
+      note:
+        description: '修复原因(写入 commit message)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: web-stats          # 与主采集互斥, 避免 push 竞争
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Recalc derived data
+        env:
+          MODE:   ${{ github.event.inputs.mode }}
+          TARGET: ${{ github.event.inputs.target }}
+        run: |
+          set -e
+          if [ "$MODE" = "dry-run" ]; then DRY="--dry-run"; else DRY=""; fi
+          case "$TARGET" in
+            all)
+              python scripts/recalc_cf_csv.py $DRY
+              python scripts/recalc_dashboard_csv.py --period weekly  $DRY
+              python scripts/recalc_dashboard_csv.py --period monthly $DRY
+              ;;
+            cf_weekly)         python scripts/recalc_cf_csv.py $DRY cf-stats/results-weekly/cf_weekly.csv ;;
+            cf_monthly)        python scripts/recalc_cf_csv.py $DRY cf-stats/results-monthly/cf_monthly.csv ;;
+            dashboard_weekly)  python scripts/recalc_dashboard_csv.py --period weekly  $DRY ;;
+            dashboard_monthly) python scripts/recalc_dashboard_csv.py --period monthly $DRY ;;
+          esac
+
+      - name: Commit and push (apply only)
+        if: github.event.inputs.mode == 'apply'
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit（派生数据已一致）"; exit 0
+          fi
+          git commit -m "🔧 [data-repair] fix ${{ github.event.inputs.target }}: ${{ github.event.inputs.note }}"
+          git push origin HEAD:${{ github.ref_name }}
