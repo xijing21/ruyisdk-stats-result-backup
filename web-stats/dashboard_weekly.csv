@@ -1,4 +1,4 @@
-stat_time,installs,installs_delta,pkg,pkg_delta,pm_mirror,pm_github,pm_pypi,pm_total,pm_total_delta,ide_eclipse_mirror,ide_plugin_eclipse_mirror,ide_plugin_eclipse_github,eclipse_marketplace,eclipse_total,eclipse_total_delta,ide_plugin_vscode_mirror,ide_plugin_vscode_github,vscode_marketplace,openvsx,vscode_total,vscode_total_delta,thirdparty,thirdparty_delta,humans,humans_delta,total_downloads,total_downloads_delta,period_type,is_regular,source,note
+﻿stat_time,installs,installs_delta,pkg,pkg_delta,pm_mirror,pm_github,pm_pypi,pm_total,pm_total_delta,ide_eclipse_mirror,ide_plugin_eclipse_mirror,ide_plugin_eclipse_github,eclipse_marketplace,eclipse_total,eclipse_total_delta,ide_plugin_vscode_mirror,ide_plugin_vscode_github,vscode_marketplace,openvsx,vscode_total,vscode_total_delta,thirdparty,thirdparty_delta,humans,humans_delta,total_downloads,total_downloads_delta,period_type,is_regular,source,note
 2025/12/30 5:00,1914,,33070,,35177,5215,2955,43347,,2207,,55,,2262,,,,,,,,5625,,648,,84952,,weekly,TRUE,backfill,
 2026/1/5 23:00,1936,22,33261,191,35525,5235,2955,43715,368,2271,,55,,2326,64,,,,,,,6228,603,655,7,86185,1233,weekly,TRUE,backfill,新版修改数据收集方式：0.44.0 发布，这个版本开始install数据开始采集全部
 2026/1/13 0:00,1939,3,33404,143,35884,5256,3298,44438,723,2323,,58,,2381,55,,,5,,5,,6773,545,663,8,87664,1479,weekly,TRUE,backfill,新增vscode下载量
@@ -38,3 +38,4 @@ stat_time,installs,installs_delta,pkg,pkg_delta,pm_mirror,pm_github,pm_pypi,pm_t
 2026/10/27 5:59,40320,106,79536,1358,114244,6606,11143,131993,3336,2488,688,156,19,3351,26,860,126,137,1902,3025,66,31248,388,107061,2890,356214,8064,weekly,TRUE,workflow,
 2026/11/3 7:33,41306,986,81147,1611,118794,6606,11178,136578,4585,2531,704,156,19,3410,59,880,126,137,1942,3085,60,31636,388,110764,3703,366620,10406,weekly,TRUE,workflow,
 2026/11/10 8:00,45507,4201,83555,2408,121690,6606,11342,139638,3060,2570,723,156,19,3468,58,892,126,140,1974,3132,47,32076,440,120237,9473,382106,15486,weekly,TRUE,workflow,
+2026/11/16 19:59,45977,470,84083,528,125477,6606,11548,143631,3993,2595,742,156,19,3512,44,926,126,141,1990,3183,51,32378,302,126260,6023,393047,10941,weekly,TRUE,workflow,
