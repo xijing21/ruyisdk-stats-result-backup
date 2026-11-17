@@ -1,0 +1,154 @@
+{
+  "host": "board-docs-frontend.pages.dev",
+  "siteTag": "712cd266ae0946899ee783d6f8701fea",
+  "requested_window_local": "20261110000000-20261117000000",
+  "window_local": "20261110000000-20261117000000",
+  "window_utc": [
+    "2026-11-09T16:00:00Z",
+    "2026-11-16T16:00:00Z"
+  ],
+  "window_clamped": false,
+  "window_degraded": false,
+  "total": {
+    "visits": 150,
+    "pageloads": 240
+  },
+  "by_referrer": {
+    "(direct)": {
+      "pageloads": 150,
+      "visits": 150
+    },
+    "boards.ruyisdk.org": {
+      "pageloads": 80,
+      "visits": 0
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_host": {
+    "boards.ruyisdk.org": {
+      "pageloads": 230,
+      "visits": 150
+    },
+    "board-docs-frontend.pages.dev": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_country": {
+    "CN": {
+      "pageloads": 110,
+      "visits": 60
+    },
+    "US": {
+      "pageloads": 70,
+      "visits": 50
+    },
+    "SG": {
+      "pageloads": 40,
+      "visits": 40
+    },
+    "JP": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "HK": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_path": {
+    "/en/boards/LicheePi4A/OpenCV/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/": {
+      "pageloads": 20,
+      "visits": 20
+    },
+    "/boards/K230D": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_256m/YOLOv8/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/K510/GPIO_KEYS/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Duo_S/Mailbox-test/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/riscv/ch10/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/x86/ch06/lab/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Jupiter2/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/CoM260_Kit/courses/ros2/x86/ch01/lesson/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/Meles/Coremark/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/LicheePi4A/HelloWorld/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/en/boards/Duo_S/": {
+      "pageloads": 10,
+      "visits": 10
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch19/lesson/": {
+      "pageloads": 30,
+      "visits": 0
+    },
+    "/boards/Jupiter2/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/VisionFive2Lite/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/K3-Pico-ITX/courses/ros2/riscv/ch03/lesson/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/": {
+      "pageloads": 10,
+      "visits": 0
+    },
+    "/boards/CoM260_Kit/courses/ros2/riscv/ch01/lesson/": {
+      "pageloads": 10,
+      "visits": 0
+    }
+  },
+  "by_deviceType": {
+    "desktop": {
+      "pageloads": 200,
+      "visits": 110
+    },
+    "mobile": {
+      "pageloads": 40,
+      "visits": 40
+    }
+  }
+}
