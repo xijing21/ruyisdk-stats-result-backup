@@ -1,4 +1,4 @@
-name: Dashboard Data Check and Repair (派生数据重算)
+name: Data Repair (派生数据重算)
 
 on:
   workflow_dispatch:
@@ -46,14 +46,22 @@ jobs:
           if [ "$MODE" = "dry-run" ]; then DRY="--dry-run"; else DRY=""; fi
           case "$TARGET" in
             all)
-              python scripts/recalc_cf_csv.py $DRY
-              python scripts/recalc_dashboard_csv.py --period weekly  $DRY
-              python scripts/recalc_dashboard_csv.py --period monthly $DRY
+              python cf-stats/recalc_cf_csv.py $DRY
+              python web-stats/recalc_dashboard_csv.py --period weekly  $DRY
+              python web-stats/recalc_dashboard_csv.py --period monthly $DRY
               ;;
-            cf_weekly)         python scripts/recalc_cf_csv.py $DRY cf-stats/results-weekly/cf_weekly.csv ;;
-            cf_monthly)        python scripts/recalc_cf_csv.py $DRY cf-stats/results-monthly/cf_monthly.csv ;;
-            dashboard_weekly)  python scripts/recalc_dashboard_csv.py --period weekly  $DRY ;;
-            dashboard_monthly) python scripts/recalc_dashboard_csv.py --period monthly $DRY ;;
+            cf_weekly)
+              python cf-stats/recalc_cf_csv.py $DRY cf-stats/results-weekly/cf_weekly.csv
+              ;;
+            cf_monthly)
+              python cf-stats/recalc_cf_csv.py $DRY cf-stats/results-monthly/cf_monthly.csv
+              ;;
+            dashboard_weekly)
+              python web-stats/recalc_dashboard_csv.py --period weekly $DRY
+              ;;
+            dashboard_monthly)
+              python web-stats/recalc_dashboard_csv.py --period monthly $DRY
+              ;;
           esac
 
       - name: Commit and push (apply only)
