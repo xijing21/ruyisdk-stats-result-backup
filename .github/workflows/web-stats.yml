@@ -162,4 +162,9 @@ jobs:
           LLM_MODEL:    ${{ secrets.LLM_MODEL }}
         run: |
           set -e
-          python web-stats/ai_summary.py --send
+          case "${{ steps.periods.outputs.periods }}" in
+            "weekly monthly") P="both";;
+            "monthly")         P="monthly";;
+            *)                 P="weekly";;
+          esac
+          python web-stats/ai_summary.py --period "$P" --send
