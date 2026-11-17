@@ -13,7 +13,8 @@
   不带路径时, 默认处理同目录下 results-weekly/cf_weekly.csv
   与 results-monthly/cf_monthly.csv
 """
-import csv, argparse, os, sys
+
+import csv, argparse, os, sys, io
 
 HERE = os.path.dirname(os.path.abspath(__file__))     
 REPO = os.path.dirname(HERE)                        

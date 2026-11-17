@@ -15,7 +15,8 @@ delta 规则: <field>_delta = 本行 − 上一行; 首行或任一侧为空 →
 用法:
   python recalc_dashboard_csv.py --period {weekly,monthly,both} [--dry-run]
 """
-import csv, argparse, os, sys
+
+import csv, argparse, os, sys, io
 
 HERE = os.path.dirname(os.path.abspath(__file__))     # .../web-stats
 REPO = os.path.dirname(HERE)                          # 仓库根
