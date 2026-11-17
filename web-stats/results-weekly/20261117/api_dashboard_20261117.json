@@ -1,17 +1,17 @@
 {
-  "last_updated": "2026-11-16T19:59:59.835356Z",
+  "last_updated": "2026-11-17T02:59:51.970452Z",
   "downloads": {
-    "total": 84083
+    "total": 84084
   },
   "pm_downloads": {
-    "total": 143631
+    "total": 143706
   },
   "other_categories_downloads": {
     "3rdparty": {
-      "total": 32378
+      "total": 32380
     },
     "humans": {
-      "total": 126260
+      "total": 128095
     },
     "ide": {
       "total": 4545
@@ -19,22 +19,22 @@
   },
   "downloads_by_categories_v1": {
     "pkg": {
-      "total": 84083
+      "total": 84084
     },
     "pm:github": {
       "total": 6606
     },
     "pm:mirror": {
-      "total": 125477
+      "total": 125552
     },
     "pm:pypi": {
       "total": 11548
     },
     "3rdparty": {
-      "total": 32378
+      "total": 32380
     },
     "humans": {
-      "total": 126260
+      "total": 128095
     },
     "ide:eclipse:mirror": {
       "total": 2595
@@ -53,7 +53,7 @@
     }
   },
   "installs": {
-    "total": 45977
+    "total": 45982
   },
   "top_packages": {},
   "top_commands": {
